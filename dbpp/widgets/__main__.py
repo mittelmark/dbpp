@@ -9,6 +9,7 @@ from dbpp.widgets.LabEntry import LabEntry
 from dbpp.widgets.Balloon import Balloon
 from dbpp.widgets.XTableView import XTableView as tv
 from dbpp.widgets.XTreeView import XTreeView as trview
+from dbpp.widgets.TextMixins import *
 
 if __name__ == '__main__':
     root=tk.Tk()
@@ -85,6 +86,15 @@ if __name__ == '__main__':
     dgtree2.bookify()        
     dgtree.pack(side='top',fill='both',expand=True)   
     dgtree2.pack(side='top',fill='both',expand=True)       
+    class text(tk.Text,TextFontIncreaserMixin,TextCuaBindingsMixin,TextHighLightMixin): pass
+    txt  = text(frmr,undo=True) 
+    txt.bindTextResize()
+    txt.bindCua()
+    txt.addHighLights(commentline="'",commentstart="/'",commentend="'/",keywords=[ ['@startuml','@enduml'], ['class', 'entity', 'table'] ])
+    txt.insert("1.0","@startuml\n'This is a comment\nclass A\nclass B\nA --> B\n@enduml\n")
+    txt.updateHighLights()
+    txt.pack(side='top',fill='both',expand=True)
+
     pw.add(frml)
     pw.add(frmr)
     pw.pack(side="top",fill="both",expand=True)

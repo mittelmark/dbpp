@@ -7,4 +7,5 @@ import dbpp.widgets.LabEntry
 import dbpp.widgets.TableView
 import dbpp.widgets.XTableView
 import dbpp.widgets.XTreeView
+import dbpp.widgets.TextMixins
 
