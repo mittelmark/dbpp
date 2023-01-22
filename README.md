@@ -36,6 +36,6 @@ This a command line tool to encode diagram code such as [GraphViz](https://www.g
 Here an example for a backtranslation of an url into diagram code:
 
 ```
-$ python -m dbpp kroki https://kroki.io/plantuml/svg/eNpLzkksLlZwVKhWqAUAF10DsA==
+$ python3 -m dbpp kroki https://kroki.io/plantuml/svg/eNpLzkksLlZwVKhWqAUAF10DsA==
 class A { }
 ```
