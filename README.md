@@ -31,7 +31,7 @@ $ I am kroki __main__.py
 
 ## kroki
 
-This a command line tool to encode diagram code such as [GraphViz](https://www.graphviz.org) (.dot), [PlantUM](https://www.plantuml.org) (.pml) or [Ditaa](https://github.com/stathissideris/ditaa) (.dit) files as image url's using the [kroki](https://kroki.io) webservice or backtranslates image url's into diagram code.
+This a command line tool to encode diagram code such as [GraphViz](https://www.graphviz.org) (.dot), [PlantUML](https://www.plantuml.com) (.pml) or [Ditaa](https://github.com/stathissideris/ditaa) (.dit) files as image url's using the [kroki](https://kroki.io) webservice or backtranslates image url's into diagram code.
 
 Here an example for a backtranslation of an url into diagram code:
 
