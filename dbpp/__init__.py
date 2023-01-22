@@ -17,6 +17,7 @@ Example:
 
 #print(__path__)
 from . import kroki
+from . import widgets
 
 __version__ = "0.1"
 __author__  = "Detlef Groth, University of Potsdam"
