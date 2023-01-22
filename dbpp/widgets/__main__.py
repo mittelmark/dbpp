@@ -5,6 +5,9 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from dbpp.widgets.GuiBaseClass import GuiBaseClass
 from dbpp.widgets.Scrolled import Scrolled
+from dbpp.widgets.LabEntry import LabEntry
+from dbpp.widgets.Balloon import Balloon
+
 if __name__ == '__main__':
     root=tk.Tk()
     bapp = GuiBaseClass(root) 
@@ -15,12 +18,28 @@ if __name__ == '__main__':
     
     # example for using getFrame
     frm=bapp.getFrame()
-    txt=tk.Text(frm,undo=True)
+    frm1 = ttk.Frame(frm)
+    var=tk.StringVar()
+    var.set("Hello")
+    dgl1=LabEntry(frm1, labeltext="This",textvariable=var)
+    passw=tk.StringVar()
+    passw.set("secret-0815")
+    dgl2=LabEntry(frm1, labeltext="Password (hover)",textvariable=passw,show="*")  
+    dgl1.pack(side='top',fill="x",expand=True)
+    dgl2.pack(side='top',fill="x",expand=True)  
+    dgl2.label.configure(foreground="red")
+    Balloon(dgl2.entry,"this is your password")
+    Balloon(dgl2.label,"Hover right the password!")    
+    frm2 = ttk.Frame(frm)
+
+    txt=tk.Text(frm2,undo=True)
     Scrolled(txt)
     for i in range(0,150):
         txt.insert("end",f"line {i} the crazy blue frog jumps over the busy street ....\n")
         
     #txt.pack(side='top',fill='both',expand=True)
     bapp.setEditTarget(txt)
+    frm1.pack(side="top",fill="x")
+    frm2.pack(side="top",fill="both",expand=True)    
     bapp.addStatusBar()
     bapp.mainLoop()
