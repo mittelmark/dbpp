@@ -18,6 +18,7 @@
 - **TableView**
 - **XTableView**
 - **XTreeView**
+- **TextMixins**
 
 
 
