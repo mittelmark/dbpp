@@ -67,6 +67,15 @@ if __name__ == '__main__':
     Scrolled(text)
     for i in range(0,30):
       text.insert('end',"Hello very long line text ...\n")
+    mframe=ttk.Frame(root)
+    tview =ttk.Treeview(mframe,columns=['col1','col2','col3'])
+    tview.heading('col1',text="Column 1")
+    tview.heading('col2',text="Column 2")
+    tview.heading('col3',text="Column 2")
+    for i in range(1,40):
+        tview.insert('','end',values=[i+1,i+2,i+3])
+    Scrolled(tview)
     nframe.pack(side='top',fill='both',expand=True)
+    mframe.pack(side='top',fill='both',expand=True)    
     root.mainloop()
 
