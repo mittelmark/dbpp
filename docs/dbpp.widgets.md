@@ -15,6 +15,9 @@
 - **Scrolled**
 - **Balloon**
 - **LabEntry**
+- **TableView**
+- **XTableView**
+- **XTreeView**
 
 
 

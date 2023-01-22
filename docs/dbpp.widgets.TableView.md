@@ -1,0 +1,128 @@
+<!-- markdownlint-disable -->
+
+<a href="../dbpp/widgets/TableView.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+# <kbd>module</kbd> `dbpp.widgets.TableView`
+Table widget based on ttk.Treeview with scrollbars shown if needed.  
+
+This a widget to display tabular data using the standard ttk.Treeview widget,  inheriting all its methods and options. Further the widget has automatically shown or hidden scrollbars.  A convenience function to load tabular data is implemented as well. 
+
+
+
+**Examples:**
+ 
+
+```
+import tkinter as tk
+import tkinter.ttk as ttk
+from dbpp.widgets.TableView import TableView 
+root = tk.Tk()
+root.title('TableView demo')
+dgtab=TableView(root)
+dgtab.pack(side='top',fill='both',expand=True)
+dgtab.readTabfile("iris.tab")
+```  
+
+**Author:** Detlef Groth, University of Potsdam, 2019-2023 
+
+**License:** MIT - License 
+
+
+
+---
+
+<a href="../dbpp/widgets/TableView.py#L34"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+## <kbd>class</kbd> `TableView`
+
+
+
+
+<a href="../dbpp/widgets/TableView.py#L40"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `__init__`
+
+```python
+__init__(parent, *args, **kwargs)
+```
+
+The constructor to create a TableView widget. 
+
+
+
+**Args:**
+ 
+ - <b>`parent`</b> (ttk.Frame): the parent widget wherein the ttk.Treeview widget will be placed. 
+ - <b>`*args (list)`</b>:  standard ttk.Treeview arguments which will be delegated to the widget 
+ - <b>`**kwargs (dict)`</b>:  standard ttk.Treeview arguments which will be delegated to the widget 
+
+
+
+**Returns:**
+ TableView widget with addtional methods and all methods of a ttk.Treeview widget 
+
+
+
+
+---
+
+<a href="../dbpp/widgets/TableView.py#L72"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `getFrame`
+
+```python
+getFrame()
+```
+
+Returns the frame in which the widget is embedded to perform, useful for packing or gridding the widget. 
+
+This function is needed by geometry managers like grid or ttk.PanedWindow to manage the parent frame of the widget in the layout. For pack the default methods pack and pack_forget are defined. 
+
+---
+
+<a href="../dbpp/widgets/TableView.py#L111"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `pack`
+
+```python
+pack(**kwargs)
+```
+
+Overwrites the default pack method to use the internal frame. 
+
+---
+
+<a href="../dbpp/widgets/TableView.py#L114"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `pack_forget`
+
+```python
+pack_forget(**kwargs)
+```
+
+Overwrites the default pack_forget method to use the internal frame. 
+
+---
+
+<a href="../dbpp/widgets/TableView.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+
+### <kbd>method</kbd> `readTabfile`
+
+```python
+readTabfile(filename)
+```
+
+Reads a tabular formatted data file and displays it into the `TableView` widget. 
+
+
+
+**Args:**
+ 
+ - <b>`filename`</b> (string):  the name of a tabular file 
+
+
+
+
+---
+
+_This file was automatically generated via [lazydocs](https://github.com/ml-tooling/lazydocs)._
