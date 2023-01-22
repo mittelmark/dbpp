@@ -13,7 +13,6 @@ Example:
     2
 """
 
-from dbpp.kroki.KrokiEncoder import *
 
 __version__ = "0.1"
 __author__  = "Detlef Groth, University of Potsdam"

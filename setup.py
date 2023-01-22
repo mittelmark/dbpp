@@ -7,5 +7,5 @@ setup(name='dbpp',
       author='Detlef Groth',
       author_email='dgroth@uni-potsdam.de',
       license='MIT',
-      packages=['minipy'],
+      packages=['dbpp'],
       zip_safe=False)
