@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='dbpp',
       version='0.1',
@@ -7,5 +7,5 @@ setup(name='dbpp',
       author='Detlef Groth',
       author_email='dgroth@uni-potsdam.de',
       license='MIT',
-      packages=['dbpp'],
+      packages=find_packages(),
       zip_safe=False)

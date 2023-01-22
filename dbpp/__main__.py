@@ -1,9 +1,9 @@
 """
 Command-line application example for dbpp package.
 """
+import dbpp
 import dbpp.kroki.KrokiEncoder as KrokiEncoder
 import sys, re
-import dbpp
 def usage(argv):
     print("Usage: python3 -m dbpp kroki URL")
 def main(argv):
@@ -11,7 +11,7 @@ def main(argv):
     if (len(argv) == 3 and argv[1] == "kroki"):
         #print("here")
         if re.search("^https://.+(svg|png)/",argv[2]):
-            kroki=KrokiEncoder()
+            kroki=KrokiEncoder.KrokiEncoder()
             print(kroki.kroki2dia(argv[2]))
     #print(argv)
 

@@ -13,7 +13,10 @@ Example:
     2
 """
 
-__path__ = __import__('pkgutil').extend_path(__path__, __name__)
+#__path__ = __import__('pkgutil').extend_path(__path__, __name__)
+
+#print(__path__)
+from . import kroki
 
 __version__ = "0.1"
 __author__  = "Detlef Groth, University of Potsdam"

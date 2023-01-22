@@ -1,1 +1,1 @@
-from .KrokiEncoder import KrokiEncoder
+from . import KrokiEncoder
