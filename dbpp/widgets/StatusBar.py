@@ -8,7 +8,7 @@ Examples:
 
 ```
 import tkinter as tk
-from dbp.widgets.StatusBar import StatusBar
+from dbpp.widgets.StatusBar import StatusBar
 root = tk.Tk()
 tk.Frame(root, width=200, height=100).pack()
 status = StatusBar(root)

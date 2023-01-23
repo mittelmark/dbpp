@@ -6,7 +6,7 @@ The module *GuiBaseClass* provides an infrastructure on which you can build your
 own Tkinter applications. Your application should simple inheriting from that class. 
 The *GuiBaseClass* provides functionalities such us:
 
-- standard menubar with *File-Exit* and *Help-About* entries, other menus can be easily added"
+- standard menubar with *File-Exit* and *Help-About* entries, other menus can be easily added
 - an optional *Edit-Cut, Coyp, Paste* etc menu entry
 - mainframe for the application in which you can add your own widgets
 - status bar widget which can be shown if desired

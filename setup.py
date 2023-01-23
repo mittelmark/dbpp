@@ -8,4 +8,6 @@ setup(name='dbpp',
       author_email='dgroth@uni-potsdam.de',
       license='MIT',
       packages=find_packages(),
-      zip_safe=False)
+      zip_safe=False,
+      include_package_data=True,
+        package_data={'': ['data/*.tab','tcllibs*/*.*']})

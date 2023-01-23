@@ -27,8 +27,6 @@ dgtab.readTabfile("iris.tab")
 """
 import tkinter as tk 
 import tkinter.ttk as ttk
-import dbpp.widgets.AutoScrollbar as AutoScrollbar
-
 
 #import sqlite3
 class TableView (ttk.Treeview):
@@ -53,21 +51,6 @@ class TableView (ttk.Treeview):
         self.tag_configure('even', background='#CCEEFF')
         self.tag_configure('odd', background='#FFFFFF')        
         self.column("#0",width=0,minwidth=0,stretch=False)
-        vscrollbar = AutoScrollbar.AutoScrollbar(self.frame)
-        vscrollbar.grid(row=0, column=1, sticky='ns')
-        hscrollbar = AutoScrollbar.AutoScrollbar(self.frame, orient='horizontal')
-        hscrollbar.grid(row=1, column=0, sticky='ew')
-    
-        self.configure(yscrollcommand=vscrollbar.set,
-                    xscrollcommand=hscrollbar.set)
-        self.grid(row=0, column=0, sticky='nsew')
-    
-        vscrollbar.config(command=self.yview)
-        hscrollbar.config(command=self.xview)
-    
-        # make the treeview expandable
-        self.frame.grid_rowconfigure(0, weight=1)
-        self.frame.grid_columnconfigure(0, weight=1)
 
     def getFrame(self):
         """Returns the frame in which the widget is embedded to perform, useful for packing or gridding the widget.
