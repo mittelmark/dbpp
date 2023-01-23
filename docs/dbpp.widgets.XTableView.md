@@ -1,8 +1,27 @@
+<center>
+**[dbpp.widgets](dbpp.widgets.md) package:** 
+[GuiBaseClass](dbpp.widgets.GuiBaseClass.md) -
+[AutoScrollbar](dbpp.widgets.AutoScrollbar.md) -
+[Balloon](dbpp.widgets.Balloon.md) -
+[Ctext](dbpp.widgets.Ctext.md) -
+[LabEntry](dbpp.widgets.LabEntry.md) -
+[Scrolled](dbpp.widgets.Scrolled.md) -
+[SqlText](dbpp.widgets.SqlText.md) -
+[StatusBar](dbpp.widgets.StatusBar.md) -
+[TableView](dbpp.widgets.TableView.md) -
+[TextMixins](dbpp.widgets.TextMixins.md) -
+[XTableView](dbpp.widgets.XTableView.md) -
+[XTreeView](dbpp.widgets.XTreeView.md) 
+
+**[dbpp.kroki](dbpp.kroki.md) package:** 
+[dbpp.kroki.KrokiEncoder](dbpp.kroki.KrokiEncoder.md)
+</center>
+
 <!-- markdownlint-disable -->
 
-<a href="../dbpp/widgets/XTableView.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../dbpp/widgets/XTableView.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-# <kbd>module</kbd> `dbpp.widgets.XTableView`
+# <kbd>module</kbd> `widgets.XTableView`
 Extension of the TableView widget which can as well insert lists into the ttk.Treeview widget. 
 
 The widget TableView provides an extension for the [TableView](TableView.html)  table widget with a readData function, getting header and lists  inheriting all methods and options from `TableView`. 
@@ -61,12 +80,12 @@ root.mainloop()
 
 ---
 
-<a href="../dbpp/widgets/XTableView.py#L64"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../dbpp/widgets/XTableView.py#L64"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>class</kbd> `XTableView`
 Extended ttk.Treeview based on TableView. 
 
-<a href="../dbpp/widgets/XTableView.py#L67"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../dbpp/widgets/XTableView.py#L67"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `__init__`
 
@@ -94,7 +113,7 @@ The constructor to create a XTableView widget.
 
 ---
 
-<a href="../dbpp/widgets/XTableView.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../dbpp/widgets/XTableView.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `insertData`
 

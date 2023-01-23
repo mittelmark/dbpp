@@ -1,8 +1,27 @@
+<center>
+**[dbpp.widgets](dbpp.widgets.md) package:** 
+[GuiBaseClass](dbpp.widgets.GuiBaseClass.md) -
+[AutoScrollbar](dbpp.widgets.AutoScrollbar.md) -
+[Balloon](dbpp.widgets.Balloon.md) -
+[Ctext](dbpp.widgets.Ctext.md) -
+[LabEntry](dbpp.widgets.LabEntry.md) -
+[Scrolled](dbpp.widgets.Scrolled.md) -
+[SqlText](dbpp.widgets.SqlText.md) -
+[StatusBar](dbpp.widgets.StatusBar.md) -
+[TableView](dbpp.widgets.TableView.md) -
+[TextMixins](dbpp.widgets.TextMixins.md) -
+[XTableView](dbpp.widgets.XTableView.md) -
+[XTreeView](dbpp.widgets.XTreeView.md) 
+
+**[dbpp.kroki](dbpp.kroki.md) package:** 
+[dbpp.kroki.KrokiEncoder](dbpp.kroki.KrokiEncoder.md)
+</center>
+
 <!-- markdownlint-disable -->
 
-<a href="../dbpp/widgets/LabEntry.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../dbpp/widgets/LabEntry.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-# <kbd>module</kbd> `dbpp.widgets.LabEntry`
+# <kbd>module</kbd> `widgets.LabEntry`
 Simple composite widget of *ttk.Label* and *ttk.Entry*. 
 
 This widget provides a simple composite widget consisting of a  *ttk.Label* and a *ttk.Entry*. At widget instantiation all arguments are forwarded to the *ttk.Entry* widget, only the option *labeltext* is forwarded to the *ttk.Label* widget as text. Subsequent changes to the widget should be performed on the  two public variables *label* and *entry*.  
@@ -37,12 +56,12 @@ root.mainloop()
 
 ---
 
-<a href="../dbpp/widgets/LabEntry.py#L47"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../dbpp/widgets/LabEntry.py#L47"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>class</kbd> `LabEntry`
 Composite widget of ttk.Label and ttk.Entry. 
 
-<a href="../dbpp/widgets/LabEntry.py#L49"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../dbpp/widgets/LabEntry.py#L49"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `__init__`
 

@@ -1,8 +1,27 @@
+<center>
+**[dbpp.widgets](dbpp.widgets.md) package:** 
+[GuiBaseClass](dbpp.widgets.GuiBaseClass.md) -
+[AutoScrollbar](dbpp.widgets.AutoScrollbar.md) -
+[Balloon](dbpp.widgets.Balloon.md) -
+[Ctext](dbpp.widgets.Ctext.md) -
+[LabEntry](dbpp.widgets.LabEntry.md) -
+[Scrolled](dbpp.widgets.Scrolled.md) -
+[SqlText](dbpp.widgets.SqlText.md) -
+[StatusBar](dbpp.widgets.StatusBar.md) -
+[TableView](dbpp.widgets.TableView.md) -
+[TextMixins](dbpp.widgets.TextMixins.md) -
+[XTableView](dbpp.widgets.XTableView.md) -
+[XTreeView](dbpp.widgets.XTreeView.md) 
+
+**[dbpp.kroki](dbpp.kroki.md) package:** 
+[dbpp.kroki.KrokiEncoder](dbpp.kroki.KrokiEncoder.md)
+</center>
+
 <!-- markdownlint-disable -->
 
-<a href="../dbpp/widgets/TableView.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../dbpp/widgets/TableView.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-# <kbd>module</kbd> `dbpp.widgets.TableView`
+# <kbd>module</kbd> `widgets.TableView`
 Table widget based on ttk.Treeview with scrollbars shown if needed.  
 
 This a widget to display tabular data using the standard ttk.Treeview widget,  inheriting all its methods and options. Further the widget has automatically shown or hidden scrollbars.  A convenience function to load tabular data is implemented as well. 
@@ -31,14 +50,14 @@ dgtab.readTabfile("iris.tab")
 
 ---
 
-<a href="../dbpp/widgets/TableView.py#L34"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../dbpp/widgets/TableView.py#L32"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>class</kbd> `TableView`
 
 
 
 
-<a href="../dbpp/widgets/TableView.py#L40"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../dbpp/widgets/TableView.py#L38"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `__init__`
 
@@ -66,7 +85,7 @@ The constructor to create a TableView widget.
 
 ---
 
-<a href="../dbpp/widgets/TableView.py#L72"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../dbpp/widgets/TableView.py#L55"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `getFrame`
 
@@ -80,7 +99,7 @@ This function is needed by geometry managers like grid or ttk.PanedWindow to man
 
 ---
 
-<a href="../dbpp/widgets/TableView.py#L111"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../dbpp/widgets/TableView.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `pack`
 
@@ -92,7 +111,7 @@ Overwrites the default pack method to use the internal frame.
 
 ---
 
-<a href="../dbpp/widgets/TableView.py#L114"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../dbpp/widgets/TableView.py#L97"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `pack_forget`
 
@@ -104,7 +123,7 @@ Overwrites the default pack_forget method to use the internal frame.
 
 ---
 
-<a href="../dbpp/widgets/TableView.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square"></a>
+<a href="../dbpp/widgets/TableView.py#L64"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `readTabfile`
 
