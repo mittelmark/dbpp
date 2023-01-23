@@ -14,7 +14,7 @@ The following applications will be added:
 
 The following libaries will be as well added:
 
-* dbpp.widgets - collection of Tkinter-widgets to build applications (done)
+* [dbpp.widgets](docs/dbpp.widgets.md) - collection of Tkinter-widgets to build applications (done)
 * kroki - a class [KrokiEncoder](https://github.com/mittelmark/dbpp/blob/main/dbpp/kroki/KrokiEncoder.py)
 
 # Installation
