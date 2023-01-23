@@ -14,6 +14,8 @@
 [XTableView](dbpp.widgets.XTableView.md) -
 [XTreeView](dbpp.widgets.XTreeView.md) 
 
+**apps:** [dbpp.peditor](dbpp.peditor.PumlEditor.md)
+
 **[dbpp.kroki](dbpp.kroki.md) package:** 
 [dbpp.kroki.KrokiEncoder](dbpp.kroki.KrokiEncoder.md)
 

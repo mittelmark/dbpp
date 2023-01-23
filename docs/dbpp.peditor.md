@@ -23,16 +23,16 @@
 
 <!-- markdownlint-disable -->
 
-<a href="../dbpp/kroki/__init__.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/__init__.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-# <kbd>module</kbd> `kroki`
+# <kbd>module</kbd> `peditor`
 
 
 
 
 **Global Variables**
 ---------------
-- **KrokiEncoder**
+- **PumlEditor**
 
 
 

@@ -4,7 +4,7 @@
 #    sudo apt|dnf install pandoc
 #    pip3 install lazydocs --user
 
-docs: 
+docu: 
 	rm -f docs/*.md docs/*.html
 	pandoc header.md -o docs/header.html --lua-filter=lua-filters/links-to-html.lua
 	lazydocs dbpp
