@@ -17,3 +17,8 @@ docu:
 	cd docs && perl -i -pe 's/.+(img.+flat-square.)>//' *.html
 	cd docs && for file in `ls dbpp*.html`; do htmlark $$file -o temp.html && mv temp.html $$file; done
 
+lua-readme:
+	cd lua-filters && pandoc README.md -o README.html --css pydoc.css -s \
+		--lua-filter filter-python.lua --lua-filter filter-kroki.lua
+	cd lua-filters && htmlark README.html -o temp.html
+	cd lua-filters && mv temp.html README.html
