@@ -187,12 +187,12 @@ class TextHighLightMixin:
     
     ```
     import tkinter as tk
-    class MText(tk.Text,dbp.widgets.TextMixins.TextHighLightMixin): pass
+    class MText(tk.Text,dbpp.widgets.TextMixins.TextHighLightMixin): pass
     root = tk.Tk()
     text = MText(root)
     text.addHighLights(linecomment="^\s*'",keywords=[ 
         ['@startuml','@enduml', '@startmindmap','@endmindmap'], 
-        ['class', 'entitiy', 'table'] ])
+        ['class', 'entity', 'table'] ])
     ```
     
     """
@@ -277,7 +277,7 @@ class TextHighLightMixin:
                     self.mark_set("matchEnd", "%s+%sc" % (index, mycount.get()))
                     preIndex = "%s-%sc" % (index, 1)
                     postIndex = "%s+%sc" % (index, mycount.get())
-                    if (len(self.tag_names(index)) != 0): break
+                    if (len(self.tag_names(index)) != 0): continue
                     if self._CheckWord(index, preIndex, postIndex):
                         self.tag_add(self.tags[idx], "matchStart", "matchEnd")   
     def _CheckWord (self, index, pre, post):
@@ -321,7 +321,12 @@ if __name__ == "__main__":
     txt  = text(root,undo=True) 
     txt.bindTextResize()
     txt.bindCua()
-    txt.addHighLights(commentline="'",commentstart="/'",commentend="'/",keywords=[ ['@startuml','@enduml'], ['class', 'entity', 'table'] ])
+    txt.addHighLights(commentline="'",commentstart="/'",commentend="'/",keywords=[ 
+                ['@startuml','@enduml','@startditaa','@enddita','@startmindmap','@endmindmap'], 
+                ['class','abstract','annotation','interface','class', 'object','entity', 'table','node','package','namespace','extends','implements'],
+                ['hide', 'show','remove'],
+                ['skinparam','style','scale','header', 'footer', 'title','note', 'end note'],
+                ['!define','!theme','!function', '!endfunction','!return','!procedure','!endprocedure','!include','!includesub'] ])
     txt.insert("1.0","@startuml\n'This is a comment\nclass A\nclass B\nA --> B\n@enduml\n")
     txt.updateHighLights()
     txt.pack(side='top',fill='both',expand=True)
