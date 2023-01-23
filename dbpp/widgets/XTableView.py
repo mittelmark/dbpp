@@ -18,7 +18,6 @@ class "ttk.TreeView" as Treeview {
     etc()
 }
 class "dbpp.widgets.TableView" as TableView {
-    getFrame()
     readTabfile(filename)
     pack(kwargs)
     pack_forget()
@@ -102,7 +101,7 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.title('XTableView Demo')
     dgtab=XTableView(root)
-    dgtab.getFrame().pack(side='top',fill='both',expand=True)
+    dgtab.pack(side='top',fill='both',expand=True)
     dgtab.insertData(['Col1','Col2'],
         data=[['val1.1','val1.2'], ['val2.1','val2.2']])
             

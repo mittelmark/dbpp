@@ -46,20 +46,10 @@ class TableView (ttk.Treeview):
         Returns:
             TableView widget with addtional methods and all methods of a ttk.Treeview widget
         """    
-        self.frame=ttk.Frame(parent)
-        ttk.Treeview.__init__(self, self.frame,*args,**kwargs)
+        ttk.Treeview.__init__(self, parent,*args,**kwargs)
         self.tag_configure('even', background='#CCEEFF')
         self.tag_configure('odd', background='#FFFFFF')        
         self.column("#0",width=0,minwidth=0,stretch=False)
-
-    def getFrame(self):
-        """Returns the frame in which the widget is embedded to perform, useful for packing or gridding the widget.
-        
-        This function is needed by geometry managers like grid or ttk.PanedWindow to manage the parent frame of
-        the widget in the layout. For pack the default methods pack and pack_forget are defined.
-        """
-        # geometry manager needs the frame
-        return(self.frame)
 
     def readTabfile(self,filename):
         """Reads a tabular formatted data file and displays it into the `TableView` widget.
@@ -90,29 +80,22 @@ class TableView (ttk.Treeview):
                     tag ="odd"
                 self.insert("",'end',values=cells,tag=tag)
                 i=i+1
-                
-    def pack(self,**kwargs):
-        """Overwrites the default pack method to use the internal frame."""
-        self.frame.pack(kwargs) 
-    def pack_forget(self,**kwargs):
-        """Overwrites the default pack_forget method to use the internal frame."""
-        self.frame.pack_forget(kwargs) 
         
 if __name__ == '__main__':
     from os.path import dirname, realpath, sep, pardir, join
     import sys
-    iris_path=join(dirname(realpath(__file__)),"..","..","data") + sep + "iris.tab"
+    iris_path=join(dirname(realpath(__file__)),"..","data") + sep + "iris.tab"
     root = tk.Tk()
     root.title('DGApp')
     pw=ttk.PanedWindow(root,width=400,height=400)
     dgtab=TableView(pw)
     #dgtab.pack(side='top',fill='both',expand=True)
-    pw.add(dgtab.getFrame())
+    pw.add(dgtab)
     pw.pack(side='top',fill='both',expand=True)
     dgtab.readTabfile(iris_path)
     #dgtab.readTabfile("../../data/ss_aa_matrix.txt")
     dgtab2=TableView(pw)
-    pw.add(dgtab2.getFrame())
+    pw.add(dgtab2)
     #dgtab2.pack(side='top',fill='both',expand=True)
     dgtab2.configure(columns=('A','B','C'))
     dgtab2.heading('A',text="A Column")

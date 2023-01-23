@@ -23,8 +23,10 @@ if __name__ == '__main__':
     # example for using getFrame
     mfrm=bapp.getFrame()
     nb = ttk.Notebook(mfrm)
+    
+    # Notebook 1
     frm1 = ttk.Frame(nb)
-    nb.add(frm1,text="Notebook 1")
+    nb.add(frm1,text="LabEntry and Balloon")
     # top frame
     frm1a = ttk.Frame(frm1)
     var=tk.StringVar()
@@ -39,32 +41,35 @@ if __name__ == '__main__':
     Balloon(dgl2.entry,"this is your password")
     Balloon(dgl2.label,"Hover right the password!")    
     frm1a.pack(side="top",fill="x")
-    pw=ttk.PanedWindow(frm1,orient="horizontal")
-    frm1b = ttk.Frame(pw)
-    txt=tk.Text(frm1b,undo=True)
+    
+    # Notebook 2
+    frm2 = ttk.Frame(nb)
+    nb.add(frm2,text="Scrolled Text")
+
+    txt=tk.Text(frm2,undo=True)
     Scrolled(txt)
     for i in range(0,150):
         txt.insert("end",f"line {i} the crazy blue frog jumps over the busy street ....\n")
     #    .pack(side='top',fill='both',expand=True)
     bapp.setEditTarget(txt)
-    pw.add(frm1b)
-    tview = tv(pw)
+    
+    # Notebook 3
+    tview = tv(nb)
+    nb.add(tview,text="TableView")
     tview.insertData(['Col1','Col2','Col3'],
         data=[['val1.1','val1.2','val1.3'], ['val2.1','val2.2','val2.3'],
             ['val3.1','val3.2','val3.3']])
-    pw.add(tview.getFrame())
-    tview.pack(side="top",expand=True,fill="both")
-    pw.pack(side="top",expand=True,fill="both")
-    frmr = ttk.PanedWindow(nb)
-    nb.add(frmr,text="Notebook 2")
-    dgtree=trview(frmr,sheetsym=False)
+
+    # Notebook 4    
+    frm4 = ttk.Frame(nb)
+    nb.add(frm4,text="TreeView")
+    dgtree=trview(frm4,sheetsym=False)
     dgtree.configure(columns=("one","two"))
     dgtree.column("one", width=100 )
     dgtree.column("two", width=100)
     dgtree.heading("#0", text="tree column")    
     dgtree.heading("one", text="column A")
     dgtree.heading("two", text="column B")
-    #
     dgtree.insert("",0,text="Line 1",values=("1A","1b")),
     id2 = dgtree.insert("",1,"dir2",text="Dir 2")
     dgtree.insert(id2,"end","dir 2",
@@ -81,28 +86,32 @@ if __name__ == '__main__':
 
     dgtree.bind("<Double-1>",printSelection)
     dgtree.bookify()
-    dgtree2=trview(frmr,sheetsym=True)
+    dgtree2=trview(frm4,sheetsym=True)
     dgtree2.heading("#0", text="Database Structure")    
     for tab in [1, 2, 3, 4]:
         id=dgtree2.insert("",'end',text="Table"+str(tab))
         for col in ['a','b','c']:
            dgtree2.insert(id,'end',text="Col"+str(col))
     dgtree2.bookify()        
-    frmr.add(dgtree.getFrame())
-    frmr.add(dgtree2.getFrame())
-    frm3 = ttk.Frame(nb)
-    nb.add(frm3,text="Notebook 3")
+    dgtree.pack(side="top",fill="both",expand=True)
+    dgtree2.pack(side="top",fill="both",expand=True)
+    
+    # Notebook 5   
+    frm5 = ttk.Frame(nb)
+    nb.add(frm5,text="Text Mixins")
     class text(tk.Text,TextFontIncreaserMixin,TextCuaBindingsMixin,TextHighLightMixin): pass
-    txt  = text(frm3,undo=True,height=50) 
+    txt  = text(frm5,undo=True,height=50) 
     txt.bindTextResize()
     txt.bindCua()
     txt.addHighLights(commentline="'",commentstart="/'",commentend="'/",keywords=[ ['@startuml','@enduml'], ['class', 'entity', 'table'] ])
     txt.insert("1.0","@startuml\n'This is a comment\nclass A\nclass B\nA --> B\n@enduml\n")
     txt.updateHighLights()
-    frm4 = ttk.Frame(nb)
-    nb.add(frm3,text="Notebook 4")
-
-    ctext = Ctext(frm4) 
+    txt.pack(side="top",fill="both",expand=True)
+    
+    # Notebook 6
+    frm6 = ttk.Frame(nb)
+    nb.add(frm6,text="Ctext")
+    ctext = Ctext(frm6) 
     ctext.add_highlight_class('DML1', 'blue', ['select','SELECT','from','FROM'])
     ctext.add_highlight_class('DML2', 'blue', ['and', 'AND', 'as','AS', 'asc', 'ASC', 
     		'between','BETWEEN', 'by', 'BY', 'desc','DESC', 'distinct', 'DISTINCT', 'group','GROUP', 		'having', 'HAVING','in','IN','inner', 'INNER', 'join', 'JOIN', 'left', 'LEFT', 'like','LIKE', 		'limit','LIMIT', 'max','MAX','min','MIN', 'or', 'OR', 'order',  'ORDER', 'outer', 'OUTER', 		'right', 'RIGHT', 'round', 'ROUND','where','WHERE', ])
@@ -116,7 +125,23 @@ if __name__ == '__main__':
     ctext.tag_configure('_cComment',foreground="dark green")
     ctext.insert("end", "select * from sample where id == '1' or id == \"Hello\"\n-- a comment\n new statement\n/*\nc-style comment passing\n multiple lines\n*/")
     ctext.highlight('1.0','end')
+    ctext.pack(side="top",fill="both",expand=True)
     #ctext.pack(side='top',fill='x',expand=True)
+    
+    # Notebook 7
+    frm7 = ttk.Frame(nb)
+    txt2 = text(frm7)
+    txt2.bindTextResize()
+    txt2.bindCua()
+    Scrolled(txt2)
+    nb.add(frm7,text="Source")
+    file = open(__file__,'r')
+    for line in file:
+        txt2.insert('end',line)
+    txt2.addHighLights(commentline='^\s*#',commentstart='"""',commentend='"""',keywords=[ 
+        ['True','False','None'],
+        ['import','from','def','for', 'class', 'in', 'is', 'as', 'while','if','elif','else'] ])  
+    txt2.updateHighLights()      
     nb.pack(side="top",fill="both",expand=True)
     bapp.addStatusBar()
     bapp.mainLoop()

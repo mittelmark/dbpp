@@ -197,7 +197,7 @@ class TextHighLightMixin:
     
     """
 
-    def addHighLights(self,commentline="^\s*#",commentstart=None,commentend=None,keywords=list()):
+    def addHighLights(self,commentline="^\s*#",commentstart=None,commentend=None,keywords=list(),strings=True):
         """
         Adds the actual syntax highlighting and the binding for updates of the high lighting after pressing Up, Down or Return.
         For updating after a new file is loaded see updateHighLights
@@ -207,6 +207,7 @@ class TextHighLightMixin:
             commentstart (regex): the regular expression to start a multi line comment, defaults to None
             commentend   (regex): the regular expression to start a multie line comment, defaults to None            
             keywords (list): nested list of keywords, each sublist will be given a different color, defaults to list()
+            strings (bool): should strings be highlighted, defaults to True
             
         """
         self.bind("<KeyPress>",self._KeyPressHighLights)
@@ -224,25 +225,29 @@ class TextHighLightMixin:
         self.commentstart = commentstart
         self.commentend   = commentend
         self.HighlightList = keywords
+        self.strings = strings
         self.tag_configure("orange", foreground = "orange")
         self.tag_configure("blue", foreground = "blue")
         self.tag_configure("purple", foreground = "purple")
         self.tag_configure("green", foreground = "green")
         self.tag_configure("red", foreground = "darkred")
+        self.tag_configure("string", foreground = "tomato")        
         self.tags = ["orange", "blue", "purple", "green", "red"]
     def updateHighLights (self):
         """
         Updates the current given syntax highlights for instance after
         loading a new file into the widget. If this file should support other
         highlighting you should before again call the method addHighLights.
-        """        
-        comment = False       
+        """       
+        comment = False
+        string = False
         self.tag_remove("comment","1.0","end")
         self.tag_remove("orange","1.0","end")
         self.tag_remove("blue","1.0","end")
         self.tag_remove("purple","1.0","end")        
         self.tag_remove("green","1.0","end")        
         self.tag_remove("red","1.0","end")        
+        self.tag_remove("string","1.0","end")                
                         
         for i in range(1,int(re.sub("^([0-9]+)\..+","\\1",self.index('end') ))):
             start=""+str(i)+".0"
@@ -250,13 +255,21 @@ class TextHighLightMixin:
             if (self.commentline != ""):
                 if (re.search(self.commentline,self.get(start,end))):
                     self.tag_add("comment",start,end)
+                    continue
             if (self.commentstart != ""):
-                if (re.search(self.commentstart,self.get(start,end))):
-                    comment = True
-                    startindex = start
                 if (comment and re.search(self.commentend,self.get(start,end))): 
                     self.tag_add("comment",startindex,end)
                     comment = False
+                    continue
+                elif (re.search(self.commentstart,self.get(start,end))):
+                    comment = True
+                    startindex = start
+            if not(comment):
+                if (self.strings):
+                    for m in re.finditer("[\"'](.+?)[\"']", self.get(start,end)):
+                        for [x,y] in [(m.start(0), m.end(0))]: 
+                            self.tag_add("string",str(i)+"."+str(x),str(i)+"."+str(y))
+                
         self._HighlightKeywords()
     def _HighlightKeywords (self):
         # code adapted from https://coderslegacy.com/python-gui-projects-with-tkinter-code/
@@ -282,7 +295,7 @@ class TextHighLightMixin:
                         self.tag_add(self.tags[idx], "matchStart", "matchEnd")   
     def _CheckWord (self, index, pre, post):
         letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
-            "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+            "q", "r", "s", "t", "u", "v", "w", "x", "y", "z","_"]
         if self.get(pre) == self.get(index):
             pre = index
         else:
