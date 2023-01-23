@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+<meta content="pandoc" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<title>Lua Filter for the document conversion using Pandoc</title>
+<style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+<link href="data:text/css,%0A%20%20%20%20html%20%7B%0A%20%20%20%20%20%20%20%20overflow-y%3A%20scroll%3B%0A%20%20%20%20%7D%0A%20%20%20%20body%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23444%3B%0A%20%20%20%20%20%20%20%20font-family%3A%20Georgia%2C%20Palatino%2C%20%27Palatino%20Linotype%27%2C%20Times%2C%20%27Times%20New%20Roman%27%2C%20serif%3B%0A%20%20%20%20%20%20%20%20line-height%3A%201.2%3B%0A%20%20%20%20%20%20%20%20padding%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%3A%20auto%3B%0A%20%20%20%20%20%20%20%20max-width%3A%20%20900px%3B%0A%20%20%20%20%7D%0A%20%20%20%20h1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%2C%20h6%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23111%3B%0A%20%20%20%20%20%20%20%20line-height%3A%20115%25%3B%0A%20%20%20%20%20%20%20%20margin-top%3A%201em%3B%0A%20%20%20%20%20%20%20%20font-weight%3A%20normal%3B%0A%20%20%20%20%7D%0A%20%20%20%20h1%20%7B%0A%20%20%20%20%20%20%20%20text-align%3A%20center%3B%0A%20%20%20%20%20%20%20%20font-size%3A%20120%25%3B%0A%20%20%20%20%7D%0A%20%20%20%20h2.author%2C%20h2.date%20%7B%0A%20%20%20%20%20%20%20%20text-align%3A%20center%3B%0A%20%20%20%20%20%20%20%20font-size%3A%20110%25%3B%0A%20%20%20%20%7D%0A%20%20%20%20/%2A%20fix%20for%20indentation%20for%20lazydocs%20%2A/%0A%20%20%20%20h2%20%7B%20margin-left%3A%200px%3B%20%7D%0A%20%20%20%20h3%20%7B%20margin-left%3A%2020px%3B%20%7D%0A%20%20%20%20p%20%7B%20%20margin-left%3A%2040px%3B%20%7D%0A%20%20%20%20div.sourceCode%2C%20pre%2C%20ul%2C%20hr%20%7Bmargin-left%3A%2040px%3B%7D%0A%20%20%20%20a%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%230645ad%3B%0A%20%20%20%20%20%20%20%20text-decoration%3A%20none%3B%0A%20%20%20%20%7D%0A%20%20%20%20a%3Avisited%20%7B%20%20color%3A%20%230b0080%3B%20%7D%0A%20%20%20%20a%3Ahover%20%20%20%7B%20%20color%3A%20%2306e%3B%20%20%20%20%7D%0A%20%20%20%20a%3Aactive%20%20%7B%20%20color%3A%20%23faa700%3B%20%7D%0A%20%20%20%20a%3Afocus%20%20%20%7B%20%20outline%3A%20thin%20dotted%3B%20%7D%0A%20%20%20%20%0A%20%20%20%20p%20%7B%20%20%0A%20%20%20%20%20%20%20%20margin%3A%200.5em%200%3B%20%20%20%20%0A%20%20%20%20%20%20%20%20margin-left%3A%2040px%3B%0A%20%20%20%20%7D%0A%20%20%20%20p.author%2C%20p.date%20%7B%0A%20%20%20%20%20%20%20%20font-size%3A%20110%25%3B%0A%20%20%20%20%20%20%20%20text-align%3A%20center%3B%0A%20%20%20%20%7D%0A%20%20%20%20img%20%7B%20%20max-width%3A%20100%25%3B%20%20%20%20%7D%0A%20%20%20%20figure%20%7B%20text-align%3A%20center%20%3B%20%7D%20%0A%20%20%20%20pre%2C%20blockquote%20pre%20%7B%0A%20%20%20%20%20%20%20%20border-top%3A%200.1em%20%239ac%20solid%3B%0A%20%20%20%20%20%20%20%20background%3A%20%23e9f6ff%3B%0A%20%20%20%20%20%20%20%20padding%3A%2010px%3B%0A%20%20%20%20%20%20%20%20border-bottom%3A%200.1em%20%239ac%20solid%3B%0A%20%20%20%20%7D%0A%20%20%20%20pre%2C%20code%2C%20kbd%2C%20samp%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23000%3B%0A%20%20%20%20%20%20%20%20font-family%3A%20Monaco%2C%20%27courier%20new%27%2C%20monospace%3B%0A%20%20%20%20%20%20%20%20font-size%3A%2090%25%3B%20%0A%20%20%20%20%7D%0A%20%20%20%20pre%20code.tclinn%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23ff2222%3B%0A%20%20%20%20%7D%0A%20%20%20%20pre%20code.tclout%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%233366ff%3B%0A%20%20%20%20%7D%0A%20%20%20%20code.r%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23770000%3B%0A%20%20%20%20%7D%0A%20%20%20%20pre%20%7B%0A%20%20%20%20%20%20%20%20white-space%3A%20pre%3B%0A%20%20%20%20%20%20%20%20white-space%3A%20pre-wrap%3B%0A%20%20%20%20%20%20%20%20word-wrap%3A%20break-word%3B%0A%20%20%20%20%7D%0A%20%20%20%20code%20span.kw%20%7B%20color%3A%20%23007020%3B%20font-weight%3A%20normal%3B%20%7D%0A%20%20%20%20pre.sourceCode%20%7B%20%20background%3A%20%23fff6f6%3B%20%20%7D%20%0A%20%20%20%20blockquote%20%7B%0A%20%20%20%20%20%20%20%20margin%3A%200%3B%0A%20%20%20%20%20%20%20%20padding-left%3A%203em%3B%20%0A%20%20%20%20%7D%0A%20%20%20%20hr%20%7B%0A%20%20%20%20%20%20%20%20display%3A%20block%3B%0A%20%20%20%20%20%20%20%20height%3A%202px%3B%0A%20%20%20%20%20%20%20%20border%3A%200%3B%0A%20%20%20%20%20%20%20%20border-top%3A%201px%20solid%20%23aaa%3B%0A%20%20%20%20%20%20%20%20border-bottom%3A%201px%20solid%20%23eee%3B%0A%20%20%20%20%20%20%20%20margin%3A%201em%200%3B%0A%20%20%20%20%20%20%20%20padding%3A%200%3B%0A%20%20%20%20%7D%0A%20%20%20%20table%20%7B%20%20%20%20%0A%20%20%20%20%20%20%20%20border-collapse%3A%20collapse%3B%0A%20%20%20%20%20%20%20%20border-bottom%3A%202px%20solid%3B%0A%20%20%20%20%7D%0A%20%20%20%20table%20thead%20tr%20th%20%7B%20%0A%20%20%20%20%20%20%20%20background-color%3A%20%23fde9d9%3B%0A%20%20%20%20%20%20%20%20text-align%3A%20left%3B%20%0A%20%20%20%20%20%20%20%20padding%3A%2010px%3B%0A%20%20%20%20%20%20%20%20border-top%3A%202px%20solid%3B%0A%20%20%20%20%20%20%20%20border-bottom%3A%202px%20solid%3B%0A%20%20%20%20%7D%0A%20%20%20%20table%20td%20%7B%20%0A%20%20%20%20%20%20%20%20background-color%3A%20%23fff9e9%3B%0A%20%20%20%20%20%20%20%20text-align%3A%20left%3B%20%0A%20%20%20%20%20%20%20%20padding%3A%2010px%3B%0A%20%20%20%20%7D%0A%0A" rel="stylesheet"/><!--URL:pydoc.css-->
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Lua Filter for the document conversion using Pandoc</h1>
+</header>
+<h2 id="filter-description">Filter description</h2>
+<p>This folder contains a few Lua based filters for the <a href="https://www.pandoc.org">Pandoc</a> based document conversion of the Python API’s.</p>
+<p>The following filters are provided.</p>
+<ul>
+<li><code>links-to-html.lua</code> - convert Markdown file extension’s in links into HTML extension</li>
+<li><code>filter-kroki.lua</code> - convert <code>kroki</code> code blocks into diagram images</li>
+<li><code>filter-python.lua</code> - execute <code>py</code> code blocks to display results of Python code evaluation</li>
+</ul>
+<p>The kroki and the lua filters support the following code chunk attributes:</p>
+<ul>
+<li>filter-python.lua
+<ul>
+<li>echo - should the source code been, showm default=true</li>
+<li>eval - should the Python code be evaluated, default=false</li>
+</ul></li>
+<li>filter-kroki.lua
+<ul>
+<li>caption - the image caption, defaults to empty string</li>
+<li>dia - diagram type should be plantuml, ditaa, graphviz or erd, defaults to “plantuml”</li>
+<li>echo - should the source code been, showm default=true</li>
+<li>eval - should the Python code be evaluated, default=false</li>
+<li>fig_path - the image folder name if images are cached, defaults to “img”</li>
+<li>fig_prefix - the image filename prefix if images are cached, defaults to “kroki”</li>
+<li>title - the image title, defaults to empty string</li>
+</ul></li>
+</ul>
+<p>Below a few examples (remove the space after the first backtick, required to protect the code against evaluation.</p>
+<pre><code>    ` ``{.kroki dia=plantuml ext=png echo=false}
+    @startuml
+    class A 
+    class B 
+    A -&gt; B
+    @enduml
+    ` ``</code></pre>
+<p>This should be the output:</p>
+<p><img alt="" src="data:image/png;base64,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"/><!--URL:img/kroki-0x8d7258dd.png--></p>
+<p>And now an Python code example:</p>
+<pre><code>    ` ``{.py eval=true}
+    x = 1
+    print(x)
+    ` ``</code></pre>
+<p>And this should be the output (<em>eval=true</em>):</p>
+<div class="sourceCode" data-eval="true" id="cb3"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb3-2"><a aria-hidden="true" href="#cb3-2" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div>
+<pre><code>1
+</code></pre>
+<p>And this should be the output (<em>eval=false</em>):</p>
+<div class="sourceCode" data-eval="false" id="cb5"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb5-2"><a aria-hidden="true" href="#cb5-2" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div>
+<p>And this should be the output (<em>eval=false echo=false</em>):</p>
+<p>There is nothing …</p>
+<h2 id="document-creation">Document creation</h2>
+<p>The Markdown document was converted into HTML like this:</p>
+<pre><code>pandoc README.md -o README.html --css ../docs/pydoc.css -s \
+    --lua-filter filter-python.lua \
+    --lua-filter filter-kroki.lua </code></pre>
+</body>
+</html><!--Generated by HTMLArk 2023-01-23 14:42:24.553288. Original URL README.html-->

@@ -23,10 +23,9 @@ local function compress(text)
 end
 
 -- not sure if thi this works
--- crc32
+-- crc32, could replace the Python code
 function crc(text)
     local str = text
-    print(str)
     local t = {}
     for i = 1, #str do
         t[i] = str:byte(i)
