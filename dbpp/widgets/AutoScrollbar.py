@@ -6,7 +6,7 @@ scrollbars, for instance a text widget, where the current geometry is large enou
 The widget and the the scrollbars will be gridded within the same geometry manager, 
 so it usually required to place the scrollbars and the widget into the same frame without other widgets. 
 **This widget requires some effort to create scollbars, if you just like to have a simpler procedure 
-to add those scrollbars use the [Scrolled](Scrolled.html) method.**
+to add those scrollbars use the [Scrolled](Scrolled.md) method.**
 
 Examples:
  
@@ -38,7 +38,7 @@ root.mainloop()
 Copyright: @ Detlef Groth, Caputh-Schwielowsee
   
  
-See also: [DGScrolled](DGScrolled.html) which provides an easier interface to this widget.
+See also: [Scrolled](DGScrolled.md) which provides an easier interface to this widget.
  
 License: MIT
 """  

@@ -8,7 +8,7 @@
 #  Author        : $Author$
 #  Created By    : Detlef Groth
 #  Created       : Mon Jan 23 04:05:41 2023
-#  Last Modified : <230123.0739>
+#  Last Modified : <230123.0802>
 #
 #  Description	
 #
@@ -50,7 +50,7 @@ docs2:
 		--lua-filter ../lua-filters/filter-kroki.lua \
 		--lua-filter ../lua-filters/links-to-html.lua ; done
 	cd docs && perl -i -pe 's/(img.+flat-square.)>/$$1 \/>/' *.md
-	cd docs && perl -i -pe 's/(img.+flat-square.)>/$$1 \/>/' *.html
+	cd docs && perl -i -pe 's/.+(img.+flat-square.)>//' *.html
 	cd docs && for file in `ls dbpp*.html`; do htmlark $$file -o temp.html && mv temp.html $$file; done
 
 docs: docs/dbpp.widgets.TextMixins.html \

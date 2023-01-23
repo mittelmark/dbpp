@@ -12,7 +12,7 @@ Examples:
 ```
 import tkinter as tk
 import tkinter.ttk as ttk
-from dbpp.widgets.Balloon import DGBallon
+from dbpp.widgets.Balloon import Balloon
 
 top=tk.Tk()
 lbl1=ttk.Label(top,text="Hove me 1",anchor="center")
