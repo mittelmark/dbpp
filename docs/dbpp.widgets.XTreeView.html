@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+<meta content="pandoc" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<title>Documentation dbpp.widgets.XTreeView</title>
+<style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+<link href="data:text/css,%0A%20%20%20%20html%20%7B%0A%20%20%20%20%20%20%20%20overflow-y%3A%20scroll%3B%0A%20%20%20%20%7D%0A%20%20%20%20body%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23444%3B%0A%20%20%20%20%20%20%20%20font-family%3A%20Georgia%2C%20Palatino%2C%20%27Palatino%20Linotype%27%2C%20Times%2C%20%27Times%20New%20Roman%27%2C%20serif%3B%0A%20%20%20%20%20%20%20%20line-height%3A%201.2%3B%0A%20%20%20%20%20%20%20%20padding%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%3A%20auto%3B%0A%20%20%20%20%20%20%20%20max-width%3A%20%20900px%3B%0A%20%20%20%20%7D%0A%20%20%20%20h1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%2C%20h6%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23111%3B%0A%20%20%20%20%20%20%20%20line-height%3A%20115%25%3B%0A%20%20%20%20%20%20%20%20margin-top%3A%201em%3B%0A%20%20%20%20%20%20%20%20font-weight%3A%20normal%3B%0A%20%20%20%20%7D%0A%20%20%20%20h1%20%7B%0A%20%20%20%20%20%20%20%20text-align%3A%20center%3B%0A%20%20%20%20%20%20%20%20font-size%3A%20120%25%3B%0A%20%20%20%20%7D%0A%20%20%20%20h2.author%2C%20h2.date%20%7B%0A%20%20%20%20%20%20%20%20text-align%3A%20center%3B%0A%20%20%20%20%20%20%20%20font-size%3A%20110%25%3B%0A%20%20%20%20%7D%0A%20%20%20%20/%2A%20fix%20for%20indentation%20for%20lazydocs%20%2A/%0A%20%20%20%20h2%20%7B%20margin-left%3A%200px%3B%20%7D%0A%20%20%20%20h3%20%7B%20margin-left%3A%2020px%3B%20%7D%0A%20%20%20%20p%20%7B%20%20margin-left%3A%2040px%3B%20%7D%0A%20%20%20%20div.sourceCode%2C%20pre%2C%20ul%2C%20hr%20%7Bmargin-left%3A%2040px%3B%7D%0A%20%20%20%20a%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%230645ad%3B%0A%20%20%20%20%20%20%20%20text-decoration%3A%20none%3B%0A%20%20%20%20%7D%0A%20%20%20%20a%3Avisited%20%7B%20%20color%3A%20%230b0080%3B%20%7D%0A%20%20%20%20a%3Ahover%20%20%20%7B%20%20color%3A%20%2306e%3B%20%20%20%20%7D%0A%20%20%20%20a%3Aactive%20%20%7B%20%20color%3A%20%23faa700%3B%20%7D%0A%20%20%20%20a%3Afocus%20%20%20%7B%20%20outline%3A%20thin%20dotted%3B%20%7D%0A%20%20%20%20%0A%20%20%20%20p%20%7B%20%20%0A%20%20%20%20%20%20%20%20margin%3A%200.5em%200%3B%20%20%20%20%0A%20%20%20%20%20%20%20%20margin-left%3A%2040px%3B%0A%20%20%20%20%7D%0A%20%20%20%20p.author%2C%20p.date%20%7B%0A%20%20%20%20%20%20%20%20font-size%3A%20110%25%3B%0A%20%20%20%20%20%20%20%20text-align%3A%20center%3B%0A%20%20%20%20%7D%0A%20%20%20%20img%20%7B%20%20max-width%3A%20100%25%3B%20%20%20%20%7D%0A%20%20%20%20figure%20%7B%20text-align%3A%20center%20%3B%20%7D%20%0A%20%20%20%20pre%2C%20blockquote%20pre%20%7B%0A%20%20%20%20%20%20%20%20border-top%3A%200.1em%20%239ac%20solid%3B%0A%20%20%20%20%20%20%20%20background%3A%20%23e9f6ff%3B%0A%20%20%20%20%20%20%20%20padding%3A%2010px%3B%0A%20%20%20%20%20%20%20%20border-bottom%3A%200.1em%20%239ac%20solid%3B%0A%20%20%20%20%7D%0A%20%20%20%20pre%2C%20code%2C%20kbd%2C%20samp%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23000%3B%0A%20%20%20%20%20%20%20%20font-family%3A%20Monaco%2C%20%27courier%20new%27%2C%20monospace%3B%0A%20%20%20%20%20%20%20%20font-size%3A%2090%25%3B%20%0A%20%20%20%20%7D%0A%20%20%20%20pre%20code.tclinn%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23ff2222%3B%0A%20%20%20%20%7D%0A%20%20%20%20pre%20code.tclout%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%233366ff%3B%0A%20%20%20%20%7D%0A%20%20%20%20code.r%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23770000%3B%0A%20%20%20%20%7D%0A%20%20%20%20pre%20%7B%0A%20%20%20%20%20%20%20%20white-space%3A%20pre%3B%0A%20%20%20%20%20%20%20%20white-space%3A%20pre-wrap%3B%0A%20%20%20%20%20%20%20%20word-wrap%3A%20break-word%3B%0A%20%20%20%20%7D%0A%20%20%20%20code%20span.kw%20%7B%20color%3A%20%23007020%3B%20font-weight%3A%20normal%3B%20%7D%0A%20%20%20%20pre.sourceCode%20%7B%20%20background%3A%20%23fff6f6%3B%20%20%7D%20%0A%20%20%20%20blockquote%20%7B%0A%20%20%20%20%20%20%20%20margin%3A%200%3B%0A%20%20%20%20%20%20%20%20padding-left%3A%203em%3B%20%0A%20%20%20%20%7D%0A%20%20%20%20hr%20%7B%0A%20%20%20%20%20%20%20%20display%3A%20block%3B%0A%20%20%20%20%20%20%20%20height%3A%202px%3B%0A%20%20%20%20%20%20%20%20border%3A%200%3B%0A%20%20%20%20%20%20%20%20border-top%3A%201px%20solid%20%23aaa%3B%0A%20%20%20%20%20%20%20%20border-bottom%3A%201px%20solid%20%23eee%3B%0A%20%20%20%20%20%20%20%20margin%3A%201em%200%3B%0A%20%20%20%20%20%20%20%20padding%3A%200%3B%0A%20%20%20%20%7D%0A%20%20%20%20table%20%7B%20%20%20%20%0A%20%20%20%20%20%20%20%20border-collapse%3A%20collapse%3B%0A%20%20%20%20%20%20%20%20border-bottom%3A%202px%20solid%3B%0A%20%20%20%20%7D%0A%20%20%20%20table%20thead%20tr%20th%20%7B%20%0A%20%20%20%20%20%20%20%20background-color%3A%20%23fde9d9%3B%0A%20%20%20%20%20%20%20%20text-align%3A%20left%3B%20%0A%20%20%20%20%20%20%20%20padding%3A%2010px%3B%0A%20%20%20%20%20%20%20%20border-top%3A%202px%20solid%3B%0A%20%20%20%20%20%20%20%20border-bottom%3A%202px%20solid%3B%0A%20%20%20%20%7D%0A%20%20%20%20table%20td%20%7B%20%0A%20%20%20%20%20%20%20%20background-color%3A%20%23fff9e9%3B%0A%20%20%20%20%20%20%20%20text-align%3A%20left%3B%20%0A%20%20%20%20%20%20%20%20padding%3A%2010px%3B%0A%20%20%20%20%7D%0A%0A" rel="stylesheet"/><!--URL:pydoc.css-->
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Documentation dbpp.widgets.XTreeView</h1>
+</header>
+<center>
+<p><strong><a href="dbpp.widgets.html">dbpp.widgets</a> package:</strong> <a href="dbpp.widgets.GuiBaseClass.html">GuiBaseClass</a> - <a href="dbpp.widgets.AutoScrollbar.html">AutoScrollbar</a> - <a href="dbpp.widgets.Balloon.html">Balloon</a> - <a href="dbpp.widgets.Ctext.html">Ctext</a> - <a href="dbpp.widgets.LabEntry.html">LabEntry</a> - <a href="dbpp.widgets.Scrolled.html">Scrolled</a> - <a href="dbpp.widgets.SqlText.html">SqlText</a> - <a href="dbpp.widgets.StatusBar.html">StatusBar</a> - <a href="dbpp.widgets.TableView.html">TableView</a> - <a href="dbpp.widgets.TextMixins.html">TextMixins</a> - <a href="dbpp.widgets.XTableView.html">XTableView</a> - <a href="dbpp.widgets.XTreeView.html">XTreeView</a></p>
+<strong><a href="dbpp.kroki.html">dbpp.kroki</a> package:</strong> <a href="dbpp.kroki.KrokiEncoder.html">dbpp.kroki.KrokiEncoder</a>
+</center>
+<!-- markdownlint-disable -->
+<p><a href="../dbpp/widgets/XTreeView.py#L0"><img align="right" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0ic291cmNlIj48dGl0bGU+c291cmNlPC90aXRsZT48ZyBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PHJlY3QgeD0iMCIgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgeD0iMjM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjMzMzIiB0ZXh0TGVuZ3RoPSIzNzAiPnNvdXJjZTwvdGV4dD48L2c+PC9zdmc+" style="float:right;"/><!--URL:https://img.shields.io/badge/-source-cccccc?style=flat-square--></a></p>
+<h1 id="module-widgets.xtreeview"><kbd>module</kbd> <code>widgets.XTreeView</code></h1>
+<p>Tree widget based on ttk.Treeview with scrollbars shown if needed and default images.</p>
+<p>This a widget to tree like data using the standard ttk.Treeview widget, inheriting all its methods and options. Further the widget has automatically shown or hidden scrollbars and as well some default images which simplify creating nice tree widgets. To use the pack geometry manager you can just use the pack and the pack_forget commands of this widget as these are forwarded to the frame. For other geometry managers like grid, the panedwindow or the notenbook you should use the <a href="#getFrame">getFrame</a> method.</p>
+<p><strong>Examples:</strong></p>
+<pre><code>import tkinter as tk
+import tkinter.ttk as ttk
+from dbpb.widgets.XTreeView import XTreeView
+root = tk.Tk()
+root.title('DGApp')
+dgtree=XTreeView(root,sheetsym=False)
+dgtree.configure(columns=("one","two"))
+dgtree.column("one", width=100 )
+dgtree.column("two", width=100)
+dgtree.heading("#0", text="tree column")    
+dgtree.heading("one", text="column A")
+dgtree.heading("two", text="column B")
+dgtree.insert("",0,text="Line 1",values=("1A","1b")),
+id2 = dgtree.insert("",1,"dir2",text="Dir 2")
+dgtree.insert(id2,"end","dir 2",
+    text="sub dir 2", values=("2A","2B"))
+
+dgtree.insert("", 3, "dir3", text="Dir 3")
+dgtree.insert("dir3", 3,
+    text=" sub dir 3",values=("3A"," 3B"))
+def printSelection(event):
+    item = dgtree.identify('item',event.x,event.y)
+    print(item)
+dgtree.bind("&lt;Double-1&gt;",printSelection)
+dgtree.bookify()
+root.mainloop()</code></pre>
+<p><img src="data:image/png;base64,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"/><!--URL:XTreeView.png--></p>
+<p><strong>Author:</strong> Detlef Groth, University of Potsdam, 2019-2023</p>
+<p><strong>License:</strong> MIT - License</p>
+<hr/>
+<p><a href="../dbpp/widgets/XTreeView.py#L57"><img align="right" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0ic291cmNlIj48dGl0bGU+c291cmNlPC90aXRsZT48ZyBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PHJlY3QgeD0iMCIgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgeD0iMjM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjMzMzIiB0ZXh0TGVuZ3RoPSIzNzAiPnNvdXJjZTwvdGV4dD48L2c+PC9zdmc+" style="float:right;"/><!--URL:https://img.shields.io/badge/-source-cccccc?style=flat-square--></a></p>
+<h2 id="class-xtreeview"><kbd>class</kbd> <code>XTreeView</code></h2>
+<p>Extended ttk.Treeview widget.</p>
+<p><a href="../dbpp/widgets/XTreeView.py#L59"><img align="right" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0ic291cmNlIj48dGl0bGU+c291cmNlPC90aXRsZT48ZyBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PHJlY3QgeD0iMCIgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgeD0iMjM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjMzMzIiB0ZXh0TGVuZ3RoPSIzNzAiPnNvdXJjZTwvdGV4dD48L2c+PC9zdmc+" style="float:right;"/><!--URL:https://img.shields.io/badge/-source-cccccc?style=flat-square--></a></p>
+<h3 id="method-__init__"><kbd>method</kbd> <code>__init__</code></h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a><span class="fu">__init__</span>(parent, sheetsym<span class="op">=</span><span class="va">False</span>, <span class="op">*</span>args, <span class="op">**</span>kwargs)</span></code></pre></div>
+<p>The constructor to create a XTreeView widget.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><b><code>parent</code></b> (ttk.Frame): the parent widget wherein the ttk.Treeview widget will be placed.</li>
+<li><b><code>sheetsym</code></b> (bool): should table sheet symbols be shown, defaults to False</li>
+<li><b><code>*args (list)</code></b>: standard ttk.Treeview arguments which will be delegated to the widget</li>
+<li><b><code>**kwargs (dict)</code></b>: standard ttk.Treeview arguments which will be delegated to the widget</li>
+</ul>
+<hr/>
+<p><a href="../dbpp/widgets/XTreeView.py#L136"><img align="right" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0ic291cmNlIj48dGl0bGU+c291cmNlPC90aXRsZT48ZyBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PHJlY3QgeD0iMCIgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgeD0iMjM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjMzMzIiB0ZXh0TGVuZ3RoPSIzNzAiPnNvdXJjZTwvdGV4dD48L2c+PC9zdmc+" style="float:right;"/><!--URL:https://img.shields.io/badge/-source-cccccc?style=flat-square--></a></p>
+<h3 id="method-bookify"><kbd>method</kbd> <code>bookify</code></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a>bookify(item<span class="op">=</span><span class="st">''</span>)</span></code></pre></div>
+<p>Displays all images in the tree widget, starting from root or from the given item.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><b><code>item</code></b> (ttk.Treeview item): the parent item from where the images, should be initialized, defaults to the empty string, the root item.</li>
+</ul>
+<hr/>
+<p><a href="../dbpp/widgets/XTreeView.py#L156"><img align="right" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0ic291cmNlIj48dGl0bGU+c291cmNlPC90aXRsZT48ZyBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PHJlY3QgeD0iMCIgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgeD0iMjM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjMzMzIiB0ZXh0TGVuZ3RoPSIzNzAiPnNvdXJjZTwvdGV4dD48L2c+PC9zdmc+" style="float:right;"/><!--URL:https://img.shields.io/badge/-source-cccccc?style=flat-square--></a></p>
+<h3 id="method-getframe"><kbd>method</kbd> <code>getFrame</code></h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a>getFrame()</span></code></pre></div>
+<p>Returns the frame in which the widget is embedded to perform, useful for packing or gridding the widget.</p>
+<p>This function is needed by geometry managers like grid or ttk.PanedWindow to manage the parent frame of the widget in the layout. For pack the default methods pack and pack_forget are defined.</p>
+<hr/>
+<p><a href="../dbpp/widgets/XTreeView.py#L177"><img align="right" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0ic291cmNlIj48dGl0bGU+c291cmNlPC90aXRsZT48ZyBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PHJlY3QgeD0iMCIgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgeD0iMjM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjMzMzIiB0ZXh0TGVuZ3RoPSIzNzAiPnNvdXJjZTwvdGV4dD48L2c+PC9zdmc+" style="float:right;"/><!--URL:https://img.shields.io/badge/-source-cccccc?style=flat-square--></a></p>
+<h3 id="method-pack"><kbd>method</kbd> <code>pack</code></h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a>pack(<span class="op">**</span>kwargs)</span></code></pre></div>
+<p>Overwrites the default pack method to use the internal frame.</p>
+<hr/>
+<p><a href="../dbpp/widgets/XTreeView.py#L180"><img align="right" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0ic291cmNlIj48dGl0bGU+c291cmNlPC90aXRsZT48ZyBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PHJlY3QgeD0iMCIgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgeD0iMjM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjMzMzIiB0ZXh0TGVuZ3RoPSIzNzAiPnNvdXJjZTwvdGV4dD48L2c+PC9zdmc+" style="float:right;"/><!--URL:https://img.shields.io/badge/-source-cccccc?style=flat-square--></a></p>
+<h3 id="method-pack_forget"><kbd>method</kbd> <code>pack_forget</code></h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a aria-hidden="true" href="#cb6-1" tabindex="-1"></a>pack_forget(<span class="op">**</span>kwargs)</span></code></pre></div>
+<p>Overwrites the default pack_forget method to use the internal frame.</p>
+<hr/>
+<p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>
+</body>
+</html><!--Generated by HTMLArk 2023-01-23 07:46:16.980556. Original URL dbpp.widgets.XTreeView.html-->

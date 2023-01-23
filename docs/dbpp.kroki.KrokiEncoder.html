@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+<meta content="pandoc" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<title>Documentation dbpp.kroki.KrokiEncoder</title>
+<style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+<link href="data:text/css,%0A%20%20%20%20html%20%7B%0A%20%20%20%20%20%20%20%20overflow-y%3A%20scroll%3B%0A%20%20%20%20%7D%0A%20%20%20%20body%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23444%3B%0A%20%20%20%20%20%20%20%20font-family%3A%20Georgia%2C%20Palatino%2C%20%27Palatino%20Linotype%27%2C%20Times%2C%20%27Times%20New%20Roman%27%2C%20serif%3B%0A%20%20%20%20%20%20%20%20line-height%3A%201.2%3B%0A%20%20%20%20%20%20%20%20padding%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%3A%20auto%3B%0A%20%20%20%20%20%20%20%20max-width%3A%20%20900px%3B%0A%20%20%20%20%7D%0A%20%20%20%20h1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%2C%20h6%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23111%3B%0A%20%20%20%20%20%20%20%20line-height%3A%20115%25%3B%0A%20%20%20%20%20%20%20%20margin-top%3A%201em%3B%0A%20%20%20%20%20%20%20%20font-weight%3A%20normal%3B%0A%20%20%20%20%7D%0A%20%20%20%20h1%20%7B%0A%20%20%20%20%20%20%20%20text-align%3A%20center%3B%0A%20%20%20%20%20%20%20%20font-size%3A%20120%25%3B%0A%20%20%20%20%7D%0A%20%20%20%20h2.author%2C%20h2.date%20%7B%0A%20%20%20%20%20%20%20%20text-align%3A%20center%3B%0A%20%20%20%20%20%20%20%20font-size%3A%20110%25%3B%0A%20%20%20%20%7D%0A%20%20%20%20/%2A%20fix%20for%20indentation%20for%20lazydocs%20%2A/%0A%20%20%20%20h2%20%7B%20margin-left%3A%200px%3B%20%7D%0A%20%20%20%20h3%20%7B%20margin-left%3A%2020px%3B%20%7D%0A%20%20%20%20p%20%7B%20%20margin-left%3A%2040px%3B%20%7D%0A%20%20%20%20div.sourceCode%2C%20pre%2C%20ul%2C%20hr%20%7Bmargin-left%3A%2040px%3B%7D%0A%20%20%20%20a%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%230645ad%3B%0A%20%20%20%20%20%20%20%20text-decoration%3A%20none%3B%0A%20%20%20%20%7D%0A%20%20%20%20a%3Avisited%20%7B%20%20color%3A%20%230b0080%3B%20%7D%0A%20%20%20%20a%3Ahover%20%20%20%7B%20%20color%3A%20%2306e%3B%20%20%20%20%7D%0A%20%20%20%20a%3Aactive%20%20%7B%20%20color%3A%20%23faa700%3B%20%7D%0A%20%20%20%20a%3Afocus%20%20%20%7B%20%20outline%3A%20thin%20dotted%3B%20%7D%0A%20%20%20%20%0A%20%20%20%20p%20%7B%20%20%0A%20%20%20%20%20%20%20%20margin%3A%200.5em%200%3B%20%20%20%20%0A%20%20%20%20%20%20%20%20margin-left%3A%2040px%3B%0A%20%20%20%20%7D%0A%20%20%20%20p.author%2C%20p.date%20%7B%0A%20%20%20%20%20%20%20%20font-size%3A%20110%25%3B%0A%20%20%20%20%20%20%20%20text-align%3A%20center%3B%0A%20%20%20%20%7D%0A%20%20%20%20img%20%7B%20%20max-width%3A%20100%25%3B%20%20%20%20%7D%0A%20%20%20%20figure%20%7B%20text-align%3A%20center%20%3B%20%7D%20%0A%20%20%20%20pre%2C%20blockquote%20pre%20%7B%0A%20%20%20%20%20%20%20%20border-top%3A%200.1em%20%239ac%20solid%3B%0A%20%20%20%20%20%20%20%20background%3A%20%23e9f6ff%3B%0A%20%20%20%20%20%20%20%20padding%3A%2010px%3B%0A%20%20%20%20%20%20%20%20border-bottom%3A%200.1em%20%239ac%20solid%3B%0A%20%20%20%20%7D%0A%20%20%20%20pre%2C%20code%2C%20kbd%2C%20samp%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23000%3B%0A%20%20%20%20%20%20%20%20font-family%3A%20Monaco%2C%20%27courier%20new%27%2C%20monospace%3B%0A%20%20%20%20%20%20%20%20font-size%3A%2090%25%3B%20%0A%20%20%20%20%7D%0A%20%20%20%20pre%20code.tclinn%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23ff2222%3B%0A%20%20%20%20%7D%0A%20%20%20%20pre%20code.tclout%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%233366ff%3B%0A%20%20%20%20%7D%0A%20%20%20%20code.r%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23770000%3B%0A%20%20%20%20%7D%0A%20%20%20%20pre%20%7B%0A%20%20%20%20%20%20%20%20white-space%3A%20pre%3B%0A%20%20%20%20%20%20%20%20white-space%3A%20pre-wrap%3B%0A%20%20%20%20%20%20%20%20word-wrap%3A%20break-word%3B%0A%20%20%20%20%7D%0A%20%20%20%20code%20span.kw%20%7B%20color%3A%20%23007020%3B%20font-weight%3A%20normal%3B%20%7D%0A%20%20%20%20pre.sourceCode%20%7B%20%20background%3A%20%23fff6f6%3B%20%20%7D%20%0A%20%20%20%20blockquote%20%7B%0A%20%20%20%20%20%20%20%20margin%3A%200%3B%0A%20%20%20%20%20%20%20%20padding-left%3A%203em%3B%20%0A%20%20%20%20%7D%0A%20%20%20%20hr%20%7B%0A%20%20%20%20%20%20%20%20display%3A%20block%3B%0A%20%20%20%20%20%20%20%20height%3A%202px%3B%0A%20%20%20%20%20%20%20%20border%3A%200%3B%0A%20%20%20%20%20%20%20%20border-top%3A%201px%20solid%20%23aaa%3B%0A%20%20%20%20%20%20%20%20border-bottom%3A%201px%20solid%20%23eee%3B%0A%20%20%20%20%20%20%20%20margin%3A%201em%200%3B%0A%20%20%20%20%20%20%20%20padding%3A%200%3B%0A%20%20%20%20%7D%0A%20%20%20%20table%20%7B%20%20%20%20%0A%20%20%20%20%20%20%20%20border-collapse%3A%20collapse%3B%0A%20%20%20%20%20%20%20%20border-bottom%3A%202px%20solid%3B%0A%20%20%20%20%7D%0A%20%20%20%20table%20thead%20tr%20th%20%7B%20%0A%20%20%20%20%20%20%20%20background-color%3A%20%23fde9d9%3B%0A%20%20%20%20%20%20%20%20text-align%3A%20left%3B%20%0A%20%20%20%20%20%20%20%20padding%3A%2010px%3B%0A%20%20%20%20%20%20%20%20border-top%3A%202px%20solid%3B%0A%20%20%20%20%20%20%20%20border-bottom%3A%202px%20solid%3B%0A%20%20%20%20%7D%0A%20%20%20%20table%20td%20%7B%20%0A%20%20%20%20%20%20%20%20background-color%3A%20%23fff9e9%3B%0A%20%20%20%20%20%20%20%20text-align%3A%20left%3B%20%0A%20%20%20%20%20%20%20%20padding%3A%2010px%3B%0A%20%20%20%20%7D%0A%0A" rel="stylesheet"/><!--URL:pydoc.css-->
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Documentation dbpp.kroki.KrokiEncoder</h1>
+</header>
+<center>
+<p><strong><a href="dbpp.widgets.html">dbpp.widgets</a> package:</strong> <a href="dbpp.widgets.GuiBaseClass.html">GuiBaseClass</a> - <a href="dbpp.widgets.AutoScrollbar.html">AutoScrollbar</a> - <a href="dbpp.widgets.Balloon.html">Balloon</a> - <a href="dbpp.widgets.Ctext.html">Ctext</a> - <a href="dbpp.widgets.LabEntry.html">LabEntry</a> - <a href="dbpp.widgets.Scrolled.html">Scrolled</a> - <a href="dbpp.widgets.SqlText.html">SqlText</a> - <a href="dbpp.widgets.StatusBar.html">StatusBar</a> - <a href="dbpp.widgets.TableView.html">TableView</a> - <a href="dbpp.widgets.TextMixins.html">TextMixins</a> - <a href="dbpp.widgets.XTableView.html">XTableView</a> - <a href="dbpp.widgets.XTreeView.html">XTreeView</a></p>
+<strong><a href="dbpp.kroki.html">dbpp.kroki</a> package:</strong> <a href="dbpp.kroki.KrokiEncoder.html">dbpp.kroki.KrokiEncoder</a>
+</center>
+<!-- markdownlint-disable -->
+<p><a href="../dbpp/kroki/KrokiEncoder.py#L0"><img align="right" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0ic291cmNlIj48dGl0bGU+c291cmNlPC90aXRsZT48ZyBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PHJlY3QgeD0iMCIgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgeD0iMjM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjMzMzIiB0ZXh0TGVuZ3RoPSIzNzAiPnNvdXJjZTwvdGV4dD48L2c+PC9zdmc+" style="float:right;"/><!--URL:https://img.shields.io/badge/-source-cccccc?style=flat-square--></a></p>
+<h1 id="module-kroki.krokiencoder"><kbd>module</kbd> <code>kroki.KrokiEncoder</code></h1>
+<p>dbpp.kroki.KrokiEncoder - class to encode diagram code as krokio.io URL’s and to decode them back to text.</p>
+<p>This class provides methods to convert diagram code for tools like <a href="https://plantuml.com">PlantUML</a>, <a href="https://www.graphviz.org">GraphViz</a> or <a href="https://ditaa.sourceforge.net/">Ditaa</a> to base64 encoded URL’s ready to display them as web images using the <a href="https://kroki.io">https://kroki.io</a> and ready to edit them online using the <a href="https://niolesk.top/">Niolesk web editor</a>.</p>
+<p><strong>Examples:</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="im">from</span> dbpp.kroki.KrokiEncoder <span class="im">import</span> KrokiEncoder</span>
+<span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a>kroki <span class="op">=</span> KrokiEncoder()</span>
+<span id="cb1-3"><a aria-hidden="true" href="#cb1-3" tabindex="-1"></a>kroki.text2kroki(<span class="st">"A --&gt; B"</span>)</span>
+<span id="cb1-4"><a aria-hidden="true" href="#cb1-4" tabindex="-1"></a>kroki.text2kroki(<span class="st">"class A { }"</span>,dia<span class="op">=</span><span class="st">'plantuml'</span>,ext<span class="op">=</span><span class="st">'svg'</span>)  </span>
+<span id="cb1-5"><a aria-hidden="true" href="#cb1-5" tabindex="-1"></a>kroki.dia2kroki(<span class="st">'input.pml'</span>,dia<span class="op">=</span><span class="st">'plantuml'</span>,ext<span class="op">=</span><span class="st">'png'</span>)</span></code></pre></div>
+<p>Classes:</p>
+<p><img alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSI2MnB4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBzdHlsZT0id2lkdGg6MTMycHg7aGVpZ2h0OjYycHg7YmFja2dyb3VuZDojRkZGRkZGOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMTMyIDYyIiB3aWR0aD0iMTMycHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48IS0tY2xhc3MgQS0tPjxnIGlkPSJlbGVtX0EiPjxyZWN0IGNvZGVMaW5lPSIxIiBmaWxsPSIjRjFGMUYxIiBoZWlnaHQ9IjQ4IiBpZD0iQSIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iNDEiIHg9IjciIHk9IjciLz48ZWxsaXBzZSBjeD0iMjIiIGN5PSIyMyIgZmlsbD0iI0FERDFCMiIgcng9IjExIiByeT0iMTEiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwYXRoIGQ9Ik0yNC45Njg4LDI4LjY0MDYgUTI0LjM5MDYsMjguOTM3NSAyMy43NSwyOS4wNzgxIFEyMy4xMDk0LDI5LjIzNDQgMjIuNDA2MywyOS4yMzQ0IFExOS45MDYzLDI5LjIzNDQgMTguNTc4MSwyNy41OTM4IFExNy4yNjU2LDI1LjkzNzUgMTcuMjY1NiwyMi44MTI1IFExNy4yNjU2LDE5LjY4NzUgMTguNTc4MSwxOC4wMzEzIFExOS45MDYzLDE2LjM3NSAyMi40MDYzLDE2LjM3NSBRMjMuMTA5NCwxNi4zNzUgMjMuNzUsMTYuNTMxMyBRMjQuNDA2MywxNi42ODc1IDI0Ljk2ODgsMTYuOTg0NCBMMjQuOTY4OCwxOS43MDMxIFEyNC4zNDM4LDE5LjEyNSAyMy43NSwxOC44NTk0IFEyMy4xNTYzLDE4LjU3ODEgMjIuNTMxMywxOC41NzgxIFEyMS4xODc1LDE4LjU3ODEgMjAuNSwxOS42NTYzIFExOS44MTI1LDIwLjcxODggMTkuODEyNSwyMi44MTI1IFExOS44MTI1LDI0LjkwNjMgMjAuNSwyNS45ODQ0IFEyMS4xODc1LDI3LjA0NjkgMjIuNTMxMywyNy4wNDY5IFEyMy4xNTYzLDI3LjA0NjkgMjMuNzUsMjYuNzgxMyBRMjQuMzQzOCwyNi41IDI0Ljk2ODgsMjUuOTIxOSBMMjQuOTY4OCwyOC42NDA2IFogIiBmaWxsPSIjMDAwMDAwIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iOSIgeD0iMzYiIHk9IjI3Ljg0NjciPkE8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB4MT0iOCIgeDI9IjQ3IiB5MT0iMzkiIHkyPSIzOSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgeDE9IjgiIHgyPSI0NyIgeTE9IjQ3IiB5Mj0iNDciLz48L2c+PCEtLWNsYXNzIEItLT48ZyBpZD0iZWxlbV9CIj48cmVjdCBjb2RlTGluZT0iMiIgZmlsbD0iI0YxRjFGMSIgaGVpZ2h0PSI0OCIgaWQ9IkIiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9IjQyIiB4PSI4My41IiB5PSI3Ii8+PGVsbGlwc2UgY3g9Ijk4LjUiIGN5PSIyMyIgZmlsbD0iI0FERDFCMiIgcng9IjExIiByeT0iMTEiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwYXRoIGQ9Ik0xMDEuNDY4OCwyOC42NDA2IFExMDAuODkwNiwyOC45Mzc1IDEwMC4yNSwyOS4wNzgxIFE5OS42MDk0LDI5LjIzNDQgOTguOTA2MywyOS4yMzQ0IFE5Ni40MDYzLDI5LjIzNDQgOTUuMDc4MSwyNy41OTM4IFE5My43NjU2LDI1LjkzNzUgOTMuNzY1NiwyMi44MTI1IFE5My43NjU2LDE5LjY4NzUgOTUuMDc4MSwxOC4wMzEzIFE5Ni40MDYzLDE2LjM3NSA5OC45MDYzLDE2LjM3NSBROTkuNjA5NCwxNi4zNzUgMTAwLjI1LDE2LjUzMTMgUTEwMC45MDYzLDE2LjY4NzUgMTAxLjQ2ODgsMTYuOTg0NCBMMTAxLjQ2ODgsMTkuNzAzMSBRMTAwLjg0MzgsMTkuMTI1IDEwMC4yNSwxOC44NTk0IFE5OS42NTYzLDE4LjU3ODEgOTkuMDMxMywxOC41NzgxIFE5Ny42ODc1LDE4LjU3ODEgOTcsMTkuNjU2MyBROTYuMzEyNSwyMC43MTg4IDk2LjMxMjUsMjIuODEyNSBROTYuMzEyNSwyNC45MDYzIDk3LDI1Ljk4NDQgUTk3LjY4NzUsMjcuMDQ2OSA5OS4wMzEzLDI3LjA0NjkgUTk5LjY1NjMsMjcuMDQ2OSAxMDAuMjUsMjYuNzgxMyBRMTAwLjg0MzgsMjYuNSAxMDEuNDY4OCwyNS45MjE5IEwxMDEuNDY4OCwyOC42NDA2IFogIiBmaWxsPSIjMDAwMDAwIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMTAiIHg9IjExMi41IiB5PSIyNy44NDY3Ij5CPC90ZXh0PjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgeDE9Ijg0LjUiIHgyPSIxMjQuNSIgeTE9IjM5IiB5Mj0iMzkiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHgxPSI4NC41IiB4Mj0iMTI0LjUiIHkxPSI0NyIgeTI9IjQ3Ii8+PC9nPjwhLS1saW5rIEEgdG8gQi0tPjxnIGlkPSJsaW5rX0FfQiI+PHBhdGggY29kZUxpbmU9IjQiIGQ9Ik00OC4yNSwzMSBDNTcuODcsMzEgNjcuNDgsMzEgNzcuMDksMzEgIiBmaWxsPSJub25lIiBpZD0iQS10by1CIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cG9seWdvbiBmaWxsPSIjMTgxODE4IiBwb2ludHM9IjgxLjg5LDMxLDcyLjg5LDI3LDc2Ljg5LDMxLDcyLjg5LDM1LDgxLjg5LDMxIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48L2c+PCEtLVNSQz1bSXl2OUIydk1TRUhBMWpERU41b0UyaGZzMldmRTAwMDBdLS0+PC9nPjwvc3ZnPg=="/><!--URL:img/kroki-0xf53c5a11.svg--></p>
+<pre><code>     &gt;&gt;&gt; x = 1
+     &gt;&gt;&gt; x + 1
+     2
+     &gt;&gt;&gt; from dbpp.kroki.KrokiEncoder import KrokiEncoder
+     &gt;&gt;&gt; kroki = KrokiEncoder()
+     &gt;&gt;&gt; kroki.text2kroki("class A { }",dia='plantuml',ext='svg')  
+     'https://kroki.io/plantuml/svg/eNpLzkksLlZwVKhWqAUAF10DsA=='</code></pre>
+<h2 id="documentation">DOCUMENTATION</h2>
+<hr/>
+<p><a href="../dbpp/kroki/KrokiEncoder.py#L253"><img align="right" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0ic291cmNlIj48dGl0bGU+c291cmNlPC90aXRsZT48ZyBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PHJlY3QgeD0iMCIgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgeD0iMjM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjMzMzIiB0ZXh0TGVuZ3RoPSIzNzAiPnNvdXJjZTwvdGV4dD48L2c+PC9zdmc+" style="float:right;"/><!--URL:https://img.shields.io/badge/-source-cccccc?style=flat-square--></a></p>
+<h2 id="function-usage"><kbd>function</kbd> <code>usage</code></h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a>usage(args)</span></code></pre></div>
+<p>Usage information for the KrokiEncoder as a standalone application.”</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><b><code>args</code></b> (list): argument list in order: appname, filename, dia, ext</li>
+</ul>
+<hr/>
+<p><a href="../dbpp/kroki/KrokiEncoder.py#L264"><img align="right" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0ic291cmNlIj48dGl0bGU+c291cmNlPC90aXRsZT48ZyBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PHJlY3QgeD0iMCIgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgeD0iMjM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjMzMzIiB0ZXh0TGVuZ3RoPSIzNzAiPnNvdXJjZTwvdGV4dD48L2c+PC9zdmc+" style="float:right;"/><!--URL:https://img.shields.io/badge/-source-cccccc?style=flat-square--></a></p>
+<h2 id="function-main"><kbd>function</kbd> <code>main</code></h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a>main(args)</span></code></pre></div>
+<p>Starting the KrokiEncoder as standalone application using command line options. Can be directly called programatically like this:</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><b><code>args</code></b> (list): argument list in order: appname, filename, dia, ext</li>
+</ul>
+<pre><code>import KrokiEncoder
+KrokiEncoder.main([None,'diagram.pml','plantuml','png'])</code></pre>
+<p>Here an example for converting a PlantUML file into a PNG image using the command line application interface:</p>
+<pre><code>$ KrokiEncoder.py diagram.pml plantuml png</code></pre>
+<p>Thereafter the file <code>diagram.png</code> should be in parallel to the file <code>diagram.pml</code>.</p>
+<p>here a file <code>diagram.pml</code> with the following content and below the output:</p>
+<pre class="kroki" data-dia="plantuml"><code>@startuml
+class A {
+    var1
+    method1()
+}
+class B {
+    var2
+    method2()
+}
+A -&gt; B
+@enduml</code></pre>
+<p><img alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSI5NHB4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBzdHlsZT0id2lkdGg6MjE5cHg7aGVpZ2h0Ojk0cHg7YmFja2dyb3VuZDojRkZGRkZGOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMjE5IDk0IiB3aWR0aD0iMjE5cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48IS0tY2xhc3MgQS0tPjxnIGlkPSJlbGVtX0EiPjxyZWN0IGNvZGVMaW5lPSIxIiBmaWxsPSIjRjFGMUYxIiBoZWlnaHQ9IjgwLjU5MzgiIGlkPSJBIiByeD0iMi41IiByeT0iMi41IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHdpZHRoPSI4NSIgeD0iNyIgeT0iNyIvPjxlbGxpcHNlIGN4PSI0MS44IiBjeT0iMjMiIGZpbGw9IiNBREQxQjIiIHJ4PSIxMSIgcnk9IjExIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cGF0aCBkPSJNNDQuNzY4OCwyOC42NDA2IFE0NC4xOTA2LDI4LjkzNzUgNDMuNTUsMjkuMDc4MSBRNDIuOTA5NCwyOS4yMzQ0IDQyLjIwNjMsMjkuMjM0NCBRMzkuNzA2MywyOS4yMzQ0IDM4LjM3ODEsMjcuNTkzOCBRMzcuMDY1NiwyNS45Mzc1IDM3LjA2NTYsMjIuODEyNSBRMzcuMDY1NiwxOS42ODc1IDM4LjM3ODEsMTguMDMxMyBRMzkuNzA2MywxNi4zNzUgNDIuMjA2MywxNi4zNzUgUTQyLjkwOTQsMTYuMzc1IDQzLjU1LDE2LjUzMTMgUTQ0LjIwNjMsMTYuNjg3NSA0NC43Njg4LDE2Ljk4NDQgTDQ0Ljc2ODgsMTkuNzAzMSBRNDQuMTQzOCwxOS4xMjUgNDMuNTUsMTguODU5NCBRNDIuOTU2MywxOC41NzgxIDQyLjMzMTMsMTguNTc4MSBRNDAuOTg3NSwxOC41NzgxIDQwLjMsMTkuNjU2MyBRMzkuNjEyNSwyMC43MTg4IDM5LjYxMjUsMjIuODEyNSBRMzkuNjEyNSwyNC45MDYzIDQwLjMsMjUuOTg0NCBRNDAuOTg3NSwyNy4wNDY5IDQyLjMzMTMsMjcuMDQ2OSBRNDIuOTU2MywyNy4wNDY5IDQzLjU1LDI2Ljc4MTMgUTQ0LjE0MzgsMjYuNSA0NC43Njg4LDI1LjkyMTkgTDQ0Ljc2ODgsMjguNjQwNiBaICIgZmlsbD0iIzAwMDAwMCIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjkiIHg9IjYwLjIiIHk9IjI3Ljg0NjciPkE8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB4MT0iOCIgeDI9IjkxIiB5MT0iMzkiIHkyPSIzOSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjI5IiB4PSIxMyIgeT0iNTUuOTk1MSI+dmFyMTwvdGV4dD48bGluZSBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHgxPSI4IiB4Mj0iOTEiIHkxPSI2My4yOTY5IiB5Mj0iNjMuMjk2OSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjczIiB4PSIxMyIgeT0iODAuMjkyIj5tZXRob2QxKCk8L3RleHQ+PC9nPjwhLS1jbGFzcyBCLS0+PGcgaWQ9ImVsZW1fQiI+PHJlY3QgY29kZUxpbmU9IjUiIGZpbGw9IiNGMUYxRjEiIGhlaWdodD0iODAuNTkzOCIgaWQ9IkIiIHJ4PSIyLjUiIHJ5PSIyLjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgd2lkdGg9Ijg1IiB4PSIxMjciIHk9IjciLz48ZWxsaXBzZSBjeD0iMTYxLjM1IiBjeT0iMjMiIGZpbGw9IiNBREQxQjIiIHJ4PSIxMSIgcnk9IjExIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cGF0aCBkPSJNMTY0LjMxODgsMjguNjQwNiBRMTYzLjc0MDYsMjguOTM3NSAxNjMuMSwyOS4wNzgxIFExNjIuNDU5NCwyOS4yMzQ0IDE2MS43NTYzLDI5LjIzNDQgUTE1OS4yNTYzLDI5LjIzNDQgMTU3LjkyODEsMjcuNTkzOCBRMTU2LjYxNTYsMjUuOTM3NSAxNTYuNjE1NiwyMi44MTI1IFExNTYuNjE1NiwxOS42ODc1IDE1Ny45MjgxLDE4LjAzMTMgUTE1OS4yNTYzLDE2LjM3NSAxNjEuNzU2MywxNi4zNzUgUTE2Mi40NTk0LDE2LjM3NSAxNjMuMSwxNi41MzEzIFExNjMuNzU2MywxNi42ODc1IDE2NC4zMTg4LDE2Ljk4NDQgTDE2NC4zMTg4LDE5LjcwMzEgUTE2My42OTM4LDE5LjEyNSAxNjMuMSwxOC44NTk0IFExNjIuNTA2MywxOC41NzgxIDE2MS44ODEzLDE4LjU3ODEgUTE2MC41Mzc1LDE4LjU3ODEgMTU5Ljg1LDE5LjY1NjMgUTE1OS4xNjI1LDIwLjcxODggMTU5LjE2MjUsMjIuODEyNSBRMTU5LjE2MjUsMjQuOTA2MyAxNTkuODUsMjUuOTg0NCBRMTYwLjUzNzUsMjcuMDQ2OSAxNjEuODgxMywyNy4wNDY5IFExNjIuNTA2MywyNy4wNDY5IDE2My4xLDI2Ljc4MTMgUTE2My42OTM4LDI2LjUgMTY0LjMxODgsMjUuOTIxOSBMMTY0LjMxODgsMjguNjQwNiBaICIgZmlsbD0iIzAwMDAwMCIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjEwIiB4PSIxNzkuNjUiIHk9IjI3Ljg0NjciPkI8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB4MT0iMTI4IiB4Mj0iMjExIiB5MT0iMzkiIHkyPSIzOSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjI5IiB4PSIxMzMiIHk9IjU1Ljk5NTEiPnZhcjI8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB4MT0iMTI4IiB4Mj0iMjExIiB5MT0iNjMuMjk2OSIgeTI9IjYzLjI5NjkiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI3MyIgeD0iMTMzIiB5PSI4MC4yOTIiPm1ldGhvZDIoKTwvdGV4dD48L2c+PCEtLWxpbmsgQSB0byBCLS0+PGcgaWQ9ImxpbmtfQV9CIj48cGF0aCBjb2RlTGluZT0iOSIgZD0iTTkyLjE2LDQ3LjUgQzEwMS40OCw0Ny41IDExMC44MSw0Ny41IDEyMC4xNCw0Ny41ICIgZmlsbD0ibm9uZSIgaWQ9IkEtdG8tQiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHBvbHlnb24gZmlsbD0iIzE4MTgxOCIgcG9pbnRzPSIxMjUuMDgsNDcuNSwxMTYuMDgsNDMuNSwxMjAuMDgsNDcuNSwxMTYuMDgsNTEuNSwxMjUuMDgsNDcuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PC9nPjwhLS1TUkM9W0l5djlCMnZNUzVJZXZiODBXaEI0OGFDbThwVXI5MkNfbkwxM2F3a01BbmNpbjBjWG4wWDlZSDVPWVFFMmhmczI0bTAwXS0tPjwvZz48L3N2Zz4="/><!--URL:img/kroki-0xcda39aef.svg--></p>
+<hr/>
+<p><a href="../dbpp/kroki/KrokiEncoder.py#L86"><img align="right" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0ic291cmNlIj48dGl0bGU+c291cmNlPC90aXRsZT48ZyBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PHJlY3QgeD0iMCIgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgeD0iMjM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjMzMzIiB0ZXh0TGVuZ3RoPSIzNzAiPnNvdXJjZTwvdGV4dD48L2c+PC9zdmc+" style="float:right;"/><!--URL:https://img.shields.io/badge/-source-cccccc?style=flat-square--></a></p>
+<h2 id="class-krokiencoder"><kbd>class</kbd> <code>KrokiEncoder</code></h2>
+<p>Class to encode and decode diagram code using the <a href="https://kroki.io">https://kroki.io</a> web service.</p>
+<p>Here the methods of the class:</p>
+<p><img alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIxMzRweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjE0NXB4O2hlaWdodDoxMzRweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxNDUgMTM0IiB3aWR0aD0iMTQ1cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48IS0tY2xhc3MgS3Jva2lFbmNvZGVyLS0+PGcgaWQ9ImVsZW1fS3Jva2lFbmNvZGVyIj48cmVjdCBjb2RlTGluZT0iMSIgZmlsbD0iI0YxRjFGMSIgaGVpZ2h0PSIxMTMuMTg3NSIgaWQ9Iktyb2tpRW5jb2RlciIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iMTI0IiB4PSI3IiB5PSI3Ii8+PGVsbGlwc2UgY3g9IjIyIiBjeT0iMjMiIGZpbGw9IiNBREQxQjIiIHJ4PSIxMSIgcnk9IjExIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48cGF0aCBkPSJNMjQuOTY4OCwyOC42NDA2IFEyNC4zOTA2LDI4LjkzNzUgMjMuNzUsMjkuMDc4MSBRMjMuMTA5NCwyOS4yMzQ0IDIyLjQwNjMsMjkuMjM0NCBRMTkuOTA2MywyOS4yMzQ0IDE4LjU3ODEsMjcuNTkzOCBRMTcuMjY1NiwyNS45Mzc1IDE3LjI2NTYsMjIuODEyNSBRMTcuMjY1NiwxOS42ODc1IDE4LjU3ODEsMTguMDMxMyBRMTkuOTA2MywxNi4zNzUgMjIuNDA2MywxNi4zNzUgUTIzLjEwOTQsMTYuMzc1IDIzLjc1LDE2LjUzMTMgUTI0LjQwNjMsMTYuNjg3NSAyNC45Njg4LDE2Ljk4NDQgTDI0Ljk2ODgsMTkuNzAzMSBRMjQuMzQzOCwxOS4xMjUgMjMuNzUsMTguODU5NCBRMjMuMTU2MywxOC41NzgxIDIyLjUzMTMsMTguNTc4MSBRMjEuMTg3NSwxOC41NzgxIDIwLjUsMTkuNjU2MyBRMTkuODEyNSwyMC43MTg4IDE5LjgxMjUsMjIuODEyNSBRMTkuODEyNSwyNC45MDYzIDIwLjUsMjUuOTg0NCBRMjEuMTg3NSwyNy4wNDY5IDIyLjUzMTMsMjcuMDQ2OSBRMjMuMTU2MywyNy4wNDY5IDIzLjc1LDI2Ljc4MTMgUTI0LjM0MzgsMjYuNSAyNC45Njg4LDI1LjkyMTkgTDI0Ljk2ODgsMjguNjQwNiBaICIgZmlsbD0iIzAwMDAwMCIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjkyIiB4PSIzNiIgeT0iMjcuODQ2NyI+S3Jva2lFbmNvZGVyPC90ZXh0PjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgeDE9IjgiIHgyPSIxMzAiIHkxPSIzOSIgeTI9IjM5Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB4MT0iOCIgeDI9IjEzMCIgeTE9IjQ3IiB5Mj0iNDciLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI1OCIgeD0iMTMiIHk9IjYzLjk5NTEiPmRpYTJmaWxlKCk8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNzIiIHg9IjEzIiB5PSI4MC4yOTIiPmRpYTJrcm9raSgpPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjcyIiB4PSIxMyIgeT0iOTYuNTg4OSI+a3Jva2kyZGlhKCk8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNzgiIHg9IjEzIiB5PSIxMTIuODg1NyI+dGV4dDJrcm9raSgpPC90ZXh0PjwvZz48IS0tU1JDPVtJeXY5QjJ2TXkyeEFweXZxcEtsRUpxYWpLZ1hNdTU4MFdQSkNIQUVxcDluSzNLcTRGbmthNDJPMHZYVzFYTTQyOVFhTDlOMGJqRzAwXS0tPjwvZz48L3N2Zz4="/><!--URL:img/kroki-0x6d8b3768.svg--></p>
+<hr/>
+<p><a href="../dbpp/kroki/KrokiEncoder.py#L221"><img align="right" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0ic291cmNlIj48dGl0bGU+c291cmNlPC90aXRsZT48ZyBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PHJlY3QgeD0iMCIgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgeD0iMjM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjMzMzIiB0ZXh0TGVuZ3RoPSIzNzAiPnNvdXJjZTwvdGV4dD48L2c+PC9zdmc+" style="float:right;"/><!--URL:https://img.shields.io/badge/-source-cccccc?style=flat-square--></a></p>
+<h3 id="method-dia2file"><kbd>method</kbd> <code>dia2file</code></h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a>dia2file(diafile, dia<span class="op">=</span><span class="st">'ditaa'</span>, ext<span class="op">=</span><span class="st">'png'</span>, imagefile<span class="op">=</span><span class="st">''</span>)</span></code></pre></div>
+<p>Converts a diagram file to an image file.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><b><code>diafile</code></b> (string): a diagram file, for instance with the pml extension for PlantUML code, defaults to None</li>
+<li><b><code>dia</code></b> (string): diagram type, either ‘ditaa’, ‘plantuml’, ‘erd’ or ‘graphviz’, defaults to ‘ditaa’</li>
+<li><b><code>ext</code></b> (string): file extension, either ‘png’, ‘svg’ or ‘pdf’, not all extensions are supported for all diagram types, defaults to ‘png’</li>
+<li><b><code>imagefile</code></b> (string): a output filename for the image file, if not given the diagram imagefile will have the basename of the diagram file nut with the image extension.</li>
+</ul>
+<p><strong>Returns:</strong> None</p>
+<hr/>
+<p><a href="../dbpp/kroki/KrokiEncoder.py#L120"><img align="right" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0ic291cmNlIj48dGl0bGU+c291cmNlPC90aXRsZT48ZyBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PHJlY3QgeD0iMCIgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgeD0iMjM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjMzMzIiB0ZXh0TGVuZ3RoPSIzNzAiPnNvdXJjZTwvdGV4dD48L2c+PC9zdmc+" style="float:right;"/><!--URL:https://img.shields.io/badge/-source-cccccc?style=flat-square--></a></p>
+<h3 id="method-dia2kroki"><kbd>method</kbd> <code>dia2kroki</code></h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a>dia2kroki(filename, dia<span class="op">=</span><span class="st">'ditaa'</span>, ext<span class="op">=</span><span class="st">'png'</span>)</span></code></pre></div>
+<p>Converts a diagram file to a Kroki URL</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><b><code>filename</code></b> (string): a diagram file, for instance with the pml extension for PlantUML code, defaults to None</li>
+<li><b><code>dia</code></b> (string): diagram type, either ‘ditaa’, ‘plantuml’, ‘erd’ or ‘graphviz’, defaults to ‘ditaa’</li>
+<li><b><code>ext</code></b> (string): file extension, either ‘png’, ‘svg’ or ‘pdf’, not all extensions are supported for all diagram types, defaults to ‘png’</li>
+</ul>
+<p><strong>Returns:</strong> Kroki-URL (string)</p>
+<hr/>
+<p><a href="../dbpp/kroki/KrokiEncoder.py#L182"><img align="right" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0ic291cmNlIj48dGl0bGU+c291cmNlPC90aXRsZT48ZyBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PHJlY3QgeD0iMCIgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgeD0iMjM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjMzMzIiB0ZXh0TGVuZ3RoPSIzNzAiPnNvdXJjZTwvdGV4dD48L2c+PC9zdmc+" style="float:right;"/><!--URL:https://img.shields.io/badge/-source-cccccc?style=flat-square--></a></p>
+<h3 id="method-kroki2dia"><kbd>method</kbd> <code>kroki2dia</code></h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a aria-hidden="true" href="#cb10-1" tabindex="-1"></a>kroki2dia(url)</span></code></pre></div>
+<p>Converts a Kroki URL back to diagram code.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><b><code>url</code></b> (string): a kroki URL like https://kroki.io/plantuml/svg/eNpLzkksLlZwVOBKBjOcoLQzl6OCrhaQ66Sga6fgDADcPwn7, defaults to None</li>
+</ul>
+<p><strong>Returns:</strong> diagram code (string)</p>
+<p><strong>Examples:</strong></p>
+<div class="sourceCode" data-echo="true" id="cb11"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb11-1"><a aria-hidden="true" href="#cb11-1" tabindex="-1"></a><span class="im">import</span> sys, os</span>
+<span id="cb11-2"><a aria-hidden="true" href="#cb11-2" tabindex="-1"></a>sys.path.append(os.path.join(os.getcwd(),<span class="st">".."</span>))</span>
+<span id="cb11-3"><a aria-hidden="true" href="#cb11-3" tabindex="-1"></a><span class="im">from</span> KrokiEncoder <span class="im">import</span> KrokiEncoder</span>
+<span id="cb11-4"><a aria-hidden="true" href="#cb11-4" tabindex="-1"></a>kroki<span class="op">=</span>KrokiEncoder()</span>
+<span id="cb11-5"><a aria-hidden="true" href="#cb11-5" tabindex="-1"></a>text<span class="op">=</span>kroki.kroki2dia(<span class="st">'https://kroki.io/plantuml/svg/eNpLzkksLlZwVKhWqOXiSgZznCAcRwVdLQUnAJ-uCKI='</span>)</span>
+<span id="cb11-6"><a aria-hidden="true" href="#cb11-6" tabindex="-1"></a><span class="bu">print</span>(text)</span></code></pre></div>
+<hr/>
+<p><a href="../dbpp/kroki/KrokiEncoder.py#L152"><img align="right" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0ic291cmNlIj48dGl0bGU+c291cmNlPC90aXRsZT48ZyBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PHJlY3QgeD0iMCIgd2lkdGg9IjQ3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjY2NjY2NjIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgeD0iMjM1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjMzMzIiB0ZXh0TGVuZ3RoPSIzNzAiPnNvdXJjZTwvdGV4dD48L2c+PC9zdmc+" style="float:right;"/><!--URL:https://img.shields.io/badge/-source-cccccc?style=flat-square--></a></p>
+<h3 id="method-text2kroki"><kbd>method</kbd> <code>text2kroki</code></h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a aria-hidden="true" href="#cb12-1" tabindex="-1"></a>text2kroki(text, dia<span class="op">=</span><span class="st">'ditaa'</span>, ext<span class="op">=</span><span class="st">'png'</span>)</span></code></pre></div>
+<p>Converts a given diagram text to a Kroki URL.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><b><code>text</code></b> (string): diagram text as string, for instance PlantUML code, defaults to None</li>
+<li><b><code>dia</code></b> (string): diagram type, either ‘ditaa’, ‘plantuml’, ‘erd’ or ‘graphviz’, defaults to ‘ditaa’</li>
+<li><b><code>ext</code></b> (string): file extension, either ‘png’, ‘svg’ or ‘pdf’, not all extensions are supported for all diagram types, defaults to ‘png’</li>
+</ul>
+<p><strong>Returns:</strong> Kroki-URL (string)</p>
+<hr/>
+<p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>
+</body>
+</html><!--Generated by HTMLArk 2023-01-23 07:45:57.683345. Original URL dbpp.kroki.KrokiEncoder.html-->
