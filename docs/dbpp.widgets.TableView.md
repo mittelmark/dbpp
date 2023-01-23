@@ -89,45 +89,7 @@ The constructor to create a TableView widget.
 
 ---
 
-<a href="../dbpp/widgets/TableView.py#L55"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
-
-### <kbd>method</kbd> `getFrame`
-
-```python
-getFrame()
-```
-
-Returns the frame in which the widget is embedded to perform, useful for packing or gridding the widget. 
-
-This function is needed by geometry managers like grid or ttk.PanedWindow to manage the parent frame of the widget in the layout. For pack the default methods pack and pack_forget are defined. 
-
----
-
-<a href="../dbpp/widgets/TableView.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
-
-### <kbd>method</kbd> `pack`
-
-```python
-pack(**kwargs)
-```
-
-Overwrites the default pack method to use the internal frame. 
-
----
-
-<a href="../dbpp/widgets/TableView.py#L97"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
-
-### <kbd>method</kbd> `pack_forget`
-
-```python
-pack_forget(**kwargs)
-```
-
-Overwrites the default pack_forget method to use the internal frame. 
-
----
-
-<a href="../dbpp/widgets/TableView.py#L64"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/TableView.py#L54"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `readTabfile`
 

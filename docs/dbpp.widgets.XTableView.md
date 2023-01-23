@@ -42,7 +42,6 @@ class "ttk.TreeView" as Treeview {
      etc()
 }
 class "dbpp.widgets.TableView" as TableView {
-     getFrame()
      readTabfile(filename)
      pack(kwargs)
      pack_forget()
@@ -84,12 +83,12 @@ root.mainloop()
 
 ---
 
-<a href="../dbpp/widgets/XTableView.py#L64"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/XTableView.py#L63"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>class</kbd> `XTableView`
 Extended ttk.Treeview based on TableView. 
 
-<a href="../dbpp/widgets/XTableView.py#L67"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/XTableView.py#L66"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `__init__`
 
@@ -117,7 +116,7 @@ The constructor to create a XTableView widget.
 
 ---
 
-<a href="../dbpp/widgets/XTableView.py#L81"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/XTableView.py#L80"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `insertData`
 

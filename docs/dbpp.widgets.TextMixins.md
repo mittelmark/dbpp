@@ -189,12 +189,12 @@ Mixin class for the tk.Text widget which allows to extend its functionality on t
 
 ```
 import tkinter as tk
-class MText(tk.Text,dbp.widgets.TextMixins.TextHighLightMixin): pass
+class MText(tk.Text,dbpp.widgets.TextMixins.TextHighLightMixin): pass
 root = tk.Tk()
 text = MText(root)
 text.addHighLights(linecomment="^\s*'",keywords=[ 
      ['@startuml','@enduml', '@startmindmap','@endmindmap'], 
-     ['class', 'entitiy', 'table'] ])
+     ['class', 'entity', 'table'] ])
 ``` 
 
 
@@ -211,7 +211,8 @@ addHighLights(
     commentline='^\\s*#',
     commentstart=None,
     commentend=None,
-    keywords=[]
+    keywords=[],
+    strings=True
 )
 ```
 
@@ -225,12 +226,13 @@ Adds the actual syntax highlighting and the binding for updates of the high ligh
  - <b>`commentstart`</b> (regex):  the regular expression to start a multi line comment, defaults to None 
  - <b>`commentend`</b> (regex):  the regular expression to start a multie line comment, defaults to None             
  - <b>`keywords`</b> (list):  nested list of keywords, each sublist will be given a different color, defaults to list() 
+ - <b>`strings`</b> (bool):  should strings be highlighted, defaults to True 
 
 
 
 ---
 
-<a href="../dbpp/widgets/TextMixins.py#L233"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/TextMixins.py#L236"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `updateHighLights`
 
