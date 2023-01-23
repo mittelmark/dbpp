@@ -33,7 +33,7 @@ A Python package with the following Tkinter widgets
 ([HTML documentation](http://htmlpreview.github.io/?https://github.com/mittelmark/dbpp/blob/master/docs/dbpp.widgets.html)):
 
 - [GuiBaseClass](dbpp.widgets.GuiBaseClass.md) - base class to build your own Tkinter applications
-- [AutoScrollbar](dbpp.widgets.AutoScrollbar.md) - a scrollbar which autohides if not required, easier to use is the [Scrolled](Scrolledmd] method
+- [AutoScrollbar](dbpp.widgets.AutoScrollbar.md) - a scrollbar which autohides if not required, easier to use is the [Scrolled](Scrolled.md) method
 - [Balloon](dbpp.widgets.Balloon.md) - a tooltip widgets which can use balloon popups or existing label widgets
 - [Ctext](dbpp.widgets.Ctext.md) - a syntax highlighting widget based on Tcl tklib ctext widget
 - [LabEntry](dbpp.widgets.LabEntry.md) - a composite widget out of ttk.Label and ttk.Entry 
