@@ -93,3 +93,4 @@ pandoc README.md -o README.html --css ../docs/pydoc.css -s \
     --lua-filter filter-kroki.lua 
 ```
 
+Here the resulting HTML file: [README.html](http://htmlpreview.github.io/?https://github.com/mittelmark/dbpp/blob/master/lua-filters/README.html)
