@@ -8,7 +8,7 @@ The following applications will be added:
 * kroki - encode diagram code as kroki URL's (done)
 * sfa   - create single file applications from a few Python source code files
 * SQLViewer - an SQLViewer application forSQLite databases
-* [PumlEditor](docs/dbpp.peditor.md) - an Diagram Editor with preview functionality started with `python -m dbpp.peditor (diagramfile)` (done)
+* [PumlEditor](docs/dbpp.peditor.PumlEditor.md) - an Diagram Editor with preview functionality started with `python -m dbpp.peditor (diagramfile)` (done)
 
 ![PumlEditor](docs/peditor.png)
 
