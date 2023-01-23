@@ -50,13 +50,25 @@ A Python package with the following Tkinter widgets
 
 # Running the application
 
-## kroki
+## kroki - the KrokiEncoder
 
 This a command line tool to encode diagram code such as [GraphViz](https://www.graphviz.org) (.dot), [PlantUML](https://www.plantuml.com) (.pml) or [Ditaa](https://github.com/stathissideris/ditaa) (.dit) files as image url's using the [kroki](https://kroki.io) webservice or backtranslates image url's into diagram code.
 
 Here an example for a backtranslation of an url into diagram code:
 
 ```
-$ python3 -m dbpp kroki https://kroki.io/plantuml/svg/eNpLzkksLlZwVKhWqAUAF10DsA==
+$ python3 -m dbpp.kroki https://kroki.io/plantuml/svg/eNpLzkksLlZwVKhWqAUAF10DsA==
 class A { }
+```
+
+## peditor - the PumlEditor
+
+This a graphical application to editdiagram code such as [GraphViz](https://www.graphviz.org) (.dot), [PlantUML](https://www.plantuml.com) (.pml) or [Ditaa](https://github.com/stathissideris/ditaa) (.dit) files
+and preview the image right of the editor window. This tool is as well using the [kroki](https://kroki.io) webservice to translate the diagram code
+into an image which is downloaded in parallel to the diagram file.
+
+Here is shown how you can execute the program if the package is installed.
+
+```
+$ python3 -m dbpp.peditor ?diagramfile$ &
 ```
