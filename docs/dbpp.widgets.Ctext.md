@@ -1,4 +1,5 @@
 <center>
+
 **[dbpp.widgets](dbpp.widgets.md) package:** 
 [GuiBaseClass](dbpp.widgets.GuiBaseClass.md) -
 [AutoScrollbar](dbpp.widgets.AutoScrollbar.md) -
@@ -15,6 +16,7 @@
 
 **[dbpp.kroki](dbpp.kroki.md) package:** 
 [dbpp.kroki.KrokiEncoder](dbpp.kroki.KrokiEncoder.md)
+
 </center>
 
 <!-- markdownlint-disable -->

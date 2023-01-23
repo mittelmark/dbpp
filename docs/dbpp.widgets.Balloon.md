@@ -1,4 +1,5 @@
 <center>
+
 **[dbpp.widgets](dbpp.widgets.md) package:** 
 [GuiBaseClass](dbpp.widgets.GuiBaseClass.md) -
 [AutoScrollbar](dbpp.widgets.AutoScrollbar.md) -
@@ -15,6 +16,7 @@
 
 **[dbpp.kroki](dbpp.kroki.md) package:** 
 [dbpp.kroki.KrokiEncoder](dbpp.kroki.KrokiEncoder.md)
+
 </center>
 
 <!-- markdownlint-disable -->
@@ -34,7 +36,7 @@ This a simple tooltip implementation for displaying short help message if the mo
 ```
 import tkinter as tk
 import tkinter.ttk as ttk
-from dbpp.widgets.Balloon import DGBallon
+from dbpp.widgets.Balloon import Balloon
 
 top=tk.Tk()
 lbl1=ttk.Label(top,text="Hove me 1",anchor="center")

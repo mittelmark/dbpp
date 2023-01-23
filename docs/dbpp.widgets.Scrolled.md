@@ -1,4 +1,5 @@
 <center>
+
 **[dbpp.widgets](dbpp.widgets.md) package:** 
 [GuiBaseClass](dbpp.widgets.GuiBaseClass.md) -
 [AutoScrollbar](dbpp.widgets.AutoScrollbar.md) -
@@ -15,6 +16,7 @@
 
 **[dbpp.kroki](dbpp.kroki.md) package:** 
 [dbpp.kroki.KrokiEncoder](dbpp.kroki.KrokiEncoder.md)
+
 </center>
 
 <!-- markdownlint-disable -->
@@ -26,7 +28,7 @@ Add easily ttk.Scrollbar(s) to ttk-widgets.
 
 This is a convenience function to add scrollbars which can optionally autohide to an existing widget which is placed already within a tk.Frame or a ttk.Frame.  
 
-Except for the DGScrolled function there is no function available for the DGScrolled module.   Simply provide the  widget which should get the two scrollbars.  The widget should be placed in its own frame before.  Don't pack or grid the widget itself, just pack or grid the parent frame. 
+Except for the Scrolled function there is no function available for the Scrolled module.   Simply provide the  widget which should get the two scrollbars.  The widget should be placed in its own frame before.  Don't pack or grid the widget itself, just pack or grid the parent frame. 
 
 
 
@@ -51,7 +53,7 @@ root.mainloop()
 
 Copyright: @ Detlef Groth, University of Potsdam, Germany 
 
-See also: [GuiBaseClass](GuiBaseClass.html), [DGAutoScrollbar](DGAutoScrollbar.html) 
+See also: [GuiBaseClass](GuiBaseClass.md), [DGAutoScrollbar](DGAutoScrollbar.md) 
 
 License: MIT 
 
