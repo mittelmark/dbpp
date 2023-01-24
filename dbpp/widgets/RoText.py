@@ -12,14 +12,14 @@ Examples:
 
 ```
 
->>> import tkinter as tk
->>> import dbpp.widgets.RoText as RoText
->>> root= tk.Tk() 	
->>> rtext = RoText.RoText(root) 
->>> rtext.cmd("ins","end","Hello World!")
->>> root.title('RoTtext example')
-''
->>> rtext.pack(fill="both",expand=True)	
+    >>> import tkinter as tk
+    >>> import dbpp.widgets.RoText as RoText
+    >>> root= tk.Tk() 	
+    >>> rtext = RoText.RoText(root) 
+    >>> rtext.cmd("ins","end","Hello World!")
+    >>> root.title('RoTtext example')
+    ''
+    >>> rtext.pack(fill="both",expand=True)	
 
 ```
 

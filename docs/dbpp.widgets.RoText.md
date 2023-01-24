@@ -26,7 +26,7 @@
 
 <a href="../dbpp/widgets/RoText.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-# <kbd>module</kbd> `widgets.RoText`
+# <kbd>module</kbd> `RoText.py`
 Read only text widget. 
 
 This is a text widget derived from the tk.Text widget where the user can't change the text. The widget otherwise has all the methods. of the original text widget. To insert text programmatically use the syntax `cmd('ins',index, text)`, to delete the text use the `cmd('del',start,end)` syntax. 
@@ -40,27 +40,27 @@ This is a text widget derived from the tk.Text widget where the user can't chang
 
 ```
 
-``` import tkinter as tk``` ``` import dbpp.widgets.RoText as RoText```
-``` root= tk.Tk()       ``` ``` rtext = RoText.RoText(root) ```
-``` rtext.cmd("ins","end","Hello World!")``` ``` root.title('RoTtext example')```
-''
-``` rtext.pack(fill="both",expand=True) ``` 
+     >>> import tkinter as tk
+     >>> import dbpp.widgets.RoText as RoText
+     >>> root= tk.Tk()   
+     >>> rtext = RoText.RoText(root) 
+     >>> rtext.cmd("ins","end","Hello World!")
+     >>> root.title('RoTtext example')
+     ''
+     >>> rtext.pack(fill="both",expand=True)     
 
-```
+``` 
 
-**Author:**
+**Author:** 
 
 
-- 2023 Detlef Groth
+- 2023 Detlef Groth 
 
-**License:**  MIT - License
-
+**License:**  MIT - License 
 
 
 
 ---
-
-<a href="../dbpp/widgets/RoText.py#L38"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>class</kbd> `RoText`
 Readonly text widget based on tkText. 
@@ -69,7 +69,7 @@ This is an wrapper for a read only text widget, based on the dgw::rotext widget.
 
 <a href="../dbpp/widgets/RoText.py#L46"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `__init__`
+### <kbd>function</kbd> `__init__`
 
 ```python
 __init__(master=None, cnf={}, **kwargs)
@@ -93,7 +93,7 @@ Initialize the ctext wrapper.
 
 <a href="../dbpp/widgets/RoText.py#L65"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `cmd`
+### <kbd>function</kbd> `cmd`
 
 ```python
 cmd(cmd, *args, **kwargs)
