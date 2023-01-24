@@ -4,6 +4,13 @@
 #    sudo apt|dnf install pandoc
 #    pip3 install lazydocs --user
 
+AUTHOR="Detlef Groth, University of Potsdam"
+HTMLS      := $(wildcard dbpp/kroki/*.py dbpp/widgets/*.py)
+FILENAME   := "dbpp/widgets/GuiBaseClass.py"
+BASENAME   := $(shell basename $(FILENAME))
+MDFILEIN   := $(shell echo $(BASENAME).md)
+MDFILEOUT  := $(shell echo $(FILENAME) | perl -pe 's/\//./g; s/.py/.md/')
+HTMLFILE   := $(shell basename $(MDFILEOUT) .md).html
 docu: 
 	rm -f docs/*.md docs/*.html
 	pandoc header.md -o docs/header.html --lua-filter=lua-filters/links-to-html.lua
@@ -22,3 +29,19 @@ lua-readme:
 		--lua-filter filter-python.lua --lua-filter filter-kroki.lua
 	cd lua-filters && htmlark README.html -o temp.html
 	cd lua-filters && mv temp.html README.html
+
+single: docs/header.html header.md
+	lazydocs $(FILENAME)
+	cd docs && cat ../header.md $(MDFILEIN) > $(MDFILEOUT) && rm $(MDFILEIN)
+	cd docs &&  pandoc $(MDFILEOUT) -o `basename $(MDFILEOUT) .md`.html -s -t HTML \
+		--css pydoc.css --metadata title="Documentation `basename $(MDFILEOUT) .md`" \
+		--metadata author=$(AUTHOR) \
+		--metadata date="`date +%Y-%m-%d`" \
+		--lua-filter ../lua-filters/filter-kroki.lua \
+		--lua-filter ../lua-filters/links-to-html.lua 
+	cd docs && perl -i -pe 's/(img.+flat-square.)>/$$1 \/>/' $(MDFILEOUT)
+	cd docs && perl -i -pe 's/.+(img.+flat-square.)>//' $(HTMLFILE)
+	
+		
+docs/header.html:
+	pandoc header.md -o docs/header.html --lua-filter=lua-filters/links-to-html.lua
