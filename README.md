@@ -40,6 +40,7 @@ A Python package with the following Tkinter widgets
 - [Balloon](docs/dbpp.widgets.Balloon.md) - a tooltip widgets which can use balloon popups or existing label widgets
 - [Ctext](docs/dbpp.widgets.Ctext.md) - a syntax highlighting widget based on Tcl tklib ctext widget
 - [LabEntry](docs/dbpp.widgets.LabEntry.md) - a composite widget out of ttk.Label and ttk.Entry 
+- [RoText](docs/dbpp.widgets.RoText.md) - read only tk.Text widget based on a Tcl widget created with Tcl's snit library
 - [Scrolled](docs/dbpp.widgets.Scrolled.md) - a helper functions to attach scrollbars to widgets
 - [SqlText](docs/dbpp.widgets.SqlText.md) - a Text widget with support for SQL highlighting based on Ctext
 - [StatusBar](docs/dbpp.widgets.StatusBar.md) - a statusbar having a label for messages and a progressbar
