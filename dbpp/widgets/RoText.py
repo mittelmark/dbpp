@@ -44,11 +44,11 @@ class RoText(tk.Text):
     To insert text you should use the `cmd` method instead.
     """
     def __init__(self, master=None, cnf={}, **kwargs):
-        """Initialize the ctext wrapper.
+        """Initialize the RoText widget.
         
         Args:
             master (ttk.Frame): the parent widget, usually a ttk.Frame, if not given the toplevel is choosen, default: None
-            cnf, **kwargs (dict): options delegated to the ctext widget
+            cnf, **kwargs (dict): options delegated to the underlying tk.Text widget
              
         """
         if master:
@@ -77,6 +77,8 @@ class RoText(tk.Text):
             **kwargs (dict) - additional key-value arguments
             
         Example:
+        
+        ```
             >>> import tkinter as tk
             >>> root= tk.Tk() 	
             >>> rtext = RoText(root) 
@@ -84,6 +86,8 @@ class RoText(tk.Text):
             >>> rtext.get("1.0","end-1c")
             'Hello World!'
             >>> rtext.pack(fill="both",expand=True)	
+            
+        ```
         """
         self.tk.call(self._w, cmd, *args,**kwargs)
 
@@ -94,6 +98,6 @@ if __name__ == '__main__':
     rtext = TText(root) 
     rtext.bindTextResize()
     rtext.cmd("ins","end","Hello World!")
-    root.title('Ctext example') 
+    root.title('RoText example') 
     rtext.pack(fill="both",expand=True)	
     rtext.mainloop()

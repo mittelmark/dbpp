@@ -75,14 +75,14 @@ This is an wrapper for a read only text widget, based on the dgw::rotext widget.
 __init__(master=None, cnf={}, **kwargs)
 ```
 
-Initialize the ctext wrapper. 
+Initialize the RoText widget. 
 
 
 
 **Args:**
  
  - <b>`master`</b> (ttk.Frame):  the parent widget, usually a ttk.Frame, if not given the toplevel is choosen, default: None 
- - <b>`cnf, **kwargs (dict)`</b>:  options delegated to the ctext widget  
+ - <b>`cnf, **kwargs (dict)`</b>:  options delegated to the underlying tk.Text widget  
 
 
 
@@ -112,14 +112,18 @@ This is the method to access all original methods of the tk.Text widget except f
 
 
 **Example:**
- ``` import tkinter as tk```
+ 
+
+```
+    >>> import tkinter as tk
     >>> root= tk.Tk()   
     >>> rtext = RoText(root) 
     >>> rtext.cmd("ins","end","Hello World!")
     >>> rtext.get("1.0","end-1c")
     'Hello World!'
     >>> rtext.pack(fill="both",expand=True)     
-
+    
+``` 
 
 
 

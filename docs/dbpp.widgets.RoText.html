@@ -123,11 +123,11 @@
 </a></p>
 <h3 id="function-__init__"><kbd>function</kbd> <code>__init__</code></h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">__init__</span>(master<span class="op">=</span><span class="va">None</span>, cnf<span class="op">=</span>{}, <span class="op">**</span>kwargs)</span></code></pre></div>
-<p>Initialize the ctext wrapper.</p>
+<p>Initialize the RoText widget.</p>
 <p><strong>Args:</strong></p>
 <ul>
 <li><b><code>master</code></b> (ttk.Frame): the parent widget, usually a ttk.Frame, if not given the toplevel is choosen, default: None</li>
-<li><b><code>cnf, **kwargs (dict)</code></b>: options delegated to the ctext widget</li>
+<li><b><code>cnf, **kwargs (dict)</code></b>: options delegated to the underlying tk.Text widget</li>
 </ul>
 <hr />
 </a></p>
@@ -139,8 +139,15 @@
 <ul>
 <li><b><code>cmd</code></b> (string): command of the original tk.Text widget like <code>configure</code> or <code>see</code>, <code>insert</code> and <code>delete</code> are doing nothing, use <code>ins</code> and <code>del</code> instead *args (list) - additional positional arguments **kwargs (dict) - additional key-value arguments</li>
 </ul>
-<p><strong>Example:</strong> <code>import tkinter as tk</code> &gt;&gt;&gt; root= tk.Tk()<br />
-&gt;&gt;&gt; rtext = RoText(root) &gt;&gt;&gt; rtext.cmd(“ins”,“end”,“Hello World!”) &gt;&gt;&gt; rtext.get(“1.0”,“end-1c”) ‘Hello World!’ &gt;&gt;&gt; rtext.pack(fill=“both”,expand=True)</p>
+<p><strong>Example:</strong></p>
+<pre><code>    &gt;&gt;&gt; import tkinter as tk
+    &gt;&gt;&gt; root= tk.Tk()   
+    &gt;&gt;&gt; rtext = RoText(root) 
+    &gt;&gt;&gt; rtext.cmd(&quot;ins&quot;,&quot;end&quot;,&quot;Hello World!&quot;)
+    &gt;&gt;&gt; rtext.get(&quot;1.0&quot;,&quot;end-1c&quot;)
+    &#39;Hello World!&#39;
+    &gt;&gt;&gt; rtext.pack(fill=&quot;both&quot;,expand=True)     
+    </code></pre>
 <hr />
 <p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>
 </body>
