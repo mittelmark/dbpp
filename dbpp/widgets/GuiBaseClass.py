@@ -37,6 +37,7 @@ Examples:
 ```
 import sys
 import tkinter as tk
+import tkinter.ttk as ttk
 from dbpp.widgets.GuiBaseClass import GuiBaseClass
 root=tk.Tk()
 bapp = GuiBaseClass(root) 
