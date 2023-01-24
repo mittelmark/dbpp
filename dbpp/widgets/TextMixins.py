@@ -328,6 +328,7 @@ class TextHighLightMixin:
         #if (evt.keysym == "space"):
         if (evt.keysym in ["Return","Up","Down"]): 
             self.updateHighLights()        
+
 if __name__ == "__main__":
     root = tk.Tk()
     class text(tk.Text,TextFontIncreaserMixin,TextCuaBindingsMixin,TextHighLightMixin): pass
