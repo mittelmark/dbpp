@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<title>Documentation dbpp.widgets.SqlText</title>
+<title>Documentation dbpp.widgets.RoText</title>
 <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -84,7 +84,7 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Documentation dbpp.widgets.SqlText</h1>
+<h1 class="title">Documentation dbpp.widgets.RoText</h1>
 </header>
 <center>
 <p><strong><a href="dbpp.widgets.html">dbpp.widgets</a> package:</strong> <a href="dbpp.widgets.GuiBaseClass.html">GuiBaseClass</a> - <a href="dbpp.widgets.AutoScrollbar.html">AutoScrollbar</a> - <a href="dbpp.widgets.Balloon.html">Balloon</a> - <a href="dbpp.widgets.Ctext.html">Ctext</a> - <a href="dbpp.widgets.LabEntry.html">LabEntry</a> - <a href="dbpp.widgets.RoText.html">RoText</a> - <a href="dbpp.widgets.Scrolled.html">Scrolled</a> - <a href="dbpp.widgets.SqlText.html">SqlText</a> - <a href="dbpp.widgets.StatusBar.html">StatusBar</a> - <a href="dbpp.widgets.TableView.html">TableView</a> - <a href="dbpp.widgets.TextMixins.html">TextMixins</a> - <a href="dbpp.widgets.XTableView.html">XTableView</a> - <a href="dbpp.widgets.XTreeView.html">XTreeView</a></p>
@@ -92,47 +92,46 @@
 <p><strong><a href="dbpp.kroki.html">dbpp.kroki</a> package:</strong> <a href="dbpp.kroki.KrokiEncoder.html">dbpp.kroki.KrokiEncoder</a></p>
 </center>
 <!-- markdownlint-disable -->
-<h1 id="module-widgets.sqltext"><kbd>module</kbd> <code>widgets.SqlText</code></h1>
-<p>SQL syntax aware text widdget with syntax highlighting</p>
-<p>This is a <a href="Ctext.html">Ctext</a> based Text widget which supports SQL syntax for highlighting SQL code.</p>
+<h1 id="module-widgets.rotext"><kbd>module</kbd> <code>widgets.RoText</code></h1>
+<p>Read only text widget.</p>
+<p>This is a text widget derived from the tk.Text widget where the user can’t change the text. The widget otherwise has all the methods. of the original text widget. To insert text programmatically use the syntax <code>cmd('ins',index, text)</code>, to delete the text use the <code>cmd('del',start,end)</code> syntax.</p>
 <p><strong>Examples:</strong></p>
-<pre><code>import tkinter as tk
-from dbpp.widgets.SqlText import SqlText
-root= tk.Tk()   
-ctext = SqlText(root,background='gray90',border=5,relief='flat') 
-root.title('SqlText example') 
-ctext.pack(side='top',fill='both',expand=True)  
-ctext.insert("end", "select * from sample where id == '1' or id == 'Hello'
-
--- a comment
- new statement
-/*
-c-style comment passing
- multiple lines
-*/")
-ctext.highlight('1.0','end')
-
-# just sample execution on ctrl-enter
-def bindExample(evt=None,widget=None):
-     print(widget.get('1.0','end'))
-     return("break")
-
-ctext.bind('&lt;Control-Return&gt;',lambda evt: bindExample(widget=ctext))
-
-root.mainloop()</code></pre>
+<pre><code>
+``` import tkinter as tk``` ``` import dbpp.widgets.RoText as RoText```
+``` root= tk.Tk()       ``` ``` rtext = RoText.RoText(root) ```
+``` rtext.cmd("ins","end","Hello World!")``` ``` root.title('RoTtext example')```
+''
+``` rtext.pack(fill="both",expand=True) ``` 
+</code></pre>
+<p><strong>Author:</strong></p>
+<ul>
+<li>2023 Detlef Groth</li>
+</ul>
+<p><strong>License:</strong> MIT - License</p>
 <hr/>
-<h2 id="class-sqltext"><kbd>class</kbd> <code>SqlText</code></h2>
-<p>Python wrapper for the Tklib ctext widget which supports SQL highlighting.</p>
-<p>All options and methods of the Ctext widget and the tk.Text widget are supported.</p>
+<h2 id="class-rotext"><kbd>class</kbd> <code>RoText</code></h2>
+<p>Readonly text widget based on tkText.</p>
+<p>This is an wrapper for a read only text widget, based on the dgw::rotext widget. There is only one public method, <code>cmd</code> which forwards the remaining arguments to the original text widget. The widget methods insert and delete are doing nothing. To insert text you should use the <code>cmd</code> method instead.</p>
 <h3 id="method-__init__"><kbd>method</kbd> <code>__init__</code></h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a><span class="fu">__init__</span>(master<span class="op">=</span><span class="va">None</span>, cnf<span class="op">=</span>{}, <span class="op">**</span>kwargs)</span></code></pre></div>
-<p>Initialize the wrapper widget.</p>
+<p>Initialize the ctext wrapper.</p>
 <p><strong>Args:</strong></p>
 <ul>
 <li><b><code>master</code></b> (ttk.Frame): the parent widget, usually a ttk.Frame, if not given the toplevel is choosen, default: None</li>
-<li><b><code>cnf, **kwargs (dict)</code></b>: options delegated to the Ctext and tk.Text widget</li>
+<li><b><code>cnf, **kwargs (dict)</code></b>: options delegated to the ctext widget</li>
 </ul>
+<hr/>
+<h3 id="method-cmd"><kbd>method</kbd> <code>cmd</code></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a>cmd(cmd, <span class="op">*</span>args, <span class="op">**</span>kwargs)</span></code></pre></div>
+<p>Access the original methods of the tk.Text widget.</p>
+<p>This is the method to access all original methods of the tk.Text widget except for the <code>insert</code> and <code>delete</code> method which are disabled. Instead of these methods you should use <code>w.cmd('ins', ...)</code> and `w.cmd(‘del’, …) to insert and to delete data.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><b><code>cmd</code></b> (string): command of the original tk.Text widget like <code>configure</code> or <code>see</code>, <code>insert</code> and <code>delete</code> are doing nothing, use <code>ins</code> and <code>del</code> instead *args (list) - additional positional arguments **kwargs (dict) - additional key-value arguments</li>
+</ul>
+<p><strong>Example:</strong> <code>import tkinter as tk</code> &gt;&gt;&gt; root= tk.Tk()<br/>
+&gt;&gt;&gt; rtext = RoText(root) &gt;&gt;&gt; rtext.cmd(“ins”,“end”,“Hello World!”) &gt;&gt;&gt; rtext.get(“1.0”,“end-1c”) ‘Hello World!’ &gt;&gt;&gt; rtext.pack(fill=“both”,expand=True)</p>
 <hr/>
 <p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>
 </body>
-</html><!--Generated by HTMLArk 2023-01-24 13:43:41.515861. Original URL dbpp.widgets.SqlText.html-->
+</html><!--Generated by HTMLArk 2023-01-24 13:43:40.996104. Original URL dbpp.widgets.RoText.html-->

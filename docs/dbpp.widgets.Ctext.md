@@ -6,6 +6,7 @@
 [Balloon](dbpp.widgets.Balloon.md) -
 [Ctext](dbpp.widgets.Ctext.md) -
 [LabEntry](dbpp.widgets.LabEntry.md) -
+[RoText](dbpp.widgets.RoText.md) -
 [Scrolled](dbpp.widgets.Scrolled.md) -
 [SqlText](dbpp.widgets.SqlText.md) -
 [StatusBar](dbpp.widgets.StatusBar.md) -
