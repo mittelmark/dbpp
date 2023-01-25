@@ -17,7 +17,7 @@ The following libaries will be as well added:
 * [dbpp.widgets](docs/dbpp.widgets.md) - collection of Tkinter-widgets to build applications (done)
 * kroki - a class [KrokiEncoder](https://github.com/mittelmark/dbpp/blob/main/dbpp/kroki/KrokiEncoder.py)
 
-# Installation
+## Installation
 
 You can install this package using the following command:
 
@@ -30,7 +30,7 @@ $ I am kroki __main__.py
 $ python3 -m dbpp.peditor # should start the PumlEditor
 ```
 
-# dbpp.widgets
+## dbpp.widgets
 
 A Python package with the following Tkinter widgets 
 ([HTML documentation](http://htmlpreview.github.io/?https://github.com/mittelmark/dbpp/blob/master/docs/dbpp.widgets.html)):
@@ -49,9 +49,14 @@ A Python package with the following Tkinter widgets
 - [XTableView](docs/dbpp.widgets.XTableView.md) - an extended version of TableView which allows easily to read in list data
 - [XTreeView](docs/dbpp.widgets.XTreeView.md) - a ttk.Treeview widget which provides icon facilities
 
-# Running the application
+## Other packages
+ 
+- [dbpp.utils.SqlUtils](docs/dbpp.utils.SqlUtils.md) - class with utility functions for Python databases.
+- [dbpp.kroki.KrokiEncoder](docs/dbpp.kroki.KrokiEncoder.md) - class with functions to encode and decode diagrams as Kroki URL's
 
-## kroki - the KrokiEncoder
+## Applications
+
+### kroki - the KrokiEncoder
 
 This a command line tool to encode diagram code such as [GraphViz](https://www.graphviz.org) (.dot), [PlantUML](https://www.plantuml.com) (.pml) or [Ditaa](https://github.com/stathissideris/ditaa) (.dit) files as image url's using the [kroki](https://kroki.io) webservice or backtranslates image url's into diagram code.
 
@@ -62,7 +67,7 @@ $ python3 -m dbpp.kroki https://kroki.io/plantuml/svg/eNpLzkksLlZwVKhWqAUAF10DsA
 class A { }
 ```
 
-## peditor - the PumlEditor
+### peditor - the PumlEditor
 
 This a graphical application to editdiagram code such as [GraphViz](https://www.graphviz.org) (.dot), [PlantUML](https://www.plantuml.com) (.pml) or [Ditaa](https://github.com/stathissideris/ditaa) (.dit) files
 and preview the image right of the editor window. This tool is as well using the [kroki](https://kroki.io) webservice to translate the diagram code
