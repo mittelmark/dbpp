@@ -71,10 +71,9 @@ class RoText(tk.Text):
         `w.cmd('del', ...) to insert and to delete data.
         
         Args:
-            cmd (string): command of the original tk.Text widget like `configure` or `see`,
-                   `insert` and `delete` are doing  nothing, use `ins` and `del` instead
-            *args (list) - additional positional arguments
-            **kwargs (dict) - additional key-value arguments
+            cmd (str): as the widget commands insert and delete are disabled you use `cmd('ins',index, txt)` and `cmd('del',start,end)  instead to insert and delete text`
+            **args (list): additional positional arguments delegated to the given command
+            *kwargs (dict): additional key-value arguments delegated to the given command
             
         Example:
         

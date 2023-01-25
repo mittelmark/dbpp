@@ -107,7 +107,9 @@ This is the method to access all original methods of the tk.Text widget except f
 
 **Args:**
  
- - <b>`cmd`</b> (string):  command of the original tk.Text widget like `configure` or `see`,  `insert` and `delete` are doing  nothing, use `ins` and `del` instead *args (list) - additional positional arguments **kwargs (dict) - additional key-value arguments 
+ - <b>`cmd`</b> (str):  as the widget commands insert and delete are disabled you use `cmd('ins',index, txt)` and `cmd('del',start,end)  instead to insert and delete text` 
+ - <b>`**args (list)`</b>:  additional positional arguments delegated to the given command 
+ - <b>`*kwargs (dict)`</b>:  additional key-value arguments delegated to the given command 
 
 
 

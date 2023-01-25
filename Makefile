@@ -40,7 +40,7 @@ single: docs/header.html header.md
 		--lua-filter ../lua-filters/filter-kroki.lua \
 		--lua-filter ../lua-filters/links-to-html.lua 
 	cd docs && perl -i -pe 's/(img.+flat-square.)>/$$1 \/>/' $(MDFILEOUT)
-	cd docs && perl -i -pe 's/.+(img.+flat-square.)>//' $(HTMLFILE)
+	cd docs && perl -i -pe 's/.+(img.+flat-square.)>.+//' $(HTMLFILE)
 	
 		
 docs/header.html:
