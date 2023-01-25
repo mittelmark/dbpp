@@ -15,7 +15,8 @@ The following applications will be added:
 The following libaries will be as well added:
 
 * [dbpp.widgets](docs/dbpp.widgets.md) - collection of Tkinter-widgets to build applications (done)
-* kroki - a class [KrokiEncoder](https://github.com/mittelmark/dbpp/blob/main/dbpp/kroki/KrokiEncoder.py)
+* [dbpp.kroki.Encoder] - class [KrokiEncoder](https://github.com/mittelmark/dbpp/blob/main/dbpp/kroki/KrokiEncoder.py)
+- [dbpp.utils.SqlUtils](docs/dbpp.utils.SqlUtils.md) - class with utility functions for Python databases.
 
 ## Installation
 
@@ -51,8 +52,9 @@ A Python package with the following Tkinter widgets
 
 ## Other packages
  
-- [dbpp.utils.SqlUtils](docs/dbpp.utils.SqlUtils.md) - class with utility functions for Python databases.
+
 - [dbpp.kroki.KrokiEncoder](docs/dbpp.kroki.KrokiEncoder.md) - class with functions to encode and decode diagrams as Kroki URL's
+- [dbpp.utils.SqlUtils](docs/dbpp.utils.SqlUtils.md) - class with utility functions for Python databases.
 
 ## Applications
 
