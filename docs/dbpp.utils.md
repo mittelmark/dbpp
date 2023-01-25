@@ -27,16 +27,26 @@
 
 <!-- markdownlint-disable -->
 
-<a href="../dbpp/peditor/__init__.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/utils/__init__.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-# <kbd>module</kbd> `peditor`
+# <kbd>module</kbd> `utils`
+Various utiliy classes and applications. 
 
+For the SqlUtils class look at the class documentation  [dbpp.utils.SqlUtils](dbpp.utils.SqlUtils.md).  
 
+Here now first follows the application help for the command line application. 
 
+```
+$ python3 -m dbpp.utils sql csvfile sqlifile sepchar quotechar
+``` 
+
+The following modules re provided in this package: 
+
+* [dbpp.utils.SqlUtils](dbpp.utils.SqlUtils.md) 
 
 **Global Variables**
 ---------------
-- **PumlEditor**
+- **SqlUtils**
 
 
 

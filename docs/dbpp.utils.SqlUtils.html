@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<title>Documentation dbpp.widgets.AutoScrollbar</title>
+<title>Documentation dbpp.utils.SqlUtils</title>
 <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -84,7 +84,7 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Documentation dbpp.widgets.AutoScrollbar</h1>
+<h1 class="title">Documentation dbpp.utils.SqlUtils</h1>
 </header>
 <center>
 <p><strong><a href="dbpp.widgets.html">dbpp.widgets</a> package:</strong> <a href="dbpp.widgets.GuiBaseClass.html">GuiBaseClass</a> - <a href="dbpp.widgets.AutoScrollbar.html">AutoScrollbar</a> - <a href="dbpp.widgets.Balloon.html">Balloon</a> - <a href="dbpp.widgets.Ctext.html">Ctext</a> - <a href="dbpp.widgets.LabEntry.html">LabEntry</a> - <a href="dbpp.widgets.RoText.html">RoText</a> - <a href="dbpp.widgets.Scrolled.html">Scrolled</a> - <a href="dbpp.widgets.SqlText.html">SqlText</a> - <a href="dbpp.widgets.StatusBar.html">StatusBar</a> - <a href="dbpp.widgets.TableView.html">TableView</a> - <a href="dbpp.widgets.TextMixins.html">TextMixins</a> - <a href="dbpp.widgets.XTableView.html">XTableView</a> - <a href="dbpp.widgets.XTreeView.html">XTreeView</a></p>
@@ -92,62 +92,86 @@
 <p><strong>apps:</strong> <a href="dbpp.peditor.PumlEditor.html">dbpp.peditor</a></p>
 </center>
 <!-- markdownlint-disable -->
-<h1 id="module-widgets.autoscrollbar"><kbd>module</kbd> <code>widgets.AutoScrollbar</code></h1>
-<p>Provides ttk.Scrollbars for widgets with autohide functionality if not needed.</p>
-<p>This a scrollbar which will hide itself if the widget for which they are configured do not acutally need scrollbars, for instance a text widget, where the current geometry is large enought to display all text. The widget and the the scrollbars will be gridded within the same geometry manager, so it usually required to place the scrollbars and the widget into the same frame without other widgets. <strong>This widget requires some effort to create scollbars, if you just like to have a simpler procedure to add those scrollbars use the <a href="Scrolled.html">Scrolled</a> method.</strong></p>
+<h1 id="module-utils.sqlutils"><kbd>module</kbd> <code>utils.SqlUtils</code></h1>
+<p>dbpp.utils.SqlUtils - class to work with Sqlite3 and Csv files.</p>
+<p>This class provides methods to convert CSV and TAB files into Sqlite3 databases and as well allows the extraction of data from databases into CSV and TAB files using Python as programming language.</p>
+<p>The class has the following attributes and methods:</p>
+<p><img alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIxNjZweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjE2N3B4O2hlaWdodDoxNjZweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxNjcgMTY2IiB3aWR0aD0iMTY3cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48IS0tY2xhc3MgU3FsVXRpbHMtLT48ZyBpZD0iZWxlbV9TcWxVdGlscyI+PHJlY3QgY29kZUxpbmU9IjEiIGZpbGw9IiNGMUYxRjEiIGhlaWdodD0iMTQ1Ljc4MTMiIGlkPSJTcWxVdGlscyIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iMTQ2IiB4PSI3IiB5PSI3Ii8+PGVsbGlwc2UgY3g9IjUwLjgiIGN5PSIyMyIgZmlsbD0iI0FERDFCMiIgcng9IjExIiByeT0iMTEiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwYXRoIGQ9Ik01My43Njg4LDI4LjY0MDYgUTUzLjE5MDYsMjguOTM3NSA1Mi41NSwyOS4wNzgxIFE1MS45MDk0LDI5LjIzNDQgNTEuMjA2MywyOS4yMzQ0IFE0OC43MDYzLDI5LjIzNDQgNDcuMzc4MSwyNy41OTM4IFE0Ni4wNjU2LDI1LjkzNzUgNDYuMDY1NiwyMi44MTI1IFE0Ni4wNjU2LDE5LjY4NzUgNDcuMzc4MSwxOC4wMzEzIFE0OC43MDYzLDE2LjM3NSA1MS4yMDYzLDE2LjM3NSBRNTEuOTA5NCwxNi4zNzUgNTIuNTUsMTYuNTMxMyBRNTMuMjA2MywxNi42ODc1IDUzLjc2ODgsMTYuOTg0NCBMNTMuNzY4OCwxOS43MDMxIFE1My4xNDM4LDE5LjEyNSA1Mi41NSwxOC44NTk0IFE1MS45NTYzLDE4LjU3ODEgNTEuMzMxMywxOC41NzgxIFE0OS45ODc1LDE4LjU3ODEgNDkuMywxOS42NTYzIFE0OC42MTI1LDIwLjcxODggNDguNjEyNSwyMi44MTI1IFE0OC42MTI1LDI0LjkwNjMgNDkuMywyNS45ODQ0IFE0OS45ODc1LDI3LjA0NjkgNTEuMzMxMywyNy4wNDY5IFE1MS45NTYzLDI3LjA0NjkgNTIuNTUsMjYuNzgxMyBRNTMuMTQzOCwyNi41IDUzLjc2ODgsMjUuOTIxOSBMNTMuNzY4OCwyOC42NDA2IFogIiBmaWxsPSIjMDAwMDAwIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNTAiIHg9IjcxLjIiIHk9IjI3Ljg0NjciPlNxbFV0aWxzPC90ZXh0PjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgeDE9IjgiIHgyPSIxNTIiIHkxPSIzOSIgeTI9IjM5Ii8+PGVsbGlwc2UgY3g9IjE4IiBjeT0iNTIuNjQ4NCIgZmlsbD0ibm9uZSIgcng9IjMiIHJ5PSIzIiBzdHlsZT0ic3Ryb2tlOiMwMzgwNDg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI4NiIgeD0iMjciIHk9IjU1Ljk5NTEiPnNlbGYuZmlsZW5hbWU8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB4MT0iOCIgeDI9IjE1MiIgeTE9IjYzLjI5NjkiIHkyPSI2My4yOTY5Ii8+PGVsbGlwc2UgY3g9IjE4IiBjeT0iNzYuOTQ1MyIgZmlsbD0iIzg0QkU4NCIgcng9IjMiIHJ5PSIzIiBzdHlsZT0ic3Ryb2tlOiMwMzgwNDg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMTYiIHg9IjI3IiB5PSI4MC4yOTIiPl9faW5pdF9fKGZpbGVuYW1lKTwvdGV4dD48ZWxsaXBzZSBjeD0iMTgiIGN5PSI5My4yNDIyIiBmaWxsPSIjODRCRTg0IiByeD0iMyIgcnk9IjMiIHN0eWxlPSJzdHJva2U6IzAzODA0ODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjEyMCIgeD0iMjciIHk9Ijk2LjU4ODkiPmNzdjJzcWwoZmlsZW5hbWUpPC90ZXh0PjxlbGxpcHNlIGN4PSIxOCIgY3k9IjEwOS41MzkxIiBmaWxsPSIjODRCRTg0IiByeD0iMyIgcnk9IjMiIHN0eWxlPSJzdHJva2U6IzAzODA0ODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9Ijc5IiB4PSIyNyIgeT0iMTEyLjg4NTciPmdldFRhYmxlcygpPC90ZXh0PjxlbGxpcHNlIGN4PSIxOCIgY3k9IjEyNS44MzU5IiBmaWxsPSIjODRCRTg0IiByeD0iMyIgcnk9IjMiIHN0eWxlPSJzdHJva2U6IzAzODA0ODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjczIiB4PSIyNyIgeT0iMTI5LjE4MjYiPmdldFZpZXdzKCk8L3RleHQ+PGVsbGlwc2UgY3g9IjE4IiBjeT0iMTQyLjEzMjgiIGZpbGw9IiM4NEJFODQiIHJ4PSIzIiByeT0iMyIgc3R5bGU9InN0cm9rZTojMDM4MDQ4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iOTQiIHg9IjI3IiB5PSIxNDUuNDc5NSI+Z2V0Q29sdW1ucygpPC90ZXh0PjwvZz48IS0tU1JDPVtJeXY5QjJ2TTIyeEMySXQ5cDJiTWdFUEkwMDVqWFVCS2QzSXpqQ29TckJwNHQ1SU9PN255UGJ2Y0lOb3kxYW4yNG9RSk41bmNMNW9PV29jSGRiZUlhZllLYXJnaVdJbUtiZmJRWlloWWQ5ekpjZmk3NGdpNTAwMDBdLS0+PC9nPjwvc3ZnPg=="/><!--URL:img/kroki-0xcd52031d.svg--></p>
 <p><strong>Examples:</strong></p>
-<pre><code>import tkinter as tk
-import tkinter.ttk as ttk
-from dbpp.widgets.AutoScrollbar import AutoScrollbar
-root=tk.Tk()
-nframe=ttk.Frame(root)
-tsbv=AutoScrollbar(nframe)
-tsbh=AutoScrollbar(nframe,orient='horizontal')
-text=tk.Text(nframe,
-     yscrollcommand=tsbv.set,
-     xscrollcommand=tsbh.set,wrap="none")
-tsbv.grid(row=0, column=1, sticky='ns')
-tsbh.grid(row=1, column=0, sticky='ew')
-text.grid(row=0, column=0, sticky='nsew')
-tsbv.config(command=text.yview)
-tsbh.config(command=text.xview)
-for i in range(0,30):
-     text.insert('end',"Hello Text ...
-")
-
-nframe.grid_rowconfigure(0, weight=1)
-nframe.grid_columnconfigure(0, weight=1)
-nframe.pack(side='top',fill='both',expand=True)
-root.mainloop()</code></pre>
-<p>Copyright: @ Detlef Groth, Caputh-Schwielowsee</p>
-<p>See also: <a href="DGScrolled.html">Scrolled</a> which provides an easier interface to this widget.</p>
-<p>License: MIT</p>
+<pre><code>     &gt;&gt;&gt; import sys, os
+     &gt;&gt;&gt; sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+     &gt;&gt;&gt; import dbpp.utils.SqlUtils as sql
+     &gt;&gt;&gt; sqlo = sql.SqlUtils(':memory:')
+     &gt;&gt;&gt; sqlo.getTables() 
+     []
+     &gt;&gt;&gt; tabfile = os.path.join(os.path.dirname(__file__),"..","data","iris.tab")
+     &gt;&gt;&gt; tabfile
+     '/home/groth/workspace/dbpp/dbpp/utils/../data/iris.tab'
+     &gt;&gt;&gt; sqlo.csv2sql(tabfile,"iris")
+     150
+     &gt;&gt;&gt; sqlo.getTables()
+     ['iris']
+     &gt;&gt;&gt; sqlo.select("select RNames, Sepal_Length from iris limit 2")
+     (['RNames', 'Sepal_Length'], [('R001', '5.1'), ('R002', '4.9')])
+     </code></pre>
 <hr/>
-<h2 id="class-autoscrollbar"><kbd>class</kbd> <code>AutoScrollbar</code></h2>
-<p>Provides scrollbars for tkinter widgets which are hidden if not needed.</p>
-<p>Except for the constructor there is no method available for the AutoScrollbar class, at object instantiation. Simply provide the parent widget as usually and the standard arguments for ttk.Scrollbars. Only works if the target widget is managed by grid.</p>
-<h3 id="method-__init__"><kbd>method</kbd> <code>__init__</code></h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a><span class="fu">__init__</span>(parent, <span class="op">*</span>args, <span class="op">**</span>kwargs)</span></code></pre></div>
-<p>Constructor for AutoScrollbar giving the parent widget where to place the scrollbar.</p>
-<p><strong>Args:</strong></p>
+<h2 id="function-main"><kbd>function</kbd> <code>main</code></h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a>main(argv)</span></code></pre></div>
+<p>Runs the terminal application usually with sys.argv.</p>
+<p><strong>Arguments:</strong></p>
 <ul>
-<li><b><code>parent</code></b> (ttk.Widget): the parent widget wherein the scrollbar will be added</li>
-<li><b><code>*args (list)</code></b>: additional list arguments, usually not used</li>
-<li><b><code>**kwargs (dict)</code></b>: standard ttk.Scrollbar arguments which will be delegated to the ttk.Scrollbar, usually not used</li>
+<li><b><code>argv</code></b> (list): arguments are in order: application. csvfile, sqlitefile, tablename and optionally tabchar and quotechar</li>
 </ul>
 <hr/>
-<h3 id="method-pack"><kbd>method</kbd> <code>pack</code></h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a>pack(<span class="op">**</span>kw)</span></code></pre></div>
-<p>Method should be not called directly.</p>
+<h2 id="class-sqlutils"><kbd>class</kbd> <code>SqlUtils</code></h2>
+<p>Class to import and export data and to query information out of SQLite databases.</p>
+<p><strong>Attributes:</strong></p>
+<ul>
+<li><b><code>self.filename (str)</code></b>: the name of the SQLite 3 database</li>
+<li><b><code>self.connection (sqlite3.Connection)</code></b>: the connection to the current database</li>
+</ul>
+<h3 id="method-__init__"><kbd>method</kbd> <code>__init__</code></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a><span class="fu">__init__</span>(filename<span class="op">=</span><span class="st">':memory:'</span>)</span></code></pre></div>
+<p>Initialize the object with a database filename or in memory.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><b><code>filename</code></b> (str): the filename of a SQLite 3 database, if it does not exists,</li>
+<li><b><code>it is silently created, defaults to '</code></b>: memory:’</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<p><code>x = 1</code> &gt;&gt;&gt; x 1</p>
 <hr/>
-<h3 id="method-place"><kbd>method</kbd> <code>place</code></h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a>place(<span class="op">**</span>kw)</span></code></pre></div>
-<p>Method should be not called directly.</p>
+<h3 id="method-csv2sql"><kbd>method</kbd> <code>csv2sql</code></h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a>csv2sql(csvfile, tablename, delimiter<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, quotechar<span class="op">=</span><span class="st">'"'</span>)</span></code></pre></div>
+<p>Import a CSV or TAB file as a new table into the data base.</p>
+<p><strong>Arguments:</strong></p>
+<ul>
+<li><b><code>csvfile</code></b> (str): filename of a csvfile</li>
+<li><b><code>tablename</code></b> (str): name of the table to create in the current database</li>
+<li><b><code>delimiter</code></b> (chr): column delimiter, defaults to ’ ’ the tabstop</li>
+<li><b><code>quotechar</code></b> (chr): quoting character for strings with spaces, defaults to the double quote</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><b><code>int</code></b>: the number of rows added</li>
+</ul>
 <hr/>
-<h3 id="method-set"><kbd>method</kbd> <code>set</code></h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a><span class="bu">set</span>(lo, hi)</span></code></pre></div>
-<p>Method should be not called directly.</p>
+<h3 id="method-getcolumns"><kbd>method</kbd> <code>getColumns</code></h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a>getColumns(tname)</span></code></pre></div>
+<p>Return the column names for the given table or view name.</p>
+<hr/>
+<h3 id="method-gettables"><kbd>method</kbd> <code>getTables</code></h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a aria-hidden="true" href="#cb6-1" tabindex="-1"></a>getTables()</span></code></pre></div>
+<p>Return the names of the tables of the database.</p>
+<hr/>
+<h3 id="method-getviews"><kbd>method</kbd> <code>getViews</code></h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" href="#cb7-1" tabindex="-1"></a>getViews()</span></code></pre></div>
+<p>Return the names of the views of the database.</p>
+<hr/>
+<h3 id="method-select"><kbd>method</kbd> <code>select</code></h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a>select(statement)</span></code></pre></div>
+<p>Return the result set for the given select statement.</p>
 <hr/>
 <p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>
 </body>
-</html><!--Generated by HTMLArk 2023-01-25 20:24:19.622592. Original URL dbpp.widgets.AutoScrollbar.html-->
+</html><!--Generated by HTMLArk 2023-01-25 20:24:19.350911. Original URL dbpp.utils.SqlUtils.html-->

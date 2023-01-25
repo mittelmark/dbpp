@@ -15,10 +15,13 @@
 [XTableView](dbpp.widgets.XTableView.md) -
 [XTreeView](dbpp.widgets.XTreeView.md) 
 
+[dbpp.kroki](dbpp.kroki.md) - 
+[dbpp.kroki.KrokiEncoder](dbpp.kroki.KrokiEncoder.md) -
+[dbpp.utils](dbpp.utils.md) - 
+[dbpp.utils.SqlUtils](dbpp.utils.SqlUtils.md)  -
+
 **apps:** [dbpp.peditor](dbpp.peditor.PumlEditor.md)
 
-**[dbpp.kroki](dbpp.kroki.md) package:** 
-[dbpp.kroki.KrokiEncoder](dbpp.kroki.KrokiEncoder.md)
 
 </center>
 
