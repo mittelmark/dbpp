@@ -29,14 +29,14 @@
 
 <a href="../dbpp/utils/SqlUtils.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-# <kbd>module</kbd> `utils.SqlUtils`
+# <kbd>module</kbd> `SqlUtils.py`
 dbpp.utils.SqlUtils - class to work with Sqlite3 and Csv files. 
 
 This class provides methods to convert CSV and TAB files into Sqlite3 databases and as well allows the extraction of data from databases into CSV and TAB files  using Python as programming language. 
 
 The class has the following attributes and methods: 
 
-```{.kroki echo=false dia=plantuml}
+```{.kroki echo=false dia=plantuml cache=false}
 @startuml
 class SqlUtils {
      + self.filename
@@ -76,7 +76,7 @@ class SqlUtils {
 
 ---
 
-<a href="../dbpp/utils/SqlUtils.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/utils/SqlUtils.py#L149"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>function</kbd> `main`
 
@@ -95,8 +95,6 @@ Runs the terminal application usually with sys.argv.
 
 ---
 
-<a href="../dbpp/utils/SqlUtils.py#L50"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
-
 ## <kbd>class</kbd> `SqlUtils`
 Class to import and export data and to query information out of SQLite databases. 
 
@@ -111,7 +109,7 @@ Class to import and export data and to query information out of SQLite databases
 
 <a href="../dbpp/utils/SqlUtils.py#L58"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `__init__`
+### <kbd>function</kbd> `__init__`
 
 ```python
 __init__(filename=':memory:')
@@ -123,17 +121,8 @@ Initialize the object with a database filename or in memory.
 
 **Args:**
  
- - <b>`filename`</b> (str):  the filename of a SQLite 3 database, if it does not exists, 
- - <b>`it is silently created, defaults to '`</b>: memory:' 
+ - <b>`filename`</b> (str):  the filename of a SQLite 3 database, if it does not exists, it is silently created,  defaults to ':memory:'  
 
-
-
-**Examples:**
- 
-
-``` x = 1```
-    >>> x
-    1
 
 
 
@@ -141,9 +130,9 @@ Initialize the object with a database filename or in memory.
 
 ---
 
-<a href="../dbpp/utils/SqlUtils.py#L78"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/utils/SqlUtils.py#L72"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `csv2sql`
+### <kbd>function</kbd> `csv2sql`
 
 ```python
 csv2sql(csvfile, tablename, delimiter='\t', quotechar='"')
@@ -168,9 +157,9 @@ Import a CSV or TAB file as a new table into the data base.
 
 ---
 
-<a href="../dbpp/utils/SqlUtils.py#L141"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/utils/SqlUtils.py#L135"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `getColumns`
+### <kbd>function</kbd> `getColumns`
 
 ```python
 getColumns(tname)
@@ -180,9 +169,9 @@ Return the column names for the given table or view name.
 
 ---
 
-<a href="../dbpp/utils/SqlUtils.py#L125"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/utils/SqlUtils.py#L119"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `getTables`
+### <kbd>function</kbd> `getTables`
 
 ```python
 getTables()
@@ -192,9 +181,9 @@ Return the names of the tables of the database.
 
 ---
 
-<a href="../dbpp/utils/SqlUtils.py#L133"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/utils/SqlUtils.py#L127"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `getViews`
+### <kbd>function</kbd> `getViews`
 
 ```python
 getViews()
@@ -204,9 +193,9 @@ Return the names of the views of the database.
 
 ---
 
-<a href="../dbpp/utils/SqlUtils.py#L147"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/utils/SqlUtils.py#L141"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `select`
+### <kbd>function</kbd> `select`
 
 ```python
 select(statement)

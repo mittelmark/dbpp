@@ -8,7 +8,7 @@ using Python as programming language.
 
 The class has the following attributes and methods:
 
-```{.kroki echo=false dia=plantuml}
+```{.kroki echo=false dia=plantuml cache=false}
 @startuml
 class SqlUtils {
     + self.filename
@@ -59,14 +59,8 @@ class SqlUtils():
         """Initialize the object with a database filename or in memory.
         
         Args:
-            filename (str): the filename of a SQLite 3 database, if it does not exists,
-                 it is silently created, defaults to ':memory:'
-                 
-        Examples:
-        
-            >>> x = 1
-            >>> x
-            1
+            filename (str): the filename of a SQLite 3 database, if it does not exists, it is silently created,  defaults to ':memory:'
+                            
         """
         self.filename= filename
         # Create the connection to the database
