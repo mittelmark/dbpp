@@ -13,9 +13,9 @@ Examples:
 ```
 
     >>> import tkinter as tk
-    >>> import dbpp.widgets.RoText as RoText
+    >>> import dbpp.widgets.rotext as rotext
     >>> root= tk.Tk() 	
-    >>> rtext = RoText.RoText(root) 
+    >>> rtext = rotext.RoText(root) 
     >>> rtext.cmd("ins","end","Hello World!")
     >>> root.title('RoTtext example')
     ''

@@ -12,18 +12,19 @@ Don't pack or grid the widget itself, just pack or grid the parent frame.
 Examples:
  
 ```
-import tkinter as tk
-import tkinter.ttk as ttk
-from dbpp.widgets.scrolled import Scrolled
-root=tk.Tk()
-nframe=ttk.Frame(root)
-text=tk.Text(nframe,wrap='none')
-Scrolled(text)
-for i in range(0,30):
-   text.insert('end',"Hello very long line text ...\n")
-# pack the parent frame
-nframe.pack(side='top',fill='both',expand=True)
-root.mainloop()
+
+    >>> import tkinter as tk
+    >>> import tkinter.ttk as ttk
+    >>> from dbpp.widgets.scrolled import Scrolled
+    >>> root=tk.Tk()
+    >>> nframe=ttk.Frame(root)
+    >>> text=tk.Text(nframe,wrap='none')
+    >>> for i in range(0,30):
+    ...     text.insert('end','Hello World! In a very long line!\\n')
+    >>> Scrolled(text)
+    >>> nframe.pack(side='top',fill='both',expand=True)
+    >>> root.mainloop()
+
 ```
 
 Copyright: @ Detlef Groth, 2023, University of Potsdam, Germany

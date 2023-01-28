@@ -7,15 +7,19 @@ to display numerical progress.
 Examples:
 
 ```
-import tkinter as tk
-from dbpp.widgets.statusbar import StatusBar
-root = tk.Tk()
-tk.Frame(root, width=200, height=100).pack()
-status = StatusBar(root)
-status.pack(side=tk.BOTTOM, fill=tk.X)
-status.set("Connecting...")
-status.progress(25)
-root.mainloop()
+
+    >>> import tkinter as tk
+    >>> from dbpp.widgets.statusbar import StatusBar
+    >>> root = tk.Tk()
+    >>> tk.Frame(root, width=200, height=100).pack()
+    >>> status = StatusBar(root)
+    >>> status.pack(side=tk.BOTTOM, fill=tk.X)
+    >>> status.set('Connecting...')
+    >>> status.progress(25)
+    >>> root.update_idletasks()
+    >>> root.after(1000)
+    >>> root.mainloop()
+    
 ```
 """
 
