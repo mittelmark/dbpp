@@ -38,32 +38,31 @@ Examples:
 import sys
 import tkinter as tk
 import tkinter.ttk as ttk
-from dbpp.widgets.GuiBaseClass import GuiBaseClass
-root=tk.Tk()
-bapp = GuiBaseClass(root) 
+from dbpp.widgets.gui_base_class import GuiBaseClass
+bapp = GuiBaseClass() 
 # example for using the BaseClass in other applications
-bapp.addEditMenu(target=None)
-mnu=bapp.getMenu('Tools',underline=0)
+bapp.add_edit_menu(target=None)
+mnu=bapp.get_menu('Tools',underline=0)
 mnu.add_command(label='Test',command=lambda: print('Test'))    
 
 # example for using getFrame
-frm=bapp.getFrame()
+frm=bapp.get_frame()
 btn=ttk.Button(frm,text="Button X",command=lambda: sys.exit(0))
 btn.pack()
 txt=tk.Text(frm,undo=True)
 txt.pack(side='top',fill='both',expand=True)
-bapp.setEditTarget(txt)
-bapp.addStatusBar()
-bapp.mainLoop()
+bapp.set_edit_target(txt)
+bapp.add_statusbar()
+bapp.run()
 ```
 
 Here an other example where you just inherit from the *GuiBaseClass* in your own application.
 
 ```
 class PumlEditor(GuiBaseClass):
-    def __init__(self,root):
+    def __init__(self):
         super().__init__(root)
-        self.addStatusBar()
+        self.add_statusbar()
         self.kroki = KrokiEncoder()
 ```
 
@@ -88,7 +87,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 import tkinter.messagebox as mbox
 import sys
-import dbpp.widgets.StatusBar as StatusBar
+import dbpp.widgets.statusbar as sb
 class GuiBaseClass():
   """The class to build your Tkinter applications on.
   
@@ -97,32 +96,42 @@ class GuiBaseClass():
   and progress values. Methods starting with lowercase are considered to be public, can be used outside of
   inheriting classes, methods starting with uppercase letters such as `About` or `Exit` are considered to be
   protected, meanding that they should be only used within inheriting classes.
+  
+  Attributes:
+      title (str): the application title defaults to ''
+      author (str): the author, defaults to ''
   """  
-  def __init__(self,root):
+  def __init__(self,root=None,title='',author=''):
       """Initialize the main application window within the given *root* toplevel."""
       # create widgets
+      if root is None:
+         root = tk.Tk()
+      if title != '':
+         self.root.title = title         
       self.root=root
+      self.author = author
+      self.title  = title
       self.root.option_add('*tearOff', False)
       self.menu=dict()
       self.menubar = tk.Menu(root)         
       menu_file = tk.Menu(self.menubar)
       self.menubar.add_cascade(menu=menu_file,label='File',underline=0)
       menu_file.add_separator()
-      menu_file.add_command(label='Exit',  command=self.Exit,underline=1)       
+      menu_file.add_command(label='Exit',  command=self.exit,underline=1)       
       menu_help = tk.Menu(self.menubar)
       self.menubar.add_cascade(menu=menu_help,label='Help',underline=0)
-      menu_help.add_command(label='About', command=self.About,underline=0)       
+      menu_help.add_command(label='About', command=self.about,underline=0)       
       root.config(menu=self.menubar)
       self.menu['menubar'] = self.menubar
       self.menu['File']    = menu_file        
       self.menu['Help']    = menu_help              
       self.frame = ttk.Frame(root)
       self.frame.pack(fill='both',expand=True)
-      self.status = StatusBar.StatusBar(self.root)
+      self.status = sb.StatusBar(self.root)
 
   # public functions
   # methods for the StatusBar
-  def addStatusBar (self):
+  def add_statusbar (self):
       """Make the statusbar at the bottom visible."""
       self.status.pack(fill="x",expand=False)
       self.status.set("I am the statusbar ...")
@@ -132,13 +141,13 @@ class GuiBaseClass():
   def progress(self,n):
       """Display the given numerical value in the progress bar at the bottom."""
       self.status.progress(n) 
-  def mainLoop(self):
+  def run(self):
       """Start the GUI mainloop waiting for the user to interact with the application."""
       self.root.mainloop()
-  def getFrame(self):
+  def get_frame(self):
       """Get the mainframe of the application in which the user can insert its own widgets."""
       return(self.frame)  
-  def getMenu(self,entry,**kwargs):
+  def get_menu(self,entry,**kwargs):
       """Get the given menu entry or create an new one if the requested does not exists  yet.
       
       This method can be used to create new menu entries in the top menubar or to extend already existing menu
@@ -173,7 +182,7 @@ class GuiBaseClass():
             if (key == "underline"):
                 self.menu['menubar'].entryconfig(last,underline=val)
         return(self.menu[entry])
-  def addEditMenu(self,target=None):
+  def add_edit_menu(self,target=None):
       """Add a typical Edit menu in the menubar.
       
       This methods adds the typical Edit menubar entry with commands like
@@ -198,23 +207,21 @@ class GuiBaseClass():
       self.menu['Edit'].add_separator()
       self.menu['Edit'].add_command(label="Select All",underline=7,accelerator="Ctrl-Shift-/")
       self.edittarget=target   
-      #self.menu['Edit'].bind('<<MenuSelect>>',self.EditSelect)     
-      self.menu['Edit'].config(postcommand=self._EditSelect)     
+      self.menu['Edit'].config(postcommand=self.__edit_select)     
       self.root.bind
-  def setEditTarget(self,target):
+  def set_edit_target(self,target):
       """Sets to target for the Edit menu entry to the given tk.Text widget."""
       self.edittarget=target   
-  def setAppTitle (self, title):
+  def set_app_title (self, title):
       """Sets the title of the application."""
       self.root.title(title)
   # private functions
-  def _EditSelect(self,evt=None):
+  def __edit_select(self,evt=None):
       if not(self.edittarget):
         for i in range(0,self.menu['Edit'].index('end')+1):
             if (self.menu['Edit'].type(i) in ['command','radiobutton','checkbutton']):
                 self.menu['Edit'].entryconfig(i,state="disabled")
       else:
-        #print(type(self.edittarget))
         for i in range(0,self.menu['Edit'].index('end')+1):
             if (self.menu['Edit'].type(i) in ['command','radiobutton','checkbutton']):
                 self.menu['Edit'].entryconfig(i,state="disabled")
@@ -243,35 +250,41 @@ class GuiBaseClass():
                         self.menu['Edit'].entryconfigure(i, command=lambda: self.edittarget.event_generate("<<Paste>>"),state="active")
                 elif (self.menu['Edit'].entrycget(i,"label") == "Select All"):
                     if len(self.edittarget.get('1.0','end')) > 1:
-                        self.menu['Edit'].entryconfigure(i, command=self._EditTargetSelectAll,state="active")
+                        self.menu['Edit'].entryconfigure(i, command=self.__edit_target_selectAll,state="active")
 
-  def _EditTargetSelectAll(self,evt=None):
+  def __edit_target_select_all(self,evt=None):
         self.edittarget.tag_add('sel','1.0','end')
         # stop additional event's which might be bound to Ctrl-a 
         # like jumping cursor to the beginning of the line
         return("break")
                           
-  def Exit(self,ask=True):
-      """Protected methods, to be used only in derived class, cleanly exits the application"""
+  def exit(self,ask=True):
+      """Cleanly exit the application with confirm messagebox.
+      
+      Args:
+          ask (bool): should the confirm message box been show, defaults to True
+      """
       res = mbox.askyesno(title="Are you sure?",message="Really quit the application?")
       if res:
           sys.exit(0)
-  def About(self):
-      print("print I am your GuiBaseClass")
+  def about(self):
+      """Shows a messabox for the application."""
+      tk.messagebox.showinfo('About', re.sub("(.+?)-?.+", "\\1",self.root.title),
+            icon='info')
 if __name__ == '__main__':
     root=tk.Tk()
     bapp = GuiBaseClass(root) 
     # example for using the BaseClass in other applications
-    bapp.addEditMenu(target=None)
-    mnu=bapp.getMenu('Tools',underline=0)
-    mnu.add_command(label='Test',command=lambda: print('Test'))    
+    bapp.add_edit_menu(target=None)
+    mnu=bapp.get_menu('Tools',underline=0)
+    mnu.add_command(label='Test',command=lambda: print('Test'))
     
     # example for using getFrame
-    frm=bapp.getFrame()
+    frm=bapp.get_frame()
     btn=ttk.Button(frm,text="Button X",command=lambda: sys.exit(0))
     btn.pack()
     txt=tk.Text(frm,undo=True)
     txt.pack(side='top',fill='both',expand=True)
-    bapp.setEditTarget(txt)
-    bapp.addStatusBar()
-    bapp.mainLoop()
+    bapp.set_edit_target(txt)
+    bapp.add_statusbar()
+    bapp.run()

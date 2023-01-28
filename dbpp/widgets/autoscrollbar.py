@@ -13,7 +13,7 @@ Examples:
 ```
 import tkinter as tk
 import tkinter.ttk as ttk
-from dbpp.widgets.AutoScrollbar import AutoScrollbar
+from dbpp.widgets.autoscrollbar import AutoScrollbar
 root=tk.Tk()
 nframe=ttk.Frame(root)
 tsbv=AutoScrollbar(nframe)
@@ -35,10 +35,10 @@ nframe.pack(side='top',fill='both',expand=True)
 root.mainloop()
 ```
   
-Copyright: @ Detlef Groth, Caputh-Schwielowsee
+Copyright: @ Detlef Groth, 2023, Caputh-Schwielowsee
   
  
-See also: [Scrolled](DGScrolled.md) which provides an easier interface to this widget.
+See also: [Scrolled](scrolled.md) which provides an easier interface to this widget.
  
 License: MIT
 """  
