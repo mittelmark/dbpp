@@ -12,12 +12,12 @@ Examples:
 ```
 import tkinter as tk
 import tkinter.ttk as ttk
-from dbpp.widgets.TableView import TableView 
+from dbpp.widgets.tableview import TableView 
 root = tk.Tk()
 root.title('TableView demo')
 dgtab=TableView(root)
 dgtab.pack(side='top',fill='both',expand=True)
-dgtab.readTabfile("iris.tab")
+dgtab.read_tabfile("iris.tab")
 ```
   
 **Author:** Detlef Groth, University of Potsdam, 2019-2023
@@ -30,11 +30,6 @@ import tkinter.ttk as ttk
 
 #import sqlite3
 class TableView (ttk.Treeview):
-    #'
-    #' ## Commands
-    #'  
-    #'  **TableView(parent,...)**
-    #'  
     def __init__(self,parent,*args, **kwargs):
         """The constructor to create a TableView widget.
 
@@ -51,7 +46,7 @@ class TableView (ttk.Treeview):
         self.tag_configure('odd', background='#FFFFFF')        
         self.column("#0",width=0,minwidth=0,stretch=False)
 
-    def readTabfile(self,filename):
+    def read_tabfile(self,filename):
         """Reads a tabular formatted data file and displays it into the `TableView` widget.
     
         Args:
@@ -92,7 +87,7 @@ if __name__ == '__main__':
     #dgtab.pack(side='top',fill='both',expand=True)
     pw.add(dgtab)
     pw.pack(side='top',fill='both',expand=True)
-    dgtab.readTabfile(iris_path)
+    dgtab.read_tabfile(iris_path)
     #dgtab.readTabfile("../../data/ss_aa_matrix.txt")
     dgtab2=TableView(pw)
     pw.add(dgtab2)

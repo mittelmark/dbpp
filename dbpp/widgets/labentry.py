@@ -12,7 +12,7 @@ Examples:
 ```
 import tkinter as tk
 import tkinter as ttk 
-from dbpp.widgets.LabEntry import LabEntry
+from dbpp.widgets.labentry import LabEntry
 root = tk.Tk()
 var=tk.StringVar()
 var.set("Hello")
@@ -26,24 +26,14 @@ dgl2.label.configure(foreground="red")
 root.mainloop()
 ```
 
-**Copyright:** Detlef Groth, University of Potsdam, 2019-2023
+**Copyright:** Detlef Groth, 2019-2023, University of Potsdam
 
 **License:** MIT - License
 
 """
-# file StatusBar.py
 import tkinter as tk
 import tkinter.ttk as ttk
 
-#'
-#' <a name="command"> </a> 
-#' ## COMMAND
-#'
-#' **LabEntry(master,labeltext=text,**kwargs)**
-#'
-#' > *Arguments:*
-#'
-#' 
 class LabEntry(ttk.Frame):
     """Composite widget of ttk.Label and ttk.Entry."""
     def __init__(self,master,labeltext="Label:", **kwargs):

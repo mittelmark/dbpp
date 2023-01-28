@@ -39,7 +39,8 @@ from dbpp.widgets.XTableView import XTableView
 root = tk.Tk()
 root.title('XTableView Demo')
 dgtab=XTableView(root)
-dgtab.insert_data(['Col1','Col2'],
+dgtab.getFrame().pack(side='top',fill='both',expand=True)
+dgtab.insertData(['Col1','Col2'],
     data=[['val1.1','val1.2'], ['val2.1','val2.2']])
 root.geometry("400x300")
 root.mainloop()
@@ -75,7 +76,7 @@ class XTableView (tv.TableView):
 
         tv.TableView.__init__(self, parent,*args,**kwargs)
 
-    def insert_data(self, colnames="", data=""):
+    def insertData(self, colnames="", data=""):
         """Inserts data into a ttk.Treeview widget.
         
         Args:
@@ -100,7 +101,7 @@ if __name__ == '__main__':
     root.title('XTableView Demo')
     dgtab=XTableView(root)
     dgtab.pack(side='top',fill='both',expand=True)
-    dgtab.insert_data(['Col1','Col2'],
+    dgtab.insertData(['Col1','Col2'],
         data=[['val1.1','val1.2'], ['val2.1','val2.2']])
             
     root.geometry("400x300")

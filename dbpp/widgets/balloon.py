@@ -12,7 +12,7 @@ Examples:
 ```
 import tkinter as tk
 import tkinter.ttk as ttk
-from dbpp.widgets.Balloon import Balloon
+from dbpp.widgets.balloon import Balloon
 
 top=tk.Tk()
 lbl1=ttk.Label(top,text="Hove me 1",anchor="center")
@@ -32,7 +32,7 @@ top.mainloop()
 
 Copyright: @ Detlef Groth, University of Potsdam
 
-See also: [GuiBaseClass](GuiBaseClass.html)
+See also: [GuiBaseClass](guibaseclass.md)
 
 License: MIT
 
