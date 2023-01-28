@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<title>Documentation dbpp.widgets.TextMixins</title>
+<title>Documentation dbpp.widgets.textmixins</title>
 <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -84,15 +84,15 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Documentation dbpp.widgets.TextMixins</h1>
+<h1 class="title">Documentation dbpp.widgets.textmixins</h1>
 </header>
 <center>
-<p><strong><a href="dbpp.widgets.html">dbpp.widgets</a> package:</strong> <a href="dbpp.widgets.GuiBaseClass.html">GuiBaseClass</a> - <a href="dbpp.widgets.AutoScrollbar.html">AutoScrollbar</a> - <a href="dbpp.widgets.Balloon.html">Balloon</a> - <a href="dbpp.widgets.Ctext.html">Ctext</a> - <a href="dbpp.widgets.LabEntry.html">LabEntry</a> - <a href="dbpp.widgets.RoText.html">RoText</a> - <a href="dbpp.widgets.Scrolled.html">Scrolled</a> - <a href="dbpp.widgets.SqlText.html">SqlText</a> - <a href="dbpp.widgets.StatusBar.html">StatusBar</a> - <a href="dbpp.widgets.TableView.html">TableView</a> - <a href="dbpp.widgets.TextMixins.html">TextMixins</a> - <a href="dbpp.widgets.XTableView.html">XTableView</a> - <a href="dbpp.widgets.XTreeView.html">XTreeView</a></p>
-<p><a href="dbpp.kroki.html">dbpp.kroki</a> - <a href="dbpp.kroki.KrokiEncoder.html">dbpp.kroki.KrokiEncoder</a> - <a href="dbpp.utils.html">dbpp.utils</a> - <a href="dbpp.utils.SqlUtils.html">dbpp.utils.SqlUtils</a> -</p>
-<p><strong>apps:</strong> <a href="dbpp.peditor.PumlEditor.html">dbpp.peditor</a></p>
+<p><strong><a href="dbpp.widgets.html">dbpp.widgets</a> package:</strong> <a href="dbpp.widgets.guibaseclass.html">GuiBaseClass</a> - <a href="dbpp.widgets.autoscrollbar.html">AutoScrollbar</a> - <a href="dbpp.widgets.balloon.html">Balloon</a> - <a href="dbpp.widgets.ctext.html">Ctext</a> - <a href="dbpp.widgets.labentry.html">LabEntry</a> - <a href="dbpp.widgets.rotext.html">RoText</a> - <a href="dbpp.widgets.scrolled.html">Scrolled</a> - <a href="dbpp.widgets.sqltext.html">SqlText</a> - <a href="dbpp.widgets.statusbar.html">StatusBar</a> - <a href="dbpp.widgets.tableview.html">TableView</a> - <a href="dbpp.widgets.textmixins.html">TextMixins</a> - <a href="dbpp.widgets.xtableview.html">XTableView</a> - <a href="dbpp.widgets.xtreeview.html">XTreeView</a></p>
+<p><a href="dbpp.kroki.html">dbpp.kroki</a> - <a href="dbpp.kroki.krokiencoder.html">dbpp.kroki.KrokiEncoder</a> - <a href="dbpp.utils.html">dbpp.utils</a> - <a href="dbpp.utils.sqlutils.html">dbpp.utils.SqlUtils</a> -</p>
+<p><strong>apps:</strong> <a href="dbpp.peditor.pumleditor.html">dbpp.peditor</a></p>
 </center>
 <!-- markdownlint-disable -->
-<h1 id="module-widgets.textmixins"><kbd>module</kbd> <code>widgets.TextMixins</code></h1>
+<h1 id="module-widgets.textmixins"><kbd>module</kbd> <code>widgets.textmixins</code></h1>
 <p>The module <em>TextMixins</em> adds a few small Mixin classes for the <em>tk.Text</em> widget to extend its functionality on the fly.</p>
 <p>The following Mixins are currently implemented:</p>
 <ul>
@@ -107,9 +107,9 @@ root = tk.Tk()
 class text(tk.Text,TextFontIncreaserMixin,TextCuaBindingsMixin,
      TextHighLightMixin): pass
 txt  = text(root,undo=True) 
-txt.bindTextResize()
-txt.bindCua()
-txt.addHighLights(commentline="'",commentstart="/'",
+txt.bind_text_resize()
+txt.bind_cua()
+txt.add_highlights(commentline="'",commentstart="/'",
      commentend="'/",keywords=[ ['@startuml','@enduml'], ['class', 'entity', 'table'] ])
 txt.insert("1.0","
 @startuml
@@ -119,7 +119,7 @@ class B
 A --&gt; B
 @enduml
 ")
-txt.updateHighLights()
+txt.update_highlights()
 txt.pack(side='top',fill='both',expand=True)
 root.mainloop()        </code></pre>
 <hr/>
@@ -133,8 +133,8 @@ text = MText(root)
 text.bindTextResize()</code></pre>
 <p>Now you can presse <em>Ctrl-Plus</em> to increase the font and <em>Ctrl-Minus</em> to decrease the fontsize.</p>
 <hr/>
-<h3 id="method-bindtextresize"><kbd>method</kbd> <code>bindTextResize</code></h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a>bindTextResize(increase<span class="op">=</span><span class="st">'Control-plus'</span>, decrease<span class="op">=</span><span class="st">'Control-minus'</span>, font<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+<h3 id="method-bind_text_resize"><kbd>method</kbd> <code>bind_text_resize</code></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a>bind_text_resize(increase<span class="op">=</span><span class="st">'Control-plus'</span>, decrease<span class="op">=</span><span class="st">'Control-minus'</span>, font<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
 <p>Add the actual bindings for increasing and decreasing the fontsize using the <em>Ctrl-Plus</em> and <em>Ctrl-Minus</em> keys combinations.</p>
 <p><strong>Args:</strong></p>
 <ul>
@@ -144,12 +144,12 @@ text.bindTextResize()</code></pre>
 <li><b><code>font</code></b> (string): the prefered Font to be used, if not given searches for a platform depending good choice, defaults to None</li>
 </ul>
 <hr/>
-<h3 id="method-decreasefont"><kbd>method</kbd> <code>decreaseFont</code></h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a>decreaseFont(evt<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+<h3 id="method-decrease_font"><kbd>method</kbd> <code>decrease_font</code></h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a>decrease_font(evt<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
 <p>Decrease the font size of the widget.</p>
 <hr/>
-<h3 id="method-increasefont"><kbd>method</kbd> <code>increaseFont</code></h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a>increaseFont(evt<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+<h3 id="method-increase_font"><kbd>method</kbd> <code>increase_font</code></h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a>increase_font(evt<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
 <p>Increase the font size of the widget.</p>
 <hr/>
 <h2 id="class-textcuabindingsmixin"><kbd>class</kbd> <code>TextCuaBindingsMixin</code></h2>
@@ -160,11 +160,11 @@ text.bindTextResize()</code></pre>
 class MText(tk.Text,dbp.widgets.TextMixins.TextCuaBindingsMixin): pass
 root = tk.Tk()
 text = MText(root)
-text.bindCua()</code></pre>
+text.bind_cua()</code></pre>
 <p>Now you can presse <em>Ctrl-a</em> for instance to select the complete text, you get as well a widget status aware context menu if you press the right mouse button in the text widget.</p>
 <hr/>
-<h3 id="method-bindcua"><kbd>method</kbd> <code>bindCua</code></h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" href="#cb7-1" tabindex="-1"></a>bindCua()</span></code></pre></div>
+<h3 id="method-bind_cua"><kbd>method</kbd> <code>bind_cua</code></h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" href="#cb7-1" tabindex="-1"></a>bind_cua()</span></code></pre></div>
 <p>Adds the actual bindings Ctrl-x, Ctrl-c, Ctrl-v, Control-z, Control-a known as well as CUA bindings and in addition a right click context mene</p>
 <hr/>
 <h2 id="class-texthighlightmixin"><kbd>class</kbd> <code>TextHighLightMixin</code></h2>
@@ -175,12 +175,12 @@ text.bindCua()</code></pre>
 class MText(tk.Text,dbpp.widgets.TextMixins.TextHighLightMixin): pass
 root = tk.Tk()
 text = MText(root)
-text.addHighLights(linecomment="^\s*'",keywords=[ 
+text.add_highlights(linecomment="^\s*'",keywords=[ 
      ['@startuml','@enduml', '@startmindmap','@endmindmap'], 
      ['class', 'entity', 'table'] ])</code></pre>
 <hr/>
-<h3 id="method-addhighlights"><kbd>method</kbd> <code>addHighLights</code></h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a>addHighLights(</span>
+<h3 id="method-add_highlights"><kbd>method</kbd> <code>add_highlights</code></h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a>add_highlights(</span>
 <span id="cb9-2"><a aria-hidden="true" href="#cb9-2" tabindex="-1"></a>    commentline<span class="op">=</span><span class="st">'^</span><span class="ch">\\</span><span class="st">s*#'</span>,</span>
 <span id="cb9-3"><a aria-hidden="true" href="#cb9-3" tabindex="-1"></a>    commentstart<span class="op">=</span><span class="va">None</span>,</span>
 <span id="cb9-4"><a aria-hidden="true" href="#cb9-4" tabindex="-1"></a>    commentend<span class="op">=</span><span class="va">None</span>,</span>
@@ -198,10 +198,10 @@ text.addHighLights(linecomment="^\s*'",keywords=[
 <li><b><code>strings</code></b> (bool): should strings be highlighted, defaults to True</li>
 </ul>
 <hr/>
-<h3 id="method-updatehighlights"><kbd>method</kbd> <code>updateHighLights</code></h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a aria-hidden="true" href="#cb10-1" tabindex="-1"></a>updateHighLights()</span></code></pre></div>
+<h3 id="method-update_highlights"><kbd>method</kbd> <code>update_highlights</code></h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a aria-hidden="true" href="#cb10-1" tabindex="-1"></a>update_highlights()</span></code></pre></div>
 <p>Updates the current given syntax highlights for instance after loading a new file into the widget. If this file should support other highlighting you should before again call the method addHighLights.</p>
 <hr/>
 <p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>
 </body>
-</html><!--Generated by HTMLArk 2023-01-25 20:24:22.558613. Original URL dbpp.widgets.TextMixins.html-->
+</html><!--Generated by HTMLArk 2023-01-28 14:14:42.671439. Original URL dbpp.widgets.textmixins.html-->

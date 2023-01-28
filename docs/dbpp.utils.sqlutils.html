@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="author" content="Detlef Groth, University of Potsdam" />
-  <meta name="dcterms.date" content="2023-01-25" />
-  <title>Documentation dbpp.utils.SqlUtils</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="pandoc" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<title>Documentation dbpp.utils.sqlutils</title>
+<style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     span.underline{text-decoration: underline;}
@@ -79,56 +77,52 @@
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <link rel="stylesheet" href="pydoc.css" />
-  <!--[if lt IE 9]>
+<link href="data:text/css,%0A%20%20%20%20html%20%7B%0A%20%20%20%20%20%20%20%20overflow-y%3A%20scroll%3B%0A%20%20%20%20%7D%0A%20%20%20%20body%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23444%3B%0A%20%20%20%20%20%20%20%20font-family%3A%20Georgia%2C%20Palatino%2C%20%27Palatino%20Linotype%27%2C%20Times%2C%20%27Times%20New%20Roman%27%2C%20serif%3B%0A%20%20%20%20%20%20%20%20line-height%3A%201.2%3B%0A%20%20%20%20%20%20%20%20padding%3A%201em%3B%0A%20%20%20%20%20%20%20%20margin%3A%20auto%3B%0A%20%20%20%20%20%20%20%20max-width%3A%20%20900px%3B%0A%20%20%20%20%7D%0A%20%20%20%20h1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%2C%20h6%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23111%3B%0A%20%20%20%20%20%20%20%20line-height%3A%20115%25%3B%0A%20%20%20%20%20%20%20%20margin-top%3A%201em%3B%0A%20%20%20%20%20%20%20%20font-weight%3A%20normal%3B%0A%20%20%20%20%7D%0A%20%20%20%20h1%20%7B%0A%20%20%20%20%20%20%20%20text-align%3A%20center%3B%0A%20%20%20%20%20%20%20%20font-size%3A%20120%25%3B%0A%20%20%20%20%7D%0A%20%20%20%20h2.author%2C%20h2.date%20%7B%0A%20%20%20%20%20%20%20%20text-align%3A%20center%3B%0A%20%20%20%20%20%20%20%20font-size%3A%20110%25%3B%0A%20%20%20%20%7D%0A%20%20%20%20/%2A%20fix%20for%20indentation%20for%20lazydocs%20%2A/%0A%20%20%20%20h2%20%7B%20margin-left%3A%200px%3B%20%7D%0A%20%20%20%20h3%20%7B%20margin-left%3A%2020px%3B%20%7D%0A%20%20%20%20p%20%7B%20%20margin-left%3A%2040px%3B%20%7D%0A%20%20%20%20div.sourceCode%2C%20pre%2C%20ul%2C%20hr%20%7Bmargin-left%3A%2040px%3B%7D%0A%20%20%20%20a%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%230645ad%3B%0A%20%20%20%20%20%20%20%20text-decoration%3A%20none%3B%0A%20%20%20%20%7D%0A%20%20%20%20a%3Avisited%20%7B%20%20color%3A%20%230b0080%3B%20%7D%0A%20%20%20%20a%3Ahover%20%20%20%7B%20%20color%3A%20%2306e%3B%20%20%20%20%7D%0A%20%20%20%20a%3Aactive%20%20%7B%20%20color%3A%20%23faa700%3B%20%7D%0A%20%20%20%20a%3Afocus%20%20%20%7B%20%20outline%3A%20thin%20dotted%3B%20%7D%0A%20%20%20%20%0A%20%20%20%20p%20%7B%20%20%0A%20%20%20%20%20%20%20%20margin%3A%200.5em%200%3B%20%20%20%20%0A%20%20%20%20%20%20%20%20margin-left%3A%2040px%3B%0A%20%20%20%20%7D%0A%20%20%20%20p.author%2C%20p.date%20%7B%0A%20%20%20%20%20%20%20%20font-size%3A%20110%25%3B%0A%20%20%20%20%20%20%20%20text-align%3A%20center%3B%0A%20%20%20%20%7D%0A%20%20%20%20img%20%7B%20%20max-width%3A%20100%25%3B%20%20%20%20%7D%0A%20%20%20%20figure%20%7B%20text-align%3A%20center%20%3B%20%7D%20%0A%20%20%20%20pre%2C%20blockquote%20pre%20%7B%0A%20%20%20%20%20%20%20%20border-top%3A%200.1em%20%239ac%20solid%3B%0A%20%20%20%20%20%20%20%20background%3A%20%23e9f6ff%3B%0A%20%20%20%20%20%20%20%20padding%3A%2010px%3B%0A%20%20%20%20%20%20%20%20border-bottom%3A%200.1em%20%239ac%20solid%3B%0A%20%20%20%20%7D%0A%20%20%20%20pre%2C%20code%2C%20kbd%2C%20samp%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23000%3B%0A%20%20%20%20%20%20%20%20font-family%3A%20Monaco%2C%20%27courier%20new%27%2C%20monospace%3B%0A%20%20%20%20%20%20%20%20font-size%3A%2090%25%3B%20%0A%20%20%20%20%7D%0A%20%20%20%20pre%20code.tclinn%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23ff2222%3B%0A%20%20%20%20%7D%0A%20%20%20%20pre%20code.tclout%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%233366ff%3B%0A%20%20%20%20%7D%0A%20%20%20%20code.r%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%23770000%3B%0A%20%20%20%20%7D%0A%20%20%20%20pre%20%7B%0A%20%20%20%20%20%20%20%20white-space%3A%20pre%3B%0A%20%20%20%20%20%20%20%20white-space%3A%20pre-wrap%3B%0A%20%20%20%20%20%20%20%20word-wrap%3A%20break-word%3B%0A%20%20%20%20%7D%0A%20%20%20%20code%20span.kw%20%7B%20color%3A%20%23007020%3B%20font-weight%3A%20normal%3B%20%7D%0A%20%20%20%20pre.sourceCode%20%7B%20%20background%3A%20%23fff6f6%3B%20%20%7D%20%0A%20%20%20%20blockquote%20%7B%0A%20%20%20%20%20%20%20%20margin%3A%200%3B%0A%20%20%20%20%20%20%20%20padding-left%3A%203em%3B%20%0A%20%20%20%20%7D%0A%20%20%20%20hr%20%7B%0A%20%20%20%20%20%20%20%20display%3A%20block%3B%0A%20%20%20%20%20%20%20%20height%3A%202px%3B%0A%20%20%20%20%20%20%20%20border%3A%200%3B%0A%20%20%20%20%20%20%20%20border-top%3A%201px%20solid%20%23aaa%3B%0A%20%20%20%20%20%20%20%20border-bottom%3A%201px%20solid%20%23eee%3B%0A%20%20%20%20%20%20%20%20margin%3A%201em%200%3B%0A%20%20%20%20%20%20%20%20padding%3A%200%3B%0A%20%20%20%20%7D%0A%20%20%20%20table%20%7B%20%20%20%20%0A%20%20%20%20%20%20%20%20border-collapse%3A%20collapse%3B%0A%20%20%20%20%20%20%20%20border-bottom%3A%202px%20solid%3B%0A%20%20%20%20%7D%0A%20%20%20%20table%20thead%20tr%20th%20%7B%20%0A%20%20%20%20%20%20%20%20background-color%3A%20%23fde9d9%3B%0A%20%20%20%20%20%20%20%20text-align%3A%20left%3B%20%0A%20%20%20%20%20%20%20%20padding%3A%2010px%3B%0A%20%20%20%20%20%20%20%20border-top%3A%202px%20solid%3B%0A%20%20%20%20%20%20%20%20border-bottom%3A%202px%20solid%3B%0A%20%20%20%20%7D%0A%20%20%20%20table%20td%20%7B%20%0A%20%20%20%20%20%20%20%20background-color%3A%20%23fff9e9%3B%0A%20%20%20%20%20%20%20%20text-align%3A%20left%3B%20%0A%20%20%20%20%20%20%20%20padding%3A%2010px%3B%0A%20%20%20%20%7D%0A%0A" rel="stylesheet"/><!--URL:pydoc.css-->
+<!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Documentation dbpp.utils.SqlUtils</h1>
-<p class="author">Detlef Groth, University of Potsdam</p>
-<p class="date">2023-01-25</p>
+<h1 class="title">Documentation dbpp.utils.sqlutils</h1>
 </header>
 <center>
-<p><strong><a href="dbpp.widgets.html">dbpp.widgets</a> package:</strong> <a href="dbpp.widgets.GuiBaseClass.html">GuiBaseClass</a> - <a href="dbpp.widgets.AutoScrollbar.html">AutoScrollbar</a> - <a href="dbpp.widgets.Balloon.html">Balloon</a> - <a href="dbpp.widgets.Ctext.html">Ctext</a> - <a href="dbpp.widgets.LabEntry.html">LabEntry</a> - <a href="dbpp.widgets.RoText.html">RoText</a> - <a href="dbpp.widgets.Scrolled.html">Scrolled</a> - <a href="dbpp.widgets.SqlText.html">SqlText</a> - <a href="dbpp.widgets.StatusBar.html">StatusBar</a> - <a href="dbpp.widgets.TableView.html">TableView</a> - <a href="dbpp.widgets.TextMixins.html">TextMixins</a> - <a href="dbpp.widgets.XTableView.html">XTableView</a> - <a href="dbpp.widgets.XTreeView.html">XTreeView</a></p>
-<p><a href="dbpp.kroki.html">dbpp.kroki</a> - <a href="dbpp.kroki.KrokiEncoder.html">dbpp.kroki.KrokiEncoder</a> - <a href="dbpp.utils.html">dbpp.utils</a> - <a href="dbpp.utils.SqlUtils.html">dbpp.utils.SqlUtils</a> -</p>
-<p><strong>apps:</strong> <a href="dbpp.peditor.PumlEditor.html">dbpp.peditor</a></p>
+<p><strong><a href="dbpp.widgets.html">dbpp.widgets</a> package:</strong> <a href="dbpp.widgets.guibaseclass.html">GuiBaseClass</a> - <a href="dbpp.widgets.autoscrollbar.html">AutoScrollbar</a> - <a href="dbpp.widgets.balloon.html">Balloon</a> - <a href="dbpp.widgets.ctext.html">Ctext</a> - <a href="dbpp.widgets.labentry.html">LabEntry</a> - <a href="dbpp.widgets.rotext.html">RoText</a> - <a href="dbpp.widgets.scrolled.html">Scrolled</a> - <a href="dbpp.widgets.sqltext.html">SqlText</a> - <a href="dbpp.widgets.statusbar.html">StatusBar</a> - <a href="dbpp.widgets.tableview.html">TableView</a> - <a href="dbpp.widgets.textmixins.html">TextMixins</a> - <a href="dbpp.widgets.xtableview.html">XTableView</a> - <a href="dbpp.widgets.xtreeview.html">XTreeView</a></p>
+<p><a href="dbpp.kroki.html">dbpp.kroki</a> - <a href="dbpp.kroki.krokiencoder.html">dbpp.kroki.KrokiEncoder</a> - <a href="dbpp.utils.html">dbpp.utils</a> - <a href="dbpp.utils.sqlutils.html">dbpp.utils.SqlUtils</a> -</p>
+<p><strong>apps:</strong> <a href="dbpp.peditor.pumleditor.html">dbpp.peditor</a></p>
 </center>
 <!-- markdownlint-disable -->
-
-<h1 id="module-sqlutils.py"><kbd>module</kbd> <code>SqlUtils.py</code></h1>
+<h1 id="module-utils.sqlutils"><kbd>module</kbd> <code>utils.sqlutils</code></h1>
 <p>dbpp.utils.SqlUtils - class to work with Sqlite3 and Csv files.</p>
 <p>This class provides methods to convert CSV and TAB files into Sqlite3 databases and as well allows the extraction of data from databases into CSV and TAB files using Python as programming language.</p>
 <p>The class has the following attributes and methods:</p>
-<p><img src="https://kroki.io/plantuml/svg/eNpzKC5JLCopzc3hSs5JLC5WCC7MCS3JzClWqOZSAAFtheLUnDS9tMyc1LzE3FSYYHx8Zl5mSXy8BkxCEyaTXFxmVFyYgymRnloSkpiUk1qsgSwUlplajirinJ9TmpsHEqvlckjNSwG6DQBnjjEl" alt="" /></p>
+<p><img alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIxNjZweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjE2N3B4O2hlaWdodDoxNjZweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxNjcgMTY2IiB3aWR0aD0iMTY3cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48IS0tY2xhc3MgU3FsVXRpbHMtLT48ZyBpZD0iZWxlbV9TcWxVdGlscyI+PHJlY3QgY29kZUxpbmU9IjEiIGZpbGw9IiNGMUYxRjEiIGhlaWdodD0iMTQ1Ljc4MTMiIGlkPSJTcWxVdGlscyIgcng9IjIuNSIgcnk9IjIuNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB3aWR0aD0iMTQ2IiB4PSI3IiB5PSI3Ii8+PGVsbGlwc2UgY3g9IjUwLjgiIGN5PSIyMyIgZmlsbD0iI0FERDFCMiIgcng9IjExIiByeT0iMTEiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MS4wOyIvPjxwYXRoIGQ9Ik01My43Njg4LDI4LjY0MDYgUTUzLjE5MDYsMjguOTM3NSA1Mi41NSwyOS4wNzgxIFE1MS45MDk0LDI5LjIzNDQgNTEuMjA2MywyOS4yMzQ0IFE0OC43MDYzLDI5LjIzNDQgNDcuMzc4MSwyNy41OTM4IFE0Ni4wNjU2LDI1LjkzNzUgNDYuMDY1NiwyMi44MTI1IFE0Ni4wNjU2LDE5LjY4NzUgNDcuMzc4MSwxOC4wMzEzIFE0OC43MDYzLDE2LjM3NSA1MS4yMDYzLDE2LjM3NSBRNTEuOTA5NCwxNi4zNzUgNTIuNTUsMTYuNTMxMyBRNTMuMjA2MywxNi42ODc1IDUzLjc2ODgsMTYuOTg0NCBMNTMuNzY4OCwxOS43MDMxIFE1My4xNDM4LDE5LjEyNSA1Mi41NSwxOC44NTk0IFE1MS45NTYzLDE4LjU3ODEgNTEuMzMxMywxOC41NzgxIFE0OS45ODc1LDE4LjU3ODEgNDkuMywxOS42NTYzIFE0OC42MTI1LDIwLjcxODggNDguNjEyNSwyMi44MTI1IFE0OC42MTI1LDI0LjkwNjMgNDkuMywyNS45ODQ0IFE0OS45ODc1LDI3LjA0NjkgNTEuMzMxMywyNy4wNDY5IFE1MS45NTYzLDI3LjA0NjkgNTIuNTUsMjYuNzgxMyBRNTMuMTQzOCwyNi41IDUzLjc2ODgsMjUuOTIxOSBMNTMuNzY4OCwyOC42NDA2IFogIiBmaWxsPSIjMDAwMDAwIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNTAiIHg9IjcxLjIiIHk9IjI3Ljg0NjciPlNxbFV0aWxzPC90ZXh0PjxsaW5lIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgeDE9IjgiIHgyPSIxNTIiIHkxPSIzOSIgeTI9IjM5Ii8+PGVsbGlwc2UgY3g9IjE4IiBjeT0iNTIuNjQ4NCIgZmlsbD0ibm9uZSIgcng9IjMiIHJ5PSIzIiBzdHlsZT0ic3Ryb2tlOiMwMzgwNDg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI4NiIgeD0iMjciIHk9IjU1Ljk5NTEiPnNlbGYuZmlsZW5hbWU8L3RleHQ+PGxpbmUgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiB4MT0iOCIgeDI9IjE1MiIgeTE9IjYzLjI5NjkiIHkyPSI2My4yOTY5Ii8+PGVsbGlwc2UgY3g9IjE4IiBjeT0iNzYuOTQ1MyIgZmlsbD0iIzg0QkU4NCIgcng9IjMiIHJ5PSIzIiBzdHlsZT0ic3Ryb2tlOiMwMzgwNDg7c3Ryb2tlLXdpZHRoOjEuMDsiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxMTYiIHg9IjI3IiB5PSI4MC4yOTIiPl9faW5pdF9fKGZpbGVuYW1lKTwvdGV4dD48ZWxsaXBzZSBjeD0iMTgiIGN5PSI5My4yNDIyIiBmaWxsPSIjODRCRTg0IiByeD0iMyIgcnk9IjMiIHN0eWxlPSJzdHJva2U6IzAzODA0ODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjEyMCIgeD0iMjciIHk9Ijk2LjU4ODkiPmNzdjJzcWwoZmlsZW5hbWUpPC90ZXh0PjxlbGxpcHNlIGN4PSIxOCIgY3k9IjEwOS41MzkxIiBmaWxsPSIjODRCRTg0IiByeD0iMyIgcnk9IjMiIHN0eWxlPSJzdHJva2U6IzAzODA0ODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9Ijc5IiB4PSIyNyIgeT0iMTEyLjg4NTciPmdldFRhYmxlcygpPC90ZXh0PjxlbGxpcHNlIGN4PSIxOCIgY3k9IjEyNS44MzU5IiBmaWxsPSIjODRCRTg0IiByeD0iMyIgcnk9IjMiIHN0eWxlPSJzdHJva2U6IzAzODA0ODtzdHJva2Utd2lkdGg6MS4wOyIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjczIiB4PSIyNyIgeT0iMTI5LjE4MjYiPmdldFZpZXdzKCk8L3RleHQ+PGVsbGlwc2UgY3g9IjE4IiBjeT0iMTQyLjEzMjgiIGZpbGw9IiM4NEJFODQiIHJ4PSIzIiByeT0iMyIgc3R5bGU9InN0cm9rZTojMDM4MDQ4O3N0cm9rZS13aWR0aDoxLjA7Ii8+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iOTQiIHg9IjI3IiB5PSIxNDUuNDc5NSI+Z2V0Q29sdW1ucygpPC90ZXh0PjwvZz48IS0tU1JDPVtJeXY5QjJ2TTIyeEMySXQ5cDJiTWdFUEkwMDVqWFVCS2QzSXpqQ29TckJwNHQ1SU9PN255UGJ2Y0lOb3kxYW4yNG9RSk41bmNMNW9PV29jSGRiZUlhZllLYXJnaVdJbUtiZmJRWlloWWQ5ekpjZmk3NGdpNTAwMDBdLS0+PC9nPjwvc3ZnPg=="/><!--URL:https://kroki.io/plantuml/svg/eNpzKC5JLCopzc3hSs5JLC5WCC7MCS3JzClWqOZSAAFtheLUnDS9tMyc1LzE3FSYYHx8Zl5mSXy8BkxCEyaTXFxmVFyYgymRnloSkpiUk1qsgSwUlplajirinJ9TmpsHEqvlckjNSwG6DQBnjjEl--></p>
 <p><strong>Examples:</strong></p>
 <pre><code>     &gt;&gt;&gt; import sys, os
-     &gt;&gt;&gt; sys.path.append(os.path.join(os.path.dirname(__file__), &quot;..&quot;, &quot;..&quot;))
-     &gt;&gt;&gt; import dbpp.utils.SqlUtils as sql
-     &gt;&gt;&gt; sqlo = sql.SqlUtils(&#39;:memory:&#39;)
-     &gt;&gt;&gt; sqlo.getTables() 
+     &gt;&gt;&gt; sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+     &gt;&gt;&gt; import dbpp.utils.sqlutils as sql
+     &gt;&gt;&gt; sqlo = sql.SqlUtils(':memory:')
+     &gt;&gt;&gt; sqlo.get_tables() 
      []
-     &gt;&gt;&gt; tabfile = os.path.join(os.path.dirname(__file__),&quot;..&quot;,&quot;data&quot;,&quot;iris.tab&quot;)
+     &gt;&gt;&gt; tabfile = os.path.join(os.path.dirname(__file__),"..","data","iris.tab")
      &gt;&gt;&gt; tabfile
-     &#39;/home/groth/workspace/dbpp/dbpp/utils/../data/iris.tab&#39;
-     &gt;&gt;&gt; sqlo.csv2sql(tabfile,&quot;iris&quot;)
+     '/home/groth/workspace/dbpp/dbpp/utils/../data/iris.tab'
+     &gt;&gt;&gt; sqlo.csv2sql(tabfile,"iris")
      150
-     &gt;&gt;&gt; sqlo.getTables()
-     [&#39;iris&#39;]
-     &gt;&gt;&gt; sqlo.select(&quot;select RNames, Sepal_Length from iris limit 2&quot;)
-     ([&#39;RNames&#39;, &#39;Sepal_Length&#39;], [(&#39;R001&#39;, &#39;5.1&#39;), (&#39;R002&#39;, &#39;4.9&#39;)])
+     &gt;&gt;&gt; sqlo.get_tables()
+     ['iris']
+     &gt;&gt;&gt; sqlo.select("select RNames, Sepal_Length from iris limit 2")
+     (['RNames', 'Sepal_Length'], [('R001', '5.1'), ('R002', '4.9')])
      </code></pre>
-<hr />
-
+<hr/>
 <h2 id="function-main"><kbd>function</kbd> <code>main</code></h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>main(argv)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a>main(argv)</span></code></pre></div>
 <p>Runs the terminal application usually with sys.argv.</p>
 <p><strong>Arguments:</strong></p>
 <ul>
 <li><b><code>argv</code></b> (list): arguments are in order: application. csvfile, sqlitefile, tablename and optionally tabchar and quotechar</li>
 </ul>
-<hr />
+<hr/>
 <h2 id="class-sqlutils"><kbd>class</kbd> <code>SqlUtils</code></h2>
 <p>Class to import and export data and to query information out of SQLite databases.</p>
 <p><strong>Attributes:</strong></p>
@@ -136,18 +130,16 @@
 <li><b><code>self.filename (str)</code></b>: the name of the SQLite 3 database</li>
 <li><b><code>self.connection (sqlite3.Connection)</code></b>: the connection to the current database</li>
 </ul>
-
-<h3 id="function-__init__"><kbd>function</kbd> <code>__init__</code></h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">__init__</span>(filename<span class="op">=</span><span class="st">&#39;:memory:&#39;</span>)</span></code></pre></div>
+<h3 id="method-__init__"><kbd>method</kbd> <code>__init__</code></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a><span class="fu">__init__</span>(filename<span class="op">=</span><span class="st">':memory:'</span>)</span></code></pre></div>
 <p>Initialize the object with a database filename or in memory.</p>
 <p><strong>Args:</strong></p>
 <ul>
 <li><b><code>filename</code></b> (str): the filename of a SQLite 3 database, if it does not exists, it is silently created, defaults to ‘:memory:’</li>
 </ul>
-<hr />
-
-<h3 id="function-csv2sql"><kbd>function</kbd> <code>csv2sql</code></h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>csv2sql(csvfile, tablename, delimiter<span class="op">=</span><span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>, quotechar<span class="op">=</span><span class="st">&#39;&quot;&#39;</span>)</span></code></pre></div>
+<hr/>
+<h3 id="method-csv2sql"><kbd>method</kbd> <code>csv2sql</code></h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a>csv2sql(csvfile, tablename, delimiter<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, quotechar<span class="op">=</span><span class="st">'"'</span>)</span></code></pre></div>
 <p>Import a CSV or TAB file as a new table into the data base.</p>
 <p><strong>Arguments:</strong></p>
 <ul>
@@ -160,27 +152,36 @@
 <ul>
 <li><b><code>int</code></b>: the number of rows added</li>
 </ul>
-<hr />
-
-<h3 id="function-getcolumns"><kbd>function</kbd> <code>getColumns</code></h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>getColumns(tname)</span></code></pre></div>
+<hr/>
+<h3 id="method-get_columns"><kbd>method</kbd> <code>get_columns</code></h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a>get_columns(tname)</span></code></pre></div>
 <p>Return the column names for the given table or view name.</p>
-<hr />
-
-<h3 id="function-gettables"><kbd>function</kbd> <code>getTables</code></h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>getTables()</span></code></pre></div>
+<hr/>
+<h3 id="method-get_tables"><kbd>method</kbd> <code>get_tables</code></h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a aria-hidden="true" href="#cb6-1" tabindex="-1"></a>get_tables()</span></code></pre></div>
 <p>Return the names of the tables of the database.</p>
-<hr />
-
-<h3 id="function-getviews"><kbd>function</kbd> <code>getViews</code></h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>getViews()</span></code></pre></div>
+<hr/>
+<h3 id="method-get_views"><kbd>method</kbd> <code>get_views</code></h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" href="#cb7-1" tabindex="-1"></a>get_views()</span></code></pre></div>
 <p>Return the names of the views of the database.</p>
-<hr />
-
-<h3 id="function-select"><kbd>function</kbd> <code>select</code></h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>select(statement)</span></code></pre></div>
+<hr/>
+<h3 id="method-select"><kbd>method</kbd> <code>select</code></h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a>select(statement)</span></code></pre></div>
 <p>Return the result set for the given select statement.</p>
-<hr />
+<hr/>
+<h3 id="method-sql2csv"><kbd>method</kbd> <code>sql2csv</code></h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a>sql2csv(tablename, csvfile)</span></code></pre></div>
+<p>Exporting a table from a SQLite3 database to a CSV file</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li><b><code>tablename</code></b> (str): name of the table to export</li>
+<li><b><code>csvfile</code></b> (str): name of the csv file for output</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><b><code>int</code></b>: number of data rows exported</li>
+</ul>
+<hr/>
 <p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>
 </body>
-</html>
+</html><!--Generated by HTMLArk 2023-01-28 14:14:36.655537. Original URL dbpp.utils.sqlutils.html-->

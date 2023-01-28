@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<title>Documentation dbpp.peditor.PumlEditor</title>
+<title>Documentation dbpp.peditor.pumleditor</title>
 <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -84,15 +84,15 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Documentation dbpp.peditor.PumlEditor</h1>
+<h1 class="title">Documentation dbpp.peditor.pumleditor</h1>
 </header>
 <center>
-<p><strong><a href="dbpp.widgets.html">dbpp.widgets</a> package:</strong> <a href="dbpp.widgets.GuiBaseClass.html">GuiBaseClass</a> - <a href="dbpp.widgets.AutoScrollbar.html">AutoScrollbar</a> - <a href="dbpp.widgets.Balloon.html">Balloon</a> - <a href="dbpp.widgets.Ctext.html">Ctext</a> - <a href="dbpp.widgets.LabEntry.html">LabEntry</a> - <a href="dbpp.widgets.RoText.html">RoText</a> - <a href="dbpp.widgets.Scrolled.html">Scrolled</a> - <a href="dbpp.widgets.SqlText.html">SqlText</a> - <a href="dbpp.widgets.StatusBar.html">StatusBar</a> - <a href="dbpp.widgets.TableView.html">TableView</a> - <a href="dbpp.widgets.TextMixins.html">TextMixins</a> - <a href="dbpp.widgets.XTableView.html">XTableView</a> - <a href="dbpp.widgets.XTreeView.html">XTreeView</a></p>
-<p><a href="dbpp.kroki.html">dbpp.kroki</a> - <a href="dbpp.kroki.KrokiEncoder.html">dbpp.kroki.KrokiEncoder</a> - <a href="dbpp.utils.html">dbpp.utils</a> - <a href="dbpp.utils.SqlUtils.html">dbpp.utils.SqlUtils</a> -</p>
-<p><strong>apps:</strong> <a href="dbpp.peditor.PumlEditor.html">dbpp.peditor</a></p>
+<p><strong><a href="dbpp.widgets.html">dbpp.widgets</a> package:</strong> <a href="dbpp.widgets.guibaseclass.html">GuiBaseClass</a> - <a href="dbpp.widgets.autoscrollbar.html">AutoScrollbar</a> - <a href="dbpp.widgets.balloon.html">Balloon</a> - <a href="dbpp.widgets.ctext.html">Ctext</a> - <a href="dbpp.widgets.labentry.html">LabEntry</a> - <a href="dbpp.widgets.rotext.html">RoText</a> - <a href="dbpp.widgets.scrolled.html">Scrolled</a> - <a href="dbpp.widgets.sqltext.html">SqlText</a> - <a href="dbpp.widgets.statusbar.html">StatusBar</a> - <a href="dbpp.widgets.tableview.html">TableView</a> - <a href="dbpp.widgets.textmixins.html">TextMixins</a> - <a href="dbpp.widgets.xtableview.html">XTableView</a> - <a href="dbpp.widgets.xtreeview.html">XTreeView</a></p>
+<p><a href="dbpp.kroki.html">dbpp.kroki</a> - <a href="dbpp.kroki.krokiencoder.html">dbpp.kroki.KrokiEncoder</a> - <a href="dbpp.utils.html">dbpp.utils</a> - <a href="dbpp.utils.sqlutils.html">dbpp.utils.SqlUtils</a> -</p>
+<p><strong>apps:</strong> <a href="dbpp.peditor.pumleditor.html">dbpp.peditor</a></p>
 </center>
 <!-- markdownlint-disable -->
-<h1 id="module-peditor.pumleditor"><kbd>module</kbd> <code>peditor.PumlEditor</code></h1>
+<h1 id="module-peditor.pumleditor"><kbd>module</kbd> <code>peditor.pumleditor</code></h1>
 <p>Example GUI application to create diagram using the https://kroki.io webservice.</p>
 <p>This is an example GUI class to demostrate the following principles of object oriented programming:</p>
 <ul>
@@ -115,51 +115,57 @@
 <h3 id="method-__init__"><kbd>method</kbd> <code>__init__</code></h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a><span class="fu">__init__</span>(root)</span></code></pre></div>
 <hr/>
-<h3 id="method-imageupdate"><kbd>method</kbd> <code>ImageUpdate</code></h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a>ImageUpdate()</span></code></pre></div>
+<h3 id="method-about"><kbd>method</kbd> <code>about</code></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a>about()</span></code></pre></div>
 <hr/>
-<h3 id="method-fileinsert"><kbd>method</kbd> <code>fileInsert</code></h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a>fileInsert()</span></code></pre></div>
+<h3 id="method-exit"><kbd>method</kbd> <code>exit</code></h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a aria-hidden="true" href="#cb4-1" tabindex="-1"></a>exit()</span></code></pre></div>
 <hr/>
-<h3 id="method-filenew"><kbd>method</kbd> <code>fileNew</code></h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a>fileNew(evt<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+<h3 id="method-file_insert"><kbd>method</kbd> <code>file_insert</code></h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a aria-hidden="true" href="#cb5-1" tabindex="-1"></a>file_insert()</span></code></pre></div>
 <hr/>
-<h3 id="method-fileopen"><kbd>method</kbd> <code>fileOpen</code></h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a aria-hidden="true" href="#cb6-1" tabindex="-1"></a>fileOpen(filename<span class="op">=</span><span class="st">''</span>)</span></code></pre></div>
+<h3 id="method-file_new"><kbd>method</kbd> <code>file_new</code></h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a aria-hidden="true" href="#cb6-1" tabindex="-1"></a>file_new(evt<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
 <hr/>
-<h3 id="method-filesave"><kbd>method</kbd> <code>fileSave</code></h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" href="#cb7-1" tabindex="-1"></a>fileSave(evt<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+<h3 id="method-file_open"><kbd>method</kbd> <code>file_open</code></h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a aria-hidden="true" href="#cb7-1" tabindex="-1"></a>file_open(filename<span class="op">=</span><span class="st">''</span>)</span></code></pre></div>
 <hr/>
-<h3 id="method-filesaveas"><kbd>method</kbd> <code>fileSaveAs</code></h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a>fileSaveAs()</span></code></pre></div>
+<h3 id="method-file_save"><kbd>method</kbd> <code>file_save</code></h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a aria-hidden="true" href="#cb8-1" tabindex="-1"></a>file_save(evt<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
 <hr/>
-<h3 id="method-getdiatype"><kbd>method</kbd> <code>getDiaType</code></h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a>getDiaType()</span></code></pre></div>
+<h3 id="method-file_save_as"><kbd>method</kbd> <code>file_save_as</code></h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a aria-hidden="true" href="#cb9-1" tabindex="-1"></a>file_save_as()</span></code></pre></div>
 <hr/>
-<h3 id="method-templateclass"><kbd>method</kbd> <code>templateClass</code></h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a aria-hidden="true" href="#cb10-1" tabindex="-1"></a>templateClass()</span></code></pre></div>
+<h3 id="method-get_dia_type"><kbd>method</kbd> <code>get_dia_type</code></h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a aria-hidden="true" href="#cb10-1" tabindex="-1"></a>get_dia_type()</span></code></pre></div>
 <hr/>
-<h3 id="method-templatedatabase"><kbd>method</kbd> <code>templateDatabase</code></h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a aria-hidden="true" href="#cb11-1" tabindex="-1"></a>templateDatabase()</span></code></pre></div>
+<h3 id="method-image_update"><kbd>method</kbd> <code>image_update</code></h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a aria-hidden="true" href="#cb11-1" tabindex="-1"></a>image_update()</span></code></pre></div>
 <hr/>
-<h3 id="method-templateditaa"><kbd>method</kbd> <code>templateDitaa</code></h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a aria-hidden="true" href="#cb12-1" tabindex="-1"></a>templateDitaa()</span></code></pre></div>
+<h3 id="method-template_class"><kbd>method</kbd> <code>template_class</code></h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a aria-hidden="true" href="#cb12-1" tabindex="-1"></a>template_class()</span></code></pre></div>
 <hr/>
-<h3 id="method-templatelatex"><kbd>method</kbd> <code>templateLaTeX</code></h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a aria-hidden="true" href="#cb13-1" tabindex="-1"></a>templateLaTeX()</span></code></pre></div>
+<h3 id="method-template_database"><kbd>method</kbd> <code>template_database</code></h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a aria-hidden="true" href="#cb13-1" tabindex="-1"></a>template_database()</span></code></pre></div>
 <hr/>
-<h3 id="method-templatelists"><kbd>method</kbd> <code>templateLists</code></h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a aria-hidden="true" href="#cb14-1" tabindex="-1"></a>templateLists(typecmd<span class="op">=</span><span class="st">'listfonts'</span>, comment<span class="op">=</span><span class="st">'https://plantuml.com/font'</span>)</span></code></pre></div>
+<h3 id="method-template_ditaa"><kbd>method</kbd> <code>template_ditaa</code></h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a aria-hidden="true" href="#cb14-1" tabindex="-1"></a>template_ditaa()</span></code></pre></div>
 <hr/>
-<h3 id="method-templatemindmap"><kbd>method</kbd> <code>templateMindmap</code></h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a aria-hidden="true" href="#cb15-1" tabindex="-1"></a>templateMindmap()</span></code></pre></div>
+<h3 id="method-template_latex"><kbd>method</kbd> <code>template_latex</code></h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a aria-hidden="true" href="#cb15-1" tabindex="-1"></a>template_latex()</span></code></pre></div>
+<hr/>
+<h3 id="method-template_lists"><kbd>method</kbd> <code>template_lists</code></h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a aria-hidden="true" href="#cb16-1" tabindex="-1"></a>template_lists(typecmd<span class="op">=</span><span class="st">'listfonts'</span>, comment<span class="op">=</span><span class="st">'https://plantuml.com/font'</span>)</span></code></pre></div>
+<hr/>
+<h3 id="method-template_mindmap"><kbd>method</kbd> <code>template_mindmap</code></h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a aria-hidden="true" href="#cb17-1" tabindex="-1"></a>template_mindmap()</span></code></pre></div>
 <hr/>
 <h3 id="method-text2url"><kbd>method</kbd> <code>text2url</code></h3>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a aria-hidden="true" href="#cb16-1" tabindex="-1"></a>text2url()</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a aria-hidden="true" href="#cb18-1" tabindex="-1"></a>text2url()</span></code></pre></div>
 <hr/>
 <h3 id="method-url2text"><kbd>method</kbd> <code>url2text</code></h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a aria-hidden="true" href="#cb17-1" tabindex="-1"></a>url2text()</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a aria-hidden="true" href="#cb19-1" tabindex="-1"></a>url2text()</span></code></pre></div>
 <hr/>
 <p><em>This file was automatically generated via <a href="https://github.com/ml-tooling/lazydocs">lazydocs</a>.</em></p>
 </body>
-</html><!--Generated by HTMLArk 2023-01-25 20:24:18.807652. Original URL dbpp.peditor.PumlEditor.html-->
+</html><!--Generated by HTMLArk 2023-01-28 14:14:35.450774. Original URL dbpp.peditor.pumleditor.html-->
