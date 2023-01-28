@@ -69,8 +69,8 @@ class PumlEditor(GuiBaseClass):
         mnu_tpl.insert_command(10,label="List version",underline=6,command=lambda: self.template_lists("version","https://plantuml.com/faq"))        
         mnu_tpl.insert_command(11,label="List license",underline=9,command=lambda: self.template_lists("license","https://plantuml.com/faq"))                
         mnu_opt=self.get_menu('Options',underline=0)
-        mnu_opt.insert_command(0,label="Font increase",underline=5,command=lambda: self.text.increaseFont(), accelerator="Ctrl-Plus")
-        mnu_opt.insert_command(1,label="Font decrease",underline=5,command=lambda: self.text.decreaseFont(),accelerator="Ctrl-Minus")        
+        mnu_opt.insert_command(0,label="Font increase",underline=5,command=lambda: self.text.increase_font(), accelerator="Ctrl-Plus")
+        mnu_opt.insert_command(1,label="Font decrease",underline=5,command=lambda: self.text.decrease_font(),accelerator="Ctrl-Minus")        
         # insert new menu points
         frame=self.get_frame()
         # insert tk.Text now in a PanedWindow
@@ -154,6 +154,7 @@ class PumlEditor(GuiBaseClass):
             self.text.update_highlights()
             self.text.edit_modified(False)
     def file_save (self,evt=None):
+        print(self.filename)
         if self.filename == "":
             self.file_save_as()
         else:
@@ -168,7 +169,7 @@ class PumlEditor(GuiBaseClass):
             title='Select filename to save',
             filetypes=self.filetypes,
             initialdir=os.path.dirname(self.filename))
-        if filename != "" and filename is str:
+        if filename != "" and type(filename) is str:
             self.filename = filename
             self.file_save()
     def file_insert (self):
@@ -272,7 +273,7 @@ Component --* BaseClass
 ChildClass --> BaseClass
 @enduml
 ''')
-
+        self.text.update_highlights()
     def template_lists (self,typecmd="listfonts",comment="https://plantuml.com/font"):
         self.text.delete('1.0', 'end')
         self.text.insert("end",f"""@startuml
@@ -373,6 +374,7 @@ user }|--|| city
 '''
         self.text.delete('1.0', 'end')
         self.text.insert('end', db_uml)
+        self.text.update_highlights()
     def exit(self):
         if (self.text.edit_modified()):
             answer = mbox.askyesnocancel('Question ...', 'Text was changed!\n\nDo you like to save the file\nbefore you quit the application?', icon='warning')

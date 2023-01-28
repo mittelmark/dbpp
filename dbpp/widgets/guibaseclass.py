@@ -82,11 +82,11 @@ StatusBar --* GuiBaseClass
 ```
         
 """
-
+import sys
+import re
 import tkinter as tk
 import tkinter.ttk as ttk
 import tkinter.messagebox as mbox
-import sys
 import dbpp.widgets.statusbar as sb
 class GuiBaseClass():
   """The class to build your Tkinter applications on.
@@ -107,7 +107,9 @@ class GuiBaseClass():
       if root is None:
          root = tk.Tk()
       if title != '':
-         self.root.title = title         
+         root.title(title)
+      else:
+        root.title("GuiBaseClass application")
       self.root=root
       self.author = author
       self.title  = title
@@ -207,7 +209,7 @@ class GuiBaseClass():
       self.menu['Edit'].add_separator()
       self.menu['Edit'].add_command(label="Select All",underline=7,accelerator="Ctrl-Shift-/")
       self.edittarget=target   
-      self.menu['Edit'].config(postcommand=self.__edit_select)     
+      self.menu['Edit'].config(postcommand=self._edit_select)     
       self.root.bind
   def set_edit_target(self,target):
       """Sets to target for the Edit menu entry to the given tk.Text widget."""
@@ -216,8 +218,8 @@ class GuiBaseClass():
       """Sets the title of the application."""
       self.root.title(title)
   # private functions
-  def __edit_select(self,evt=None):
-      if not(self.edittarget):
+  def _edit_select(self,evt=None):
+      if self.edittarget is None:
         for i in range(0,self.menu['Edit'].index('end')+1):
             if (self.menu['Edit'].type(i) in ['command','radiobutton','checkbutton']):
                 self.menu['Edit'].entryconfig(i,state="disabled")
@@ -250,9 +252,9 @@ class GuiBaseClass():
                         self.menu['Edit'].entryconfigure(i, command=lambda: self.edittarget.event_generate("<<Paste>>"),state="active")
                 elif (self.menu['Edit'].entrycget(i,"label") == "Select All"):
                     if len(self.edittarget.get('1.0','end')) > 1:
-                        self.menu['Edit'].entryconfigure(i, command=self.__edit_target_selectAll,state="active")
+                        self.menu['Edit'].entryconfigure(i, command=self._edit_target_select_all,state="active")
 
-  def __edit_target_select_all(self,evt=None):
+  def _edit_target_select_all(self,evt=None):
         self.edittarget.tag_add('sel','1.0','end')
         # stop additional event's which might be bound to Ctrl-a 
         # like jumping cursor to the beginning of the line
@@ -269,7 +271,7 @@ class GuiBaseClass():
           sys.exit(0)
   def about(self):
       """Shows a messabox for the application."""
-      tk.messagebox.showinfo('About', re.sub("(.+?)-?.+", "\\1",self.root.title),
+      tk.messagebox.showinfo('About', re.sub("(.+)-?.*", "\\1",self.root.title),
             icon='info')
 if __name__ == '__main__':
     root=tk.Tk()
