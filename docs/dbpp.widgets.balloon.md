@@ -62,7 +62,7 @@ top.mainloop()
 
 Copyright: @ Detlef Groth, University of Potsdam 
 
-See also: [GuiBaseClass](guibaseclass.md) 
+See also: [GuiBaseClass](dbpp.widgets.guibaseclass.md) 
 
 License: MIT 
 

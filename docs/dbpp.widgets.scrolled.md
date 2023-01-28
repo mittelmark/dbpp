@@ -42,19 +42,19 @@ Except for the Scrolled function there is no function available for the Scrolled
  
 
 ```
-import tkinter as tk
-import tkinter.ttk as ttk
-from dbpp.widgets.scrolled import Scrolled
-root=tk.Tk()
-nframe=ttk.Frame(root)
-text=tk.Text(nframe,wrap='none')
-Scrolled(text)
-for i in range(0,30):
-    text.insert('end',"Hello very long line text ...
-")
-# pack the parent frame
-nframe.pack(side='top',fill='both',expand=True)
-root.mainloop()
+
+     >>> import tkinter as tk
+     >>> import tkinter.ttk as ttk
+     >>> from dbpp.widgets.scrolled import Scrolled
+     >>> root=tk.Tk()
+     >>> nframe=ttk.Frame(root)
+     >>> text=tk.Text(nframe,wrap='none')
+     >>> for i in range(0,30):
+     ...     text.insert('end','Hello World! In a very long line!\n')
+     >>> Scrolled(text)
+     >>> nframe.pack(side='top',fill='both',expand=True)
+     >>> root.mainloop()
+
 ``` 
 
 Copyright: @ Detlef Groth, 2023, University of Potsdam, Germany 
@@ -66,7 +66,7 @@ License: MIT
 
 ---
 
-<a href="../dbpp/widgets/scrolled.py#L40"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/scrolled.py#L41"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>function</kbd> `Scrolled`
 

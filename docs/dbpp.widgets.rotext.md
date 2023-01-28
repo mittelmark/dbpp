@@ -44,9 +44,9 @@ This is a text widget derived from the tk.Text widget where the user can't chang
 ```
 
      >>> import tkinter as tk
-     >>> import dbpp.widgets.RoText as RoText
+     >>> import dbpp.widgets.rotext as rotext
      >>> root= tk.Tk()   
-     >>> rtext = RoText.RoText(root) 
+     >>> rtext = rotext.RoText(root) 
      >>> rtext.cmd("ins","end","Hello World!")
      >>> root.title('RoTtext example')
      ''

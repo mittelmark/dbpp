@@ -32,7 +32,7 @@
 # <kbd>module</kbd> `widgets.autoscrollbar`
 Provides ttk.Scrollbars for widgets with autohide functionality if not needed. 
 
-This a scrollbar which will hide itself if the widget for which they are configured do not acutally need scrollbars, for instance a text widget, where the current geometry is large enought to display all text. The widget and the the scrollbars will be gridded within the same geometry manager,  so it usually required to place the scrollbars and the widget into the same frame without other widgets.  **This widget requires some effort to create scollbars, if you just like to have a simpler procedure  to add those scrollbars use the [Scrolled](scrolled.md) method.** 
+This a scrollbar which will hide itself if the widget for which they are configured do not acutally need scrollbars, for instance a text widget, where the current geometry is large enought to display all text. The widget and the the scrollbars will be gridded within the same geometry manager,  so it usually required to place the scrollbars and the widget into the same frame without other widgets.  **This widget requires some effort to create scollbars, if you just like to have a simpler procedure  to add those scrollbars use the [Scrolled](dbpp.widgets.scrolled.md) method.** 
 
 
 

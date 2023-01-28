@@ -40,29 +40,33 @@ This widget provides a statusbar with Label for text message and a progressbar  
  
 
 ```
-import tkinter as tk
-from dbpp.widgets.statusbar import StatusBar
-root = tk.Tk()
-tk.Frame(root, width=200, height=100).pack()
-status = StatusBar(root)
-status.pack(side=tk.BOTTOM, fill=tk.X)
-status.set("Connecting...")
-status.progress(25)
-root.mainloop()
+
+     >>> import tkinter as tk
+     >>> from dbpp.widgets.statusbar import StatusBar
+     >>> root = tk.Tk()
+     >>> tk.Frame(root, width=200, height=100).pack()
+     >>> status = StatusBar(root)
+     >>> status.pack(side=tk.BOTTOM, fill=tk.X)
+     >>> status.set('Connecting...')
+     >>> status.progress(25)
+     >>> root.update_idletasks()
+     >>> root.after(1000)
+     >>> root.mainloop()
+     
 ``` 
 
 
 
 ---
 
-<a href="../dbpp/widgets/statusbar.py#L27"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/statusbar.py#L31"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>class</kbd> `StatusBar`
 
 
 
 
-<a href="../dbpp/widgets/statusbar.py#L29"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/statusbar.py#L33"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `__init__`
 
@@ -88,7 +92,7 @@ Construct the widget within the given master widget
 
 ---
 
-<a href="../dbpp/widgets/statusbar.py#L67"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/statusbar.py#L71"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `clear`
 
@@ -100,7 +104,7 @@ Clears the status message.
 
 ---
 
-<a href="../dbpp/widgets/statusbar.py#L72"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/statusbar.py#L76"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `progress`
 
@@ -112,7 +116,7 @@ Sets the progress value (n) in the progressbar subwidget.
 
 ---
 
-<a href="../dbpp/widgets/statusbar.py#L51"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/statusbar.py#L55"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `set`
 
