@@ -28,9 +28,12 @@ import tkinter.filedialog as filedialog
 from dbpp.widgets.guibaseclass import GuiBaseClass
 from dbpp.kroki.KrokiEncoder import KrokiEncoder
 from dbpp.widgets.scrolled import Scrolled
-import dbpp.widgets.TextMixins as TextMixins
+import dbpp.widgets.textmixins as tmx
 # create a Mixin class 
-class text(tk.Text,TextMixins.TextFontIncreaserMixin,TextMixins.TextCuaBindingsMixin,TextMixins.TextHighLightMixin): pass
+class text(tk.Text,
+    tmx.TextFontIncreaserMixin,
+    tmx.TextCuaBindingsMixin,
+    tmx.TextHighLightMixin): pass
 class PumlEditor(GuiBaseClass):
     def __init__(self,root):
         super().__init__(root)

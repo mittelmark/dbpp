@@ -17,7 +17,7 @@ Examples:
 
 ```
 import tkinter as tk
-import dbpp.widget.Ctext as Ctext
+import dbpp.widget.ctext as Ctext
 root= tk.Tk() 	
 ctext = Ctext(root) 
 ctext.add_highlight_class('DML1', 'blue', ['select','SELECT','from','FROM'])

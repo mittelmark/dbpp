@@ -9,7 +9,7 @@ Examples:
 
 ```
 import tkinter as tk
-from dbpp.widgets.SqlText import SqlText
+from dbpp.widgets.sqltext import SqlText
 root= tk.Tk() 	
 ctext = SqlText(root,background='gray90',border=5,relief='flat') 
 root.title('SqlText example') 
@@ -32,7 +32,7 @@ root.mainloop()
 import os
 import tkinter as tk
 import tkinter.font as tkfont
-import dbpp.widgets.Ctext as Ctext
+import dbpp.widgets.ctext as Ctext
 
 class SqlText(Ctext.Ctext):
     """Python wrapper for the Tklib ctext widget which supports SQL highlighting.

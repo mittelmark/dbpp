@@ -18,9 +18,9 @@ root = tk.Tk()
 class text(tk.Text,TextFontIncreaserMixin,TextCuaBindingsMixin,
     TextHighLightMixin): pass
 txt  = text(root,undo=True) 
-txt.bindTextResize()
-txt.bindCua()
-txt.addHighLights(commentline="'",commentstart="/'",
+txt.bind_text_resize()
+txt.bind_cua()
+txt.add_highlights(commentline="'",commentstart="/'",
     commentend="'/",keywords=[ ['@startuml','@enduml'], ['class', 'entity', 'table'] ])
 txt.insert("1.0","
 @startuml
@@ -30,7 +30,7 @@ class B
 A --> B
 @enduml
 ")
-txt.updateHighLights()
+txt.update_highlights()
 txt.pack(side='top',fill='both',expand=True)
 root.mainloop()        
 ```
@@ -59,7 +59,7 @@ class TextFontIncreaserMixin:
     
     Now you can presse *Ctrl-Plus* to increase the font and *Ctrl-Minus* to decrease the fontsize.
     """
-    def bindTextResize (self,increase="Control-plus",decrease="Control-minus",font=None):
+    def bind_text_resize (self,increase="Control-plus",decrease="Control-minus",font=None):
         """
         Add the actual bindings for increasing and decreasing the fontsize using the
         *Ctrl-Plus* and *Ctrl-Minus* keys combinations.
@@ -85,14 +85,14 @@ class TextFontIncreaserMixin:
                 font="Courier"
         self.font=tkfont.Font(family=font,size=12)
         self.configure(font=self.font)
-        self.bind(f"<{increase}>",self.increaseFont)
-        self.bind(f"<{decrease}>",self.decreaseFont)
-    def increaseFont(self,evt=None):
+        self.bind(f"<{increase}>",self.increase_font)
+        self.bind(f"<{decrease}>",self.decrease_font)
+    def increase_font(self,evt=None):
         """Increase the font size of the widget."""
         size = int(self.font.cget("size"))
         size += 2
         self.font.configure(size=size)
-    def decreaseFont (self,evt=None):
+    def decrease_font (self,evt=None):
         """Decrease the font size of the widget."""
         size = int(self.font.cget("size"))
         size -= 2
@@ -112,14 +112,14 @@ class TextCuaBindingsMixin:
     class MText(tk.Text,dbp.widgets.TextMixins.TextCuaBindingsMixin): pass
     root = tk.Tk()
     text = MText(root)
-    text.bindCua()
+    text.bind_cua()
     ```
     
     Now you can presse *Ctrl-a* for instance to select the complete text, you get as well
     a widget status aware context menu if you press the right mouse button in the text widget.
     """
 
-    def bindCua (self):
+    def bind_cua (self):
         """
         Adds the actual bindings Ctrl-x, Ctrl-c, Ctrl-v, Control-z, Control-a
         known as well as CUA bindings and in addition a right click context mene
@@ -190,14 +190,14 @@ class TextHighLightMixin:
     class MText(tk.Text,dbpp.widgets.TextMixins.TextHighLightMixin): pass
     root = tk.Tk()
     text = MText(root)
-    text.addHighLights(linecomment="^\s*'",keywords=[ 
+    text.add_highlights(linecomment="^\s*'",keywords=[ 
         ['@startuml','@enduml', '@startmindmap','@endmindmap'], 
         ['class', 'entity', 'table'] ])
     ```
     
     """
 
-    def addHighLights(self,commentline="^\s*#",commentstart=None,commentend=None,keywords=list(),strings=True):
+    def add_highlights(self,commentline="^\s*#",commentstart=None,commentend=None,keywords=list(),strings=True):
         """
         Adds the actual syntax highlighting and the binding for updates of the high lighting after pressing Up, Down or Return.
         For updating after a new file is loaded see updateHighLights
@@ -233,7 +233,7 @@ class TextHighLightMixin:
         self.tag_configure("red", foreground = "darkred")
         self.tag_configure("string", foreground = "tomato")        
         self.tags = ["orange", "blue", "purple", "green", "red"]
-    def updateHighLights (self):
+    def update_highlights (self):
         """
         Updates the current given syntax highlights for instance after
         loading a new file into the widget. If this file should support other
@@ -327,21 +327,21 @@ class TextHighLightMixin:
     def _KeyPressHighLights(self,evt):
         #if (evt.keysym == "space"):
         if (evt.keysym in ["Return","Up","Down"]): 
-            self.updateHighLights()        
+            self.update_highlights()        
 
 if __name__ == "__main__":
     root = tk.Tk()
     class text(tk.Text,TextFontIncreaserMixin,TextCuaBindingsMixin,TextHighLightMixin): pass
     txt  = text(root,undo=True) 
-    txt.bindTextResize()
-    txt.bindCua()
-    txt.addHighLights(commentline="'",commentstart="/'",commentend="'/",keywords=[ 
+    txt.bind_text_resize()
+    txt.bind_cua()
+    txt.add_highlights(commentline="'",commentstart="/'",commentend="'/",keywords=[ 
                 ['@startuml','@enduml','@startditaa','@enddita','@startmindmap','@endmindmap'], 
                 ['class','abstract','annotation','interface','class', 'object','entity', 'table','node','package','namespace','extends','implements'],
                 ['hide', 'show','remove'],
                 ['skinparam','style','scale','header', 'footer', 'title','note', 'end note'],
                 ['!define','!theme','!function', '!endfunction','!return','!procedure','!endprocedure','!include','!includesub'] ])
     txt.insert("1.0","@startuml\n'This is a comment\nclass A\nclass B\nA --> B\n@enduml\n")
-    txt.updateHighLights()
+    txt.update_highlights()
     txt.pack(side='top',fill='both',expand=True)
     root.mainloop()        
