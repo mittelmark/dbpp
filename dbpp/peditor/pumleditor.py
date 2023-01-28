@@ -41,7 +41,7 @@ class PumlEditor(GuiBaseClass):
         # use mnu.insert_command(index,options) for 
         # insering new menues at a certain index
         # before File->Exit for instance
-        mnu_file=self.getMenu('File')      
+        mnu_file=self.get_menu('File')      
         mnu_file.insert_command(0,label="New ...",underline=0,command=self.file_new, accelerator="Ctrl-n")
         mnu_file.insert_command(1,label="Open ...",underline=0,command=self.file_open, accelerator="Ctrl-o")
         mnu_file.insert_command(2,label="Save ...",underline=0,command=self.file_save, accelerator="Ctrl-s")        
@@ -51,11 +51,11 @@ class PumlEditor(GuiBaseClass):
         self.root.bind("<Control-o>", self.file_open)
         self.root.bind("<Control-s>", self.file_save)
         self.root.bind("<Control-S>", self.file_save_as)
-        self.addEditMenu(target=None)
-        mnu_url=self.getMenu('URL',underline=0)
+        self.add_edit_menu(target=None)
+        mnu_url=self.get_menu('URL',underline=0)
         mnu_url.insert_command(0,label="Convert Text to URL",underline=8,command=self.text2url)
-        mnu_url.insert_command(1,label="Convert URL to Text",underline=8,command=self.url2text)        
-        mnu_tpl=self.getMenu('Templates',underline=0)
+        mnu_url.insert_command(1,label="Convert URL to Text",underline=8,command=self.url2text)
+        mnu_tpl=self.get_menu('Templates',underline=0)
         mnu_tpl.insert_command(0,label="Class Diagram",underline=0,command=self.template_class)
         mnu_tpl.insert_command(1,label="Database",underline=0,command=self.template_database)        
         mnu_tpl.insert_command(2,label="Ditaa",underline=1,command=self.template_ditaa)
@@ -68,21 +68,20 @@ class PumlEditor(GuiBaseClass):
         mnu_tpl.insert_command(9,label="List libraries",underline=8,command=lambda: self.template_lists("stdlib","https://plantuml.com/stdlib"))
         mnu_tpl.insert_command(10,label="List version",underline=6,command=lambda: self.template_lists("version","https://plantuml.com/faq"))        
         mnu_tpl.insert_command(11,label="List license",underline=9,command=lambda: self.template_lists("license","https://plantuml.com/faq"))                
-        mnu_opt=self.getMenu('Options',underline=0)
+        mnu_opt=self.get_menu('Options',underline=0)
         mnu_opt.insert_command(0,label="Font increase",underline=5,command=lambda: self.text.increaseFont(), accelerator="Ctrl-Plus")
         mnu_opt.insert_command(1,label="Font decrease",underline=5,command=lambda: self.text.decreaseFont(),accelerator="Ctrl-Minus")        
         # insert new menu points
-        frame=self.getFrame()
+        frame=self.get_frame()
         # insert tk.Text now in a PanedWindow
         self.pw = ttk.PanedWindow(frame,orient="horizontal")
         self.tframe = ttk.Frame(self.pw)
         self.text = text(self.tframe,wrap='word',undo=True,border=6,relief="flat")
-        self.text.bindTextResize()
+        self.text.bind_text_resize()
 
-        self.text.bindCua()
-        self.setEditTarget(self.text)
-        #self.text.bind("<<Redo>>",lambda evt: self.text.updateHighLights())
-        self.text.addHighLights(commentline="'",commentstart="/'",
+        self.text.bind_cua()
+        self.set_edit_target(self.text)
+        self.text.add_highlights(commentline="'",commentstart="/'",
             commentend="'/",keywords=[ 
                 ['@startuml','@enduml','@startditaa','@enddita','@startmindmap','@endmindmap'], 
                 ['abstract','annotation','interface','class', 'object','entity', 'table','node','package','namespace','extends','implements'],
@@ -100,8 +99,8 @@ class PumlEditor(GuiBaseClass):
         self.filename    = ""
         self.insertfile  = ""
         self.lastfiledir = os.getcwd()
-        self.addStatusBar()
-        self.message("Hello I am Puml!!")
+        self.add_statusbar()
+        self.message("PumlEditor loaded!")
         self.filetypes=(
             ('Puml files', '*.pml'),
             ('Ditaa files', '*.dit'),            
@@ -151,25 +150,25 @@ class PumlEditor(GuiBaseClass):
             self.filename = filename
             self.message(f"File {filename} was opened!")
             self.image_update()
-            self.setAppTitle("PumlEditor 2022 - " + os.path.basename(self.filename))
-            self.text.updateHighLights()
+            self.set_app_title("PumlEditor 2022 - " + os.path.basename(self.filename))
+            self.text.update_highlights()
             self.text.edit_modified(False)
     def file_save (self,evt=None):
         if self.filename == "":
-            self.file_save_as
+            self.file_save_as()
         else:
             fin = open(self.filename, "w")
             fin.write(self.text.get("1.0","end"))
             fin.close()
             self.image_update()            
-            self.setAppTitle("PumlEditor 2022 - " + os.path.basename(self.filename))
+            self.set_app_title("PumlEditor 2022 - " + os.path.basename(self.filename))
             self.text.edit_modified(False)
     def file_save_as (self):        
         filename=filedialog.asksaveasfilename(
             title='Select filename to save',
             filetypes=self.filetypes,
             initialdir=os.path.dirname(self.filename))
-        if filename != "":
+        if filename != "" and filename is str:
             self.filename = filename
             self.file_save()
     def file_insert (self):
@@ -281,7 +280,7 @@ ChildClass --> BaseClass
 ' URL: {comment}
 @enduml
 """)
-        self.text.updateHighLights()
+        self.text.update_highlights()
 
     def template_ditaa (self):
         self.text.delete('1.0', 'end')
@@ -301,7 +300,7 @@ ditaa
 @enduml
 '''
 )
-        self.text.updateHighLights()
+        self.text.update_highlights()
 
     def template_latex (self):
         self.text.delete('1.0', 'end')
@@ -311,7 +310,7 @@ ditaa
 @enduml
 '''
 )
-        self.text.updateHighLights()
+        self.text.update_highlights()
 
     def template_mindmap (self):
         self.text.delete('1.0', 'end')
@@ -335,7 +334,7 @@ mindmapDiagram {
 -- C1 <<salmon>> 
 -- C2 
 @endmindmap''')
-        self.text.updateHighLights()
+        self.text.update_highlights()
 
     def template_database (self):
         db_uml = '''@startuml
@@ -374,7 +373,7 @@ user }|--|| city
 '''
         self.text.delete('1.0', 'end')
         self.text.insert('end', db_uml)
-    def _Exit(self):
+    def exit(self):
         if (self.text.edit_modified()):
             answer = mbox.askyesnocancel('Question ...', 'Text was changed!\n\nDo you like to save the file\nbefore you quit the application?', icon='warning')
             if (answer is None):
@@ -383,10 +382,10 @@ user }|--|| city
                 self.file_save()
             sys.exit(0)
         else:
-            super()._Exit()
+            super().exit()
         
         
-    def _About (self):
+    def about (self):
         mbox.showinfo(title="About PumlEditor",message="PumlEditor 2022\nAuthor: Detlef Groth\nUniversity of Potsdam")
 
 def main(argv):
@@ -397,7 +396,7 @@ def main(argv):
     if len(argv) > 1:
         if os.path.exists(sys.argv[1]):
             pedit.file_open(sys.argv[1])
-    pedit.mainLoop() 
+    pedit.run() 
             
 if __name__ == '__main__':
     main(sys.argv)
