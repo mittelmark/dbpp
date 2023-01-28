@@ -93,9 +93,9 @@ class RoText(tk.Text):
 if __name__ == '__main__': 	
     root= tk.Tk() 	
     import dbpp
-    class TText(RoText,dbpp.widgets.TextMixins.TextFontIncreaserMixin): pass
+    class TText(RoText,dbpp.widgets.textmixins.TextFontIncreaserMixin): pass
     rtext = TText(root) 
-    rtext.bindTextResize()
+    rtext.bind_text_resize()
     rtext.cmd("ins","end","Hello World!")
     root.title('RoText example') 
     rtext.pack(fill="both",expand=True)	

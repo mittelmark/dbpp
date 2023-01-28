@@ -32,5 +32,5 @@ import dbpp.widgets.XTreeView
 import dbpp.widgets.textmixins
 import dbpp.widgets.ctext
 import dbpp.widgets.sqltext
-import dbpp.widgets.RoText
+import dbpp.widgets.rotext
 
