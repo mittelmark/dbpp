@@ -2,7 +2,7 @@
 """
 Extension of the TableView widget which can as well insert lists into the ttk.Treeview widget.
 
-The widget TableView provides an extension for the [TableView](TableView.html) 
+The widget TableView provides an extension for the [TableView](tableview.md) 
 table widget with a readData function, getting header and lists 
 inheriting all methods and options from `TableView`.
 

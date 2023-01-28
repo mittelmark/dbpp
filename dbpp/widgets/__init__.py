@@ -7,7 +7,7 @@ for the Master course Bioinformatics at the University of Potsdam.
 The following widgets are provided:
 
 - [GuiBaseClass](dbpp.widgets.guibaseclass.md) - base class to build your own Tkinter applications
-- [AutoScrollbar](dbpp.widgets.autoscrollbar.md) - ttk.Scrollbar which autohides if not required, easier to use is the [Scrolled](Scrolled.md) method
+- [AutoScrollbar](dbpp.widgets.autoscrollbar.md) - ttk.Scrollbar which autohides if not required, easier to use is the [Scrolled](scrolled.md) method
 - [Balloon](dbpp.widgets.balloon.md) - tooltip widgets which can use balloon popups or existing label widgets
 - [Ctext](dbpp.widgets.ctext.md) - syntax highlighting widget based on Tcl tklib's ctext widget
 - [LabEntry](dbpp.widgets.labentry.md) - composite widget out of ttk.Label and ttk.Entry 
