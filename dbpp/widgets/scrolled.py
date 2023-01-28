@@ -14,7 +14,7 @@ Examples:
 ```
 import tkinter as tk
 import tkinter.ttk as ttk
-from dbpp.widgets.Scrolled import Scrolled
+from dbpp.widgets.scrolled import Scrolled
 root=tk.Tk()
 nframe=ttk.Frame(root)
 text=tk.Text(nframe,wrap='none')
@@ -26,16 +26,16 @@ nframe.pack(side='top',fill='both',expand=True)
 root.mainloop()
 ```
 
-Copyright: @ Detlef Groth, University of Potsdam, Germany
+Copyright: @ Detlef Groth, 2023, University of Potsdam, Germany
 
-See also: [GuiBaseClass](GuiBaseClass.md), [DGAutoScrollbar](DGAutoScrollbar.md)
+See also: [GuiBaseClass](guibaseclass.md), [AutoScrollbar](autoscrollbar.md)
 
 License: MIT
 """
 
 import tkinter as tk 
 import tkinter.ttk as ttk
-import dbpp.widgets.AutoScrollbar as AutoScrollbar
+import dbpp.widgets.autoscrollbar as asb
 
 def Scrolled(widget):
     """Add autohide scrollbars to your widgets.
@@ -46,8 +46,8 @@ def Scrolled(widget):
     # a scrollbar that hides itself if it's not needed.  only
     # works if you use the grid geometry manager.
     nframe = widget.nametowidget(widget.winfo_parent())
-    tsbv=AutoScrollbar.AutoScrollbar(nframe)
-    tsbh=AutoScrollbar.AutoScrollbar(nframe,orient='horizontal')
+    tsbv=asb.AutoScrollbar(nframe)
+    tsbh=asb.AutoScrollbar(nframe,orient='horizontal')
     widget.configure(yscrollcommand=tsbv.set,
             xscrollcommand=tsbh.set)
     tsbv.grid(row=0, column=1, sticky='ns')

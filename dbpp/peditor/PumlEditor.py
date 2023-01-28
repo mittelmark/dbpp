@@ -25,9 +25,9 @@ import tkinter as tk
 import tkinter.ttk as ttk
 import tkinter.messagebox as mbox
 import tkinter.filedialog as filedialog
-from dbpp.widgets.GuiBaseClass import GuiBaseClass
+from dbpp.widgets.guibaseclass import GuiBaseClass
 from dbpp.kroki.KrokiEncoder import KrokiEncoder
-from dbpp.widgets.Scrolled import Scrolled
+from dbpp.widgets.scrolled import Scrolled
 import dbpp.widgets.TextMixins as TextMixins
 # create a Mixin class 
 class text(tk.Text,TextMixins.TextFontIncreaserMixin,TextMixins.TextCuaBindingsMixin,TextMixins.TextHighLightMixin): pass
@@ -39,32 +39,32 @@ class PumlEditor(GuiBaseClass):
         # insering new menues at a certain index
         # before File->Exit for instance
         mnu_file=self.getMenu('File')      
-        mnu_file.insert_command(0,label="New ...",underline=0,command=self.fileNew, accelerator="Ctrl-n")
-        mnu_file.insert_command(1,label="Open ...",underline=0,command=self.fileOpen, accelerator="Ctrl-o")
-        mnu_file.insert_command(2,label="Save ...",underline=0,command=self.fileSave, accelerator="Ctrl-s")        
-        mnu_file.insert_command(3,label="Save As ...",underline=1,command=self.fileSaveAs,accelerator="Ctrl-Shift-s")
-        mnu_file.insert_command(4, label="Insert ...", command=self.fileInsert, underline=0)
-        self.root.bind("<Control-n>", self.fileNew)
-        self.root.bind("<Control-o>", self.fileOpen)
-        self.root.bind("<Control-s>", self.fileSave)
-        self.root.bind("<Control-S>", self.fileSaveAs)
+        mnu_file.insert_command(0,label="New ...",underline=0,command=self.file_new, accelerator="Ctrl-n")
+        mnu_file.insert_command(1,label="Open ...",underline=0,command=self.file_open, accelerator="Ctrl-o")
+        mnu_file.insert_command(2,label="Save ...",underline=0,command=self.file_save, accelerator="Ctrl-s")        
+        mnu_file.insert_command(3,label="Save As ...",underline=1,command=self.file_save_as,accelerator="Ctrl-Shift-s")
+        mnu_file.insert_command(4, label="Insert ...", command=self.file_insert, underline=0)
+        self.root.bind("<Control-n>", self.file_new)
+        self.root.bind("<Control-o>", self.file_open)
+        self.root.bind("<Control-s>", self.file_save)
+        self.root.bind("<Control-S>", self.file_save_as)
         self.addEditMenu(target=None)
         mnu_url=self.getMenu('URL',underline=0)
         mnu_url.insert_command(0,label="Convert Text to URL",underline=8,command=self.text2url)
         mnu_url.insert_command(1,label="Convert URL to Text",underline=8,command=self.url2text)        
         mnu_tpl=self.getMenu('Templates',underline=0)
-        mnu_tpl.insert_command(0,label="Class Diagram",underline=0,command=self.templateClass)
-        mnu_tpl.insert_command(1,label="Database",underline=0,command=self.templateDatabase)        
-        mnu_tpl.insert_command(2,label="Ditaa",underline=1,command=self.templateDitaa)
-        mnu_tpl.insert_command(3,label="Mindmap",underline=0,command=self.templateMindmap)        
+        mnu_tpl.insert_command(0,label="Class Diagram",underline=0,command=self.template_class)
+        mnu_tpl.insert_command(1,label="Database",underline=0,command=self.template_database)        
+        mnu_tpl.insert_command(2,label="Ditaa",underline=1,command=self.template_ditaa)
+        mnu_tpl.insert_command(3,label="Mindmap",underline=0,command=self.template_mindmap)        
         mnu_tpl.insert_separator(4)
-        mnu_tpl.insert_command(5,label="List colors",underline=6,command=lambda: self.templateLists("colors"))        
-        mnu_tpl.insert_command(6,label="List fonts",underline=6,command=lambda: self.templateLists("listfonts"))
-        mnu_tpl.insert_command(7,label="List icons",underline=8,command=lambda: self.templateLists("listopeniconic","https://plantuml.com/openiconic"))        
-        mnu_tpl.insert_command(8,label="List sprites",underline=6,command=lambda: self.templateLists("listsprites","https://plantuml.com/sprite")) 
-        mnu_tpl.insert_command(9,label="List libraries",underline=8,command=lambda: self.templateLists("stdlib","https://plantuml.com/stdlib"))
-        mnu_tpl.insert_command(10,label="List version",underline=6,command=lambda: self.templateLists("version","https://plantuml.com/faq"))        
-        mnu_tpl.insert_command(11,label="List license",underline=9,command=lambda: self.templateLists("license","https://plantuml.com/faq"))                
+        mnu_tpl.insert_command(5,label="List colors",underline=6,command=lambda: self.template_lists("colors"))        
+        mnu_tpl.insert_command(6,label="List fonts",underline=6,command=lambda: self.template_lists("listfonts"))
+        mnu_tpl.insert_command(7,label="List icons",underline=8,command=lambda: self.template_lists("listopeniconic","https://plantuml.com/openiconic"))        
+        mnu_tpl.insert_command(8,label="List sprites",underline=6,command=lambda: self.template_lists("listsprites","https://plantuml.com/sprite")) 
+        mnu_tpl.insert_command(9,label="List libraries",underline=8,command=lambda: self.template_lists("stdlib","https://plantuml.com/stdlib"))
+        mnu_tpl.insert_command(10,label="List version",underline=6,command=lambda: self.template_lists("version","https://plantuml.com/faq"))        
+        mnu_tpl.insert_command(11,label="List license",underline=9,command=lambda: self.template_lists("license","https://plantuml.com/faq"))                
         mnu_opt=self.getMenu('Options',underline=0)
         mnu_opt.insert_command(0,label="Font increase",underline=5,command=lambda: self.text.increaseFont(), accelerator="Ctrl-Plus")
         mnu_opt.insert_command(1,label="Font decrease",underline=5,command=lambda: self.text.decreaseFont(),accelerator="Ctrl-Minus")        
@@ -121,19 +121,19 @@ class PumlEditor(GuiBaseClass):
         self.imagewidget.configure(image=self.image)
         self.text.edit_modified(False)
         # Have fun!
-    def fileNew (self,evt=None):
+    def file_new (self,evt=None):
         if (self.text.edit_modified()):
             answer = mbox.askyesnocancel('Question ...', 'Text was changed!\n\nDo you like to save the file?', icon='warning')
             if (answer is None):
                return
             elif (answer):
-                self.fileSave()
+                self.file_save()
         
         self.text.delete("1.0","end")
         self.filename = ""
         self.text.edit_modified(False)
         
-    def fileOpen (self,filename=''):
+    def file_open (self,filename=''):
         if (type(filename) == tk.Event):
             filename=""
         if filename == "":
@@ -147,29 +147,29 @@ class PumlEditor(GuiBaseClass):
                 self.text.insert('end',line)
             self.filename = filename
             self.message(f"File {filename} was opened!")
-            self.ImageUpdate()
+            self.image_update()
             self.setAppTitle("PumlEditor 2022 - " + os.path.basename(self.filename))
             self.text.updateHighLights()
             self.text.edit_modified(False)
-    def fileSave (self,evt=None):
+    def file_save (self,evt=None):
         if self.filename == "":
-            self.fileSaveAs
+            self.file_save_as
         else:
             fin = open(self.filename, "w")
             fin.write(self.text.get("1.0","end"))
             fin.close()
-            self.ImageUpdate()            
+            self.image_update()            
             self.setAppTitle("PumlEditor 2022 - " + os.path.basename(self.filename))
             self.text.edit_modified(False)
-    def fileSaveAs (self):        
+    def file_save_as (self):        
         filename=filedialog.asksaveasfilename(
             title='Select filename to save',
             filetypes=self.filetypes,
             initialdir=os.path.dirname(self.filename))
         if filename != "":
             self.filename = filename
-            self.fileSave()
-    def fileInsert (self):
+            self.file_save()
+    def file_insert (self):
         if self.insertfile == "" and self.filename == "":
             initialdir = os.getcwd()
         elif self.insertfile == "":
@@ -186,7 +186,7 @@ class PumlEditor(GuiBaseClass):
             
     def text2url (self):
         txt=self.text.get('1.0','end')
-        dia = self.getDiaType()
+        dia = self.get_dia_type()
         url=self.kroki.text2kroki(txt,dia=dia,ext="png")
         self.text.insert('end',"\n"+url)
     def url2text (self):
@@ -202,7 +202,7 @@ class PumlEditor(GuiBaseClass):
         else:
             txt=self.kroki.kroki2dia(url)
             self.text.insert("end","\n"+txt)
-    def getDiaType (self):
+    def get_dia_type (self):
         if bool(re.search("\\.pml$",self.filename)):
             dia="plantuml"
         elif bool(re.search("\\.dot$",self.filename)):
@@ -214,9 +214,9 @@ class PumlEditor(GuiBaseClass):
         else:
             dia="ditaa"
         return(dia)
-    def ImageUpdate (self):
+    def image_update (self):
         imgfile = re.sub(".[a-z]{3,4}$",".png",self.filename)
-        dia = self.getDiaType()
+        dia = self.get_dia_type()
         try: 
             self.kroki.dia2file(self.filename,dia=dia,imagefile=imgfile)
             if os.path.exists(imgfile):
@@ -232,7 +232,7 @@ class PumlEditor(GuiBaseClass):
             self.root.after(2000)
             self.text.configure(bg=bg)
             self.message("Error in diagram code!")
-    def templateClass (self):
+    def template_class (self):
         self.text.delete('1.0', 'end')
         self.text.insert("end",'''@startuml
 ' https://plantuml.com/class-diagram
@@ -271,7 +271,7 @@ ChildClass --> BaseClass
 @enduml
 ''')
 
-    def templateLists (self,typecmd="listfonts",comment="https://plantuml.com/font"):
+    def template_lists (self,typecmd="listfonts",comment="https://plantuml.com/font"):
         self.text.delete('1.0', 'end')
         self.text.insert("end",f"""@startuml
 {typecmd}
@@ -280,7 +280,7 @@ ChildClass --> BaseClass
 """)
         self.text.updateHighLights()
 
-    def templateDitaa (self):
+    def template_ditaa (self):
         self.text.delete('1.0', 'end')
         self.text.insert("end",'''@startuml
 ' https://plantuml.com/ditaa
@@ -300,7 +300,7 @@ ditaa
 )
         self.text.updateHighLights()
 
-    def templateLaTeX (self):
+    def template_latex (self):
         self.text.delete('1.0', 'end')
         self.text.insert("end",'''@startuml
 ' https://plantuml.com/ascii-math
@@ -310,7 +310,7 @@ ditaa
 )
         self.text.updateHighLights()
 
-    def templateMindmap (self):
+    def template_mindmap (self):
         self.text.delete('1.0', 'end')
         self.text.insert("end",'''@startmindmap
 ' https://plantuml.com/mindmap-diagram
@@ -334,7 +334,7 @@ mindmapDiagram {
 @endmindmap''')
         self.text.updateHighLights()
 
-    def templateDatabase (self):
+    def template_database (self):
         db_uml = '''@startuml
 !define primary_key(x) <b><color:#b8861b><&key></color> x</b>
 !define foreign_key(x) <color:#aaaaaa><&key></color> x
@@ -377,7 +377,7 @@ user }|--|| city
             if (answer is None):
                return
             elif (answer):
-                self.fileSave()
+                self.file_save()
             sys.exit(0)
         else:
             super()._Exit()
@@ -393,7 +393,7 @@ def main(argv):
     root.title("PumlEditor 2022")
     if len(argv) > 1:
         if os.path.exists(sys.argv[1]):
-            pedit.fileOpen(sys.argv[1])
+            pedit.file_open(sys.argv[1])
     pedit.mainLoop() 
             
 if __name__ == '__main__':

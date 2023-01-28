@@ -115,6 +115,29 @@ class SqlUtils():
                     else:
                         cursor.execute(istm,row)
         return(x-2)
+        
+    def sql2csv(self, tablename, csvfile):
+        """Exporting a table from a SQLite3 database to a CSV file
+        
+        Args:
+            tablename (str): name of the table to export
+            csvfile (str): name of the csv file for output 
+            
+        Returns:
+            int : number of data rows exported
+        """
+        cursor = connection.cursor()
+        with open(csvfile, "w") as f:
+            writer = csv.writer(f)
+            cursor.execute(f"SELECT * FROM {tablename}")
+            rows = cursor.fetchall()
+            writer.writerow([i[0] for i in cursor.description])
+            for row in rows:
+                writer.writerow(row)
+                
+        connection.close()
+        return(len(rows))
+        
     #    pass
     def getTables (self):
         """Return the names of the tables of the database."""

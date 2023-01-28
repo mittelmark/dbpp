@@ -55,7 +55,6 @@ root.mainloop()
 """
 import tkinter.ttk as ttk
 import tkinter as tk 
-import dbpp.widgets.AutoScrollbar as AutoScrollbar
 import dbpp.widgets.TableView as tv
 
 

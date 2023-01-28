@@ -52,7 +52,7 @@ root.mainloop()
 
 import tkinter.ttk as ttk
 import tkinter as tk 
-from dbpp.widgets.Scrolled import Scrolled
+from dbpp.widgets.scrolled import Scrolled
  
 class XTreeView (ttk.Treeview):
     """Extended ttk.Treeview widget."""
