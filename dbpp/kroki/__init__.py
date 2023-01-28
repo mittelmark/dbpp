@@ -38,4 +38,4 @@ Here is the image:
 If you like to change the image format to svg, just replace the png term with svg in the URL.
 """
 
-from . import KrokiEncoder
+from . import krokiencoder

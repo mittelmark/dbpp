@@ -9,7 +9,7 @@ You should be able to run this application from the terminal direct if the dbpp 
 The filename for a diagram is optional.
 """
 import os, sys
-import dbpp.peditor.PumlEditor as peditor
+import dbpp.peditor.pumleditor as peditor
 
 if __name__ == '__main__':
     peditor.main(sys.argv)

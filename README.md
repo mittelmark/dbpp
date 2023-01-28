@@ -36,25 +36,25 @@ $ python3 -m dbpp.peditor # should start the PumlEditor
 A Python package with the following Tkinter widgets 
 ([HTML documentation](http://htmlpreview.github.io/?https://github.com/mittelmark/dbpp/blob/master/docs/dbpp.widgets.html)):
 
-- [GuiBaseClass](docs/dbpp.widgets.GuiBaseClass.md) - base class to build your own Tkinter applications
-- [AutoScrollbar](docs/dbpp.widgets.AutoScrollbar.md) - a scrollbar which autohides if not required, easier to use is the [Scrolled](dbpp.widgets.Scrolled.md) method
-- [Balloon](docs/dbpp.widgets.Balloon.md) - a tooltip widgets which can use balloon popups or existing label widgets
-- [Ctext](docs/dbpp.widgets.Ctext.md) - a syntax highlighting widget based on Tcl tklib ctext widget
-- [LabEntry](docs/dbpp.widgets.LabEntry.md) - a composite widget out of ttk.Label and ttk.Entry 
-- [RoText](docs/dbpp.widgets.RoText.md) - read only tk.Text widget based on a Tcl widget created with Tcl's snit library
-- [Scrolled](docs/dbpp.widgets.Scrolled.md) - a helper functions to attach scrollbars to widgets
-- [SqlText](docs/dbpp.widgets.SqlText.md) - a Text widget with support for SQL highlighting based on Ctext
-- [StatusBar](docs/dbpp.widgets.StatusBar.md) - a statusbar having a label for messages and a progressbar
-- [TableView](docs/dbpp.widgets.TableView.md) - a ttk.Treeview widget optimized for tabular output
-- [TextMixins](docs/dbpp.widgets.TextMixins.md) - small addons for the tk.Text widget such as font increasing shortcuts, right click popups and others
-- [XTableView](docs/dbpp.widgets.XTableView.md) - an extended version of TableView which allows easily to read in list data
-- [XTreeView](docs/dbpp.widgets.XTreeView.md) - a ttk.Treeview widget which provides icon facilities
+- [GuiBaseClass](docs/dbpp.widgets.guibaseclass.md) - base class to build your own Tkinter applications
+- [AutoScrollbar](docs/dbpp.widgets.autoscrollbar.md) - a scrollbar which autohides if not required, easier to use is the [Scrolled](dbpp.widgets.scrolled.md) method
+- [Balloon](docs/dbpp.widgets.balloon.md) - a tooltip widgets which can use balloon popups or existing label widgets
+- [Ctext](docs/dbpp.widgets.ctext.md) - a syntax highlighting widget based on Tcl tklib ctext widget
+- [LabEntry](docs/dbpp.widgets.labentry.md) - a composite widget out of ttk.Label and ttk.Entry 
+- [RoText](docs/dbpp.widgets.rotext.md) - read only tk.Text widget based on a Tcl widget created with Tcl's snit library
+- [Scrolled](docs/dbpp.widgets.scrolled.md) - a helper functions to attach scrollbars to widgets
+- [SqlText](docs/dbpp.widgets.sqltext.md) - a Text widget with support for SQL highlighting based on Ctext
+- [StatusBar](docs/dbpp.widgets.statusbar.md) - a statusbar having a label for messages and a progressbar
+- [TableView](docs/dbpp.widgets.tableview.md) - a ttk.Treeview widget optimized for tabular output
+- [TextMixins](docs/dbpp.widgets.textmixins.md) - small addons for the tk.Text widget such as font increasing shortcuts, right click popups and others
+- [XTableView](docs/dbpp.widgets.xtableview.md) - an extended version of TableView which allows easily to read in list data
+- [XTreeView](docs/dbpp.widgets.xtreeview.md) - a ttk.Treeview widget which provides icon facilities
 
 ## Other packages
  
 
-- [dbpp.kroki.KrokiEncoder](docs/dbpp.kroki.KrokiEncoder.md) - class with functions to encode and decode diagrams as Kroki URL's
-- [dbpp.utils.SqlUtils](docs/dbpp.utils.SqlUtils.md) - class with utility functions for Python databases.
+- [dbpp.kroki.KrokiEncoder](docs/dbpp.kroki.krokiencoder.md) - class with functions to encode and decode diagrams as Kroki URL's
+- [dbpp.utils.SqlUtils](docs/dbpp.utils.sqlutils.md) - class with utility functions for Python databases.
 
 ## Applications
 
@@ -78,5 +78,5 @@ into an image which is downloaded in parallel to the diagram file.
 Here is shown how you can execute the program if the package is installed.
 
 ```
-$ python3 -m dbpp.peditor ?diagramfile$ &
+$ python3 -m dbpp.peditor ?diagramfile? &
 ```
