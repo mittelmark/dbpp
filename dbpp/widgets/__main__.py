@@ -7,7 +7,7 @@ from dbpp.widgets.guibaseclass import GuiBaseClass
 from dbpp.widgets.scrolled import Scrolled
 from dbpp.widgets.labentry import LabEntry
 from dbpp.widgets.balloon import Balloon
-from dbpp.widgets.xtableciew import XTableView as tv
+from dbpp.widgets.xtableview import XTableView as tv
 from dbpp.widgets.xtreeview import XTreeView as trview
 from dbpp.widgets.textmixins import *
 from dbpp.widgets.ctext import *
@@ -51,7 +51,7 @@ if __name__ == '__main__':
     for i in range(0,150):
         txt.insert("end",f"line {i} the crazy blue frog jumps over the busy street ....\n")
     #    .pack(side='top',fill='both',expand=True)
-    bapp.setEditTarget(txt)
+    bapp.set_edit_target(txt)
     
     # Notebook 3
     tview = tv(nb)
