@@ -23,7 +23,7 @@ class "dbpp.widgets.TableView" as TableView {
     pack_forget()
 }
 class "dbpp.widgets.XTableView" as XTableView {
-    insertData(colnames,data)
+    insert_data(colnames,data)
 }
 Treeview <- TableView
 TableView <- XTableView
@@ -40,7 +40,7 @@ root = tk.Tk()
 root.title('XTableView Demo')
 dgtab=XTableView(root)
 dgtab.getFrame().pack(side='top',fill='both',expand=True)
-dgtab.insertData(['Col1','Col2'],
+dgtab.insert_data(['Col1','Col2'],
     data=[['val1.1','val1.2'], ['val2.1','val2.2']])
 root.geometry("400x300")
 root.mainloop()
@@ -76,7 +76,7 @@ class XTableView (tv.TableView):
 
         tv.TableView.__init__(self, parent,*args,**kwargs)
 
-    def insertData(self, colnames="", data=""):
+    def insert_data(self, colnames="", data=""):
         """Inserts data into a ttk.Treeview widget.
         
         Args:
@@ -101,7 +101,7 @@ if __name__ == '__main__':
     root.title('XTableView Demo')
     dgtab=XTableView(root)
     dgtab.pack(side='top',fill='both',expand=True)
-    dgtab.insertData(['Col1','Col2'],
+    dgtab.insert_data(['Col1','Col2'],
         data=[['val1.1','val1.2'], ['val2.1','val2.2']])
             
     root.geometry("400x300")
