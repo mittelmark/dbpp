@@ -28,7 +28,7 @@ import dbpp.widgets.balloon
 import dbpp.widgets.labentry
 import dbpp.widgets.tableview
 import dbpp.widgets.xtableview
-import dbpp.widgets.XTreeView
+import dbpp.widgets.xtreeView
 import dbpp.widgets.textmixins
 import dbpp.widgets.ctext
 import dbpp.widgets.sqltext
