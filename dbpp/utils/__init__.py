@@ -17,4 +17,4 @@ The following modules re provided in this package:
 
 """
 
-from . import SqlUtils
+from . import sqlutils

@@ -1,1 +1,1 @@
-from . import PumlEditor
+from . import pumleditor

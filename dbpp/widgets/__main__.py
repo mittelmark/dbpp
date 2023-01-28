@@ -3,25 +3,25 @@ Demo apllication for dbpp.widgets.
 """
 import tkinter as tk
 import tkinter.ttk as ttk
-from dbpp.widgets.GuiBaseClass import GuiBaseClass
-from dbpp.widgets.Scrolled import Scrolled
-from dbpp.widgets.LabEntry import LabEntry
-from dbpp.widgets.Balloon import Balloon
-from dbpp.widgets.XTableView import XTableView as tv
-from dbpp.widgets.XTreeView import XTreeView as trview
-from dbpp.widgets.TextMixins import *
-from dbpp.widgets.Ctext import *
+from dbpp.widgets.guibaseclass import GuiBaseClass
+from dbpp.widgets.scrolled import Scrolled
+from dbpp.widgets.labentry import LabEntry
+from dbpp.widgets.balloon import Balloon
+from dbpp.widgets.xtableciew import XTableView as tv
+from dbpp.widgets.xtreeview import XTreeView as trview
+from dbpp.widgets.textmixins import *
+from dbpp.widgets.ctext import *
 
 if __name__ == '__main__':
     root=tk.Tk()
     bapp = GuiBaseClass(root) 
     # example for using the BaseClass in other applications
-    bapp.addEditMenu(target=None)
-    mnu=bapp.getMenu('Tools',underline=0)
+    bapp.add_edit_menu(target=None)
+    mnu=bapp.get_menu('Tools',underline=0)
     mnu.add_command(label='Test',command=lambda: print('Test'))    
     
     # example for using getFrame
-    mfrm=bapp.getFrame()
+    mfrm=bapp.get_frame()
     nb = ttk.Notebook(mfrm)
     
     # Notebook 1
@@ -56,7 +56,7 @@ if __name__ == '__main__':
     # Notebook 3
     tview = tv(nb)
     nb.add(tview,text="TableView")
-    tview.insertData(['Col1','Col2','Col3'],
+    tview.insert_data(['Col1','Col2','Col3'],
         data=[['val1.1','val1.2','val1.3'], ['val2.1','val2.2','val2.3'],
             ['val3.1','val3.2','val3.3']])
 
@@ -101,11 +101,11 @@ if __name__ == '__main__':
     nb.add(frm5,text="Text Mixins")
     class text(tk.Text,TextFontIncreaserMixin,TextCuaBindingsMixin,TextHighLightMixin): pass
     txt  = text(frm5,undo=True,height=50) 
-    txt.bindTextResize()
-    txt.bindCua()
-    txt.addHighLights(commentline="'",commentstart="/'",commentend="'/",keywords=[ ['@startuml','@enduml'], ['class', 'entity', 'table'] ])
+    txt.bind_text_resize()
+    txt.bind_cua()
+    txt.add_highlights(commentline="'",commentstart="/'",commentend="'/",keywords=[ ['@startuml','@enduml'], ['class', 'entity', 'table'] ])
     txt.insert("1.0","@startuml\n'This is a comment\nclass A\nclass B\nA --> B\n@enduml\n")
-    txt.updateHighLights()
+    txt.update_highlights()
     txt.pack(side="top",fill="both",expand=True)
     
     # Notebook 6
@@ -131,17 +131,17 @@ if __name__ == '__main__':
     # Notebook 7
     frm7 = ttk.Frame(nb)
     txt2 = text(frm7)
-    txt2.bindTextResize()
-    txt2.bindCua()
+    txt2.bind_text_resize()
+    txt2.bind_cua()
     Scrolled(txt2)
     nb.add(frm7,text="Source")
     file = open(__file__,'r')
     for line in file:
         txt2.insert('end',line)
-    txt2.addHighLights(commentline='^\s*#',commentstart='"""',commentend='"""',keywords=[ 
+    txt2.add_highlights(commentline='^\s*#',commentstart='"""',commentend='"""',keywords=[ 
         ['True','False','None'],
         ['import','from','def','for', 'class', 'in', 'is', 'as', 'while','if','elif','else'] ])  
-    txt2.updateHighLights()      
+    txt2.update_highlights()      
     nb.pack(side="top",fill="both",expand=True)
-    bapp.addStatusBar()
-    bapp.mainLoop()
+    bapp.add_statusbar()
+    bapp.run()

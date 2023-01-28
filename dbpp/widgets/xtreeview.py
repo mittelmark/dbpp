@@ -15,7 +15,7 @@ Examples:
 ```
 import tkinter as tk
 import tkinter.ttk as ttk
-from dbpb.widgets.XTreeView import XTreeView
+from dbpb.widgets.xtreeview import XTreeView
 root = tk.Tk()
 root.title('DGApp')
 dgtree=XTreeView(root,sheetsym=False)
