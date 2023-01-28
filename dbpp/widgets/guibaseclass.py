@@ -35,25 +35,24 @@ Here an example for the basic application you get by inheriting from that class:
 Examples:
 
 ```
-import sys
-import tkinter as tk
-import tkinter.ttk as ttk
-from dbpp.widgets.gui_base_class import GuiBaseClass
-bapp = GuiBaseClass() 
-# example for using the BaseClass in other applications
-bapp.add_edit_menu(target=None)
-mnu=bapp.get_menu('Tools',underline=0)
-mnu.add_command(label='Test',command=lambda: print('Test'))    
 
-# example for using getFrame
-frm=bapp.get_frame()
-btn=ttk.Button(frm,text="Button X",command=lambda: sys.exit(0))
-btn.pack()
-txt=tk.Text(frm,undo=True)
-txt.pack(side='top',fill='both',expand=True)
-bapp.set_edit_target(txt)
-bapp.add_statusbar()
-bapp.run()
+    >>> import sys
+    >>> import tkinter as tk
+    >>> import tkinter.ttk as ttk
+    >>> from dbpp.widgets.guibaseclass import GuiBaseClass
+    >>> bapp = GuiBaseClass() 
+    >>> bapp.add_edit_menu(target=None)
+    >>> mnu  = bapp.get_menu('Tools',underline=0)
+    >>> mnu.add_command(label='Test',command=lambda: print('Test'))    
+    >>> frm  = bapp.get_frame()
+    >>> btn  = ttk.Button(frm,text="Button X",command=lambda: bapp.exit())
+    >>> btn.pack()
+    >>> txt = tk.Text(frm,undo=True)
+    >>> txt.pack(side='top',fill='both',expand=True)
+    >>> bapp.set_edit_target(txt)
+    >>> bapp.add_statusbar()
+    >>> bapp.run()
+
 ```
 
 Here an other example where you just inherit from the *GuiBaseClass* in your own application.
@@ -268,7 +267,7 @@ class GuiBaseClass():
       """
       res = mbox.askyesno(title="Are you sure?",message="Really quit the application?")
       if res:
-          sys.exit(0)
+          return(self.root.destroy())
   def about(self):
       """Shows a messabox for the application."""
       tk.messagebox.showinfo('About', re.sub("(.+)-?.*", "\\1",self.root.title),
