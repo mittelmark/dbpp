@@ -194,10 +194,11 @@
 <li><b><code>**kwargs</code></b>: additional key value pairs, currently only underline=value is supported for new entries</li>
 </ul>
 <p><strong>Examples:</strong></p>
-<pre><code>root=tk.Tk()
-bapp = GuiBaseClass(root) 
-mnu=bapp.getMenu(&#39;Tools&#39;,underline=0)
-mnu.add_command(label=&#39;Test&#39;,command=lambda: print(&#39;Test&#39;))    </code></pre>
+<pre><code>
+``` root=tk.Tk()``` ``` bapp = GuiBaseClass(root) ```
+``` mnu  = bapp.get_menu(&#39;Tools&#39;,underline=0)``` ``` mnu.add_command(label=&#39;Test&#39;,command=lambda: print(&#39;Test&#39;))    ```
+``` bapp.run()``` 
+</code></pre>
 <hr />
 
 <h3 id="function-message"><kbd>function</kbd> <code>message</code></h3>

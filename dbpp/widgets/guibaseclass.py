@@ -163,10 +163,13 @@ class GuiBaseClass():
       Examples:
       
       ``` 
-      root=tk.Tk()
-      bapp = GuiBaseClass(root) 
-      mnu=bapp.getMenu('Tools',underline=0)
-      mnu.add_command(label='Test',command=lambda: print('Test'))    
+      
+      >>> root=tk.Tk()
+      >>> bapp = GuiBaseClass(root) 
+      >>> mnu  = bapp.get_menu('Tools',underline=0)
+      >>> mnu.add_command(label='Test',command=lambda: print('Test'))    
+      >>> bapp.run()
+      
       ```
       
       """
@@ -282,7 +285,7 @@ if __name__ == '__main__':
     
     # example for using getFrame
     frm=bapp.get_frame()
-    btn=ttk.Button(frm,text="Button X",command=lambda: sys.exit(0))
+    btn=ttk.Button(frm,text="Button X",command=lambda: root.destroy())
     btn.pack()
     txt=tk.Text(frm,undo=True)
     txt.pack(side='top',fill='both',expand=True)
