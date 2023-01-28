@@ -1,26 +1,26 @@
 <center>
 
 **[dbpp.widgets](dbpp.widgets.md) package:** 
-[GuiBaseClass](dbpp.widgets.GuiBaseClass.md) -
-[AutoScrollbar](dbpp.widgets.AutoScrollbar.md) -
-[Balloon](dbpp.widgets.Balloon.md) -
-[Ctext](dbpp.widgets.Ctext.md) -
-[LabEntry](dbpp.widgets.LabEntry.md) -
-[RoText](dbpp.widgets.RoText.md) -
-[Scrolled](dbpp.widgets.Scrolled.md) -
-[SqlText](dbpp.widgets.SqlText.md) -
-[StatusBar](dbpp.widgets.StatusBar.md) -
-[TableView](dbpp.widgets.TableView.md) -
-[TextMixins](dbpp.widgets.TextMixins.md) -
-[XTableView](dbpp.widgets.XTableView.md) -
-[XTreeView](dbpp.widgets.XTreeView.md) 
+[GuiBaseClass](dbpp.widgets.guibaseclass.md) -
+[AutoScrollbar](dbpp.widgets.autoscrollbar.md) -
+[Balloon](dbpp.widgets.balloon.md) -
+[Ctext](dbpp.widgets.ctext.md) -
+[LabEntry](dbpp.widgets.labentry.md) -
+[RoText](dbpp.widgets.rotext.md) -
+[Scrolled](dbpp.widgets.scrolled.md) -
+[SqlText](dbpp.widgets.sqltext.md) -
+[StatusBar](dbpp.widgets.statusbar.md) -
+[TableView](dbpp.widgets.tableview.md) -
+[TextMixins](dbpp.widgets.textmixins.md) -
+[XTableView](dbpp.widgets.xtableview.md) -
+[XTreeView](dbpp.widgets.xtreeview.md) 
 
 [dbpp.kroki](dbpp.kroki.md) - 
-[dbpp.kroki.KrokiEncoder](dbpp.kroki.KrokiEncoder.md) -
+[dbpp.kroki.KrokiEncoder](dbpp.kroki.krokiencoder.md) -
 [dbpp.utils](dbpp.utils.md) - 
-[dbpp.utils.SqlUtils](dbpp.utils.SqlUtils.md)  -
+[dbpp.utils.SqlUtils](dbpp.utils.sqlutils.md)  -
 
-**apps:** [dbpp.peditor](dbpp.peditor.PumlEditor.md)
+**apps:** [dbpp.peditor](dbpp.peditor.pumleditor.md)
 
 
 </center>
@@ -70,32 +70,31 @@ Here an example for the basic application you get by inheriting from that class:
 import sys
 import tkinter as tk
 import tkinter.ttk as ttk
-from dbpp.widgets.GuiBaseClass import GuiBaseClass
-root=tk.Tk()
-bapp = GuiBaseClass(root) 
+from dbpp.widgets.gui_base_class import GuiBaseClass
+bapp = GuiBaseClass() 
 # example for using the BaseClass in other applications
-bapp.addEditMenu(target=None)
-mnu=bapp.getMenu('Tools',underline=0)
+bapp.add_edit_menu(target=None)
+mnu=bapp.get_menu('Tools',underline=0)
 mnu.add_command(label='Test',command=lambda: print('Test'))    
 
 # example for using getFrame
-frm=bapp.getFrame()
+frm=bapp.get_frame()
 btn=ttk.Button(frm,text="Button X",command=lambda: sys.exit(0))
 btn.pack()
 txt=tk.Text(frm,undo=True)
 txt.pack(side='top',fill='both',expand=True)
-bapp.setEditTarget(txt)
-bapp.addStatusBar()
-bapp.mainLoop()
+bapp.set_edit_target(txt)
+bapp.add_statusbar()
+bapp.run()
 ``` 
 
 Here an other example where you just inherit from the *GuiBaseClass* in your own application. 
 
 ```
 class PumlEditor(GuiBaseClass):
-     def __init__(self,root):
+     def __init__(self):
          super().__init__(root)
-         self.addStatusBar()
+         self.add_statusbar()
          self.kroki = KrokiEncoder()
 ``` 
 
@@ -120,19 +119,26 @@ StatusBar --* GuiBaseClass
 
 ---
 
-<a href="../dbpp/widgets/GuiBaseClass.py#L92"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/GuiBaseClass.py#L91"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>class</kbd> `GuiBaseClass`
 The class to build your Tkinter applications on. 
 
 GuiBaseClass provides has a prebuild menubar, statusbar and a mainframe to embed your own widgets, it provides further facilities to create new menu entries easily and to display messages and progress values. Methods starting with lowercase are considered to be public, can be used outside of inheriting classes, methods starting with uppercase letters such as `About` or `Exit` are considered to be protected, meanding that they should be only used within inheriting classes. 
 
-<a href="../dbpp/widgets/GuiBaseClass.py#L101"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+
+
+**Attributes:**
+ 
+ - <b>`title`</b> (str):  the application title defaults to '' 
+ - <b>`author`</b> (str):  the author, defaults to '' 
+
+<a href="../dbpp/widgets/GuiBaseClass.py#L104"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `__init__`
 
 ```python
-__init__(root)
+__init__(root=None, title='', author='')
 ```
 
 Initialize the main application window within the given *root* toplevel. 
@@ -142,38 +148,24 @@ Initialize the main application window within the given *root* toplevel.
 
 ---
 
-<a href="../dbpp/widgets/GuiBaseClass.py#L259"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/GuiBaseClass.py#L270"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `About`
+### <kbd>method</kbd> `about`
 
 ```python
-About()
+about()
 ```
 
-
-
-
+Shows a messabox for the application. 
 
 ---
 
-<a href="../dbpp/widgets/GuiBaseClass.py#L254"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/GuiBaseClass.py#L185"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `Exit`
-
-```python
-Exit(ask=True)
-```
-
-Protected methods, to be used only in derived class, cleanly exits the application 
-
----
-
-<a href="../dbpp/widgets/GuiBaseClass.py#L176"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
-
-### <kbd>method</kbd> `addEditMenu`
+### <kbd>method</kbd> `add_edit_menu`
 
 ```python
-addEditMenu(target=None)
+add_edit_menu(target=None)
 ```
 
 Add a typical Edit menu in the menubar. 
@@ -190,36 +182,54 @@ This methods adds the typical Edit menubar entry with commands like Undo, Redo, 
 
 ---
 
-<a href="../dbpp/widgets/GuiBaseClass.py#L125"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/GuiBaseClass.py#L134"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `addStatusBar`
+### <kbd>method</kbd> `add_statusbar`
 
 ```python
-addStatusBar()
+add_statusbar()
 ```
 
 Make the statusbar at the bottom visible. 
 
 ---
 
-<a href="../dbpp/widgets/GuiBaseClass.py#L138"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/GuiBaseClass.py#L261"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `getFrame`
+### <kbd>method</kbd> `exit`
 
 ```python
-getFrame()
+exit(ask=True)
+```
+
+Cleanly exit the application with confirm messagebox. 
+
+
+
+**Args:**
+ 
+ - <b>`ask`</b> (bool):  should the confirm message box been show, defaults to True 
+
+---
+
+<a href="../dbpp/widgets/GuiBaseClass.py#L147"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+
+### <kbd>method</kbd> `get_frame`
+
+```python
+get_frame()
 ```
 
 Get the mainframe of the application in which the user can insert its own widgets. 
 
 ---
 
-<a href="../dbpp/widgets/GuiBaseClass.py#L141"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/GuiBaseClass.py#L150"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `getMenu`
+### <kbd>method</kbd> `get_menu`
 
 ```python
-getMenu(entry, **kwargs)
+get_menu(entry, **kwargs)
 ```
 
 Get the given menu entry or create an new one if the requested does not exists  yet. 
@@ -249,19 +259,7 @@ mnu.add_command(label='Test',command=lambda: print('Test'))
 
 ---
 
-<a href="../dbpp/widgets/GuiBaseClass.py#L135"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
-
-### <kbd>method</kbd> `mainLoop`
-
-```python
-mainLoop()
-```
-
-Start the GUI mainloop waiting for the user to interact with the application. 
-
----
-
-<a href="../dbpp/widgets/GuiBaseClass.py#L129"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/GuiBaseClass.py#L138"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `message`
 
@@ -273,7 +271,7 @@ Display the given message in the statusbar at the bottom.
 
 ---
 
-<a href="../dbpp/widgets/GuiBaseClass.py#L132"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/GuiBaseClass.py#L141"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `progress`
 
@@ -285,24 +283,36 @@ Display the given numerical value in the progress bar at the bottom.
 
 ---
 
-<a href="../dbpp/widgets/GuiBaseClass.py#L207"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/GuiBaseClass.py#L144"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `setAppTitle`
+### <kbd>method</kbd> `run`
 
 ```python
-setAppTitle(title)
+run()
+```
+
+Start the GUI mainloop waiting for the user to interact with the application. 
+
+---
+
+<a href="../dbpp/widgets/GuiBaseClass.py#L215"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+
+### <kbd>method</kbd> `set_app_title`
+
+```python
+set_app_title(title)
 ```
 
 Sets the title of the application. 
 
 ---
 
-<a href="../dbpp/widgets/GuiBaseClass.py#L204"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/GuiBaseClass.py#L212"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `setEditTarget`
+### <kbd>method</kbd> `set_edit_target`
 
 ```python
-setEditTarget(target)
+set_edit_target(target)
 ```
 
 Sets to target for the Edit menu entry to the given tk.Text widget. 
