@@ -145,7 +145,7 @@ Initialize the main application window within the given *root* toplevel.
 
 ---
 
-<a href="../dbpp/widgets/guibaseclass.py#L274"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/guibaseclass.py#L273"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>function</kbd> `about`
 
@@ -157,7 +157,7 @@ Shows a messabox for the application.
 
 ---
 
-<a href="../dbpp/widgets/guibaseclass.py#L189"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/guibaseclass.py#L188"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>function</kbd> `add_edit_menu`
 
@@ -191,7 +191,7 @@ Make the statusbar at the bottom visible.
 
 ---
 
-<a href="../dbpp/widgets/guibaseclass.py#L265"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/guibaseclass.py#L264"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>function</kbd> `exit`
 
@@ -248,13 +248,13 @@ This method can be used to create new menu entries in the top menubar or to exte
  
 
 ``` 
+    >>> root=tk.Tk()
+    >>> bapp = GuiBaseClass(root) 
+    >>> mnu  = bapp.get_menu('Tools',underline=0)
+    >>> mnu.add_command(label='Test',command=lambda: print('Test'))    
+    >>> bapp.run()
 
-``` root=tk.Tk()``` ``` bapp = GuiBaseClass(root) ```
-``` mnu  = bapp.get_menu('Tools',underline=0)``` ``` mnu.add_command(label='Test',command=lambda: print('Test'))    ```
-``` bapp.run()``` 
-
-```
-
+``` 
 
 ---
 
@@ -294,7 +294,7 @@ Start the GUI mainloop waiting for the user to interact with the application.
 
 ---
 
-<a href="../dbpp/widgets/guibaseclass.py#L219"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/guibaseclass.py#L218"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>function</kbd> `set_app_title`
 
@@ -306,7 +306,7 @@ Sets the title of the application.
 
 ---
 
-<a href="../dbpp/widgets/guibaseclass.py#L216"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/guibaseclass.py#L215"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>function</kbd> `set_edit_target`
 

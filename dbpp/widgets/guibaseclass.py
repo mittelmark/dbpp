@@ -163,12 +163,11 @@ class GuiBaseClass():
       Examples:
       
       ``` 
-      
-      >>> root=tk.Tk()
-      >>> bapp = GuiBaseClass(root) 
-      >>> mnu  = bapp.get_menu('Tools',underline=0)
-      >>> mnu.add_command(label='Test',command=lambda: print('Test'))    
-      >>> bapp.run()
+          >>> root=tk.Tk()
+          >>> bapp = GuiBaseClass(root) 
+          >>> mnu  = bapp.get_menu('Tools',underline=0)
+          >>> mnu.add_command(label='Test',command=lambda: print('Test'))    
+          >>> bapp.run()
       
       ```
       
