@@ -1,35 +1,35 @@
 <center>
 
 **[dbpp.widgets](dbpp.widgets.md) package:** 
-[GuiBaseClass](dbpp.widgets.GuiBaseClass.md) -
-[AutoScrollbar](dbpp.widgets.AutoScrollbar.md) -
-[Balloon](dbpp.widgets.Balloon.md) -
-[Ctext](dbpp.widgets.Ctext.md) -
-[LabEntry](dbpp.widgets.LabEntry.md) -
-[RoText](dbpp.widgets.RoText.md) -
-[Scrolled](dbpp.widgets.Scrolled.md) -
-[SqlText](dbpp.widgets.SqlText.md) -
-[StatusBar](dbpp.widgets.StatusBar.md) -
-[TableView](dbpp.widgets.TableView.md) -
-[TextMixins](dbpp.widgets.TextMixins.md) -
-[XTableView](dbpp.widgets.XTableView.md) -
-[XTreeView](dbpp.widgets.XTreeView.md) 
+[GuiBaseClass](dbpp.widgets.guibaseclass.md) -
+[AutoScrollbar](dbpp.widgets.autoscrollbar.md) -
+[Balloon](dbpp.widgets.balloon.md) -
+[Ctext](dbpp.widgets.ctext.md) -
+[LabEntry](dbpp.widgets.labentry.md) -
+[RoText](dbpp.widgets.rotext.md) -
+[Scrolled](dbpp.widgets.scrolled.md) -
+[SqlText](dbpp.widgets.sqltext.md) -
+[StatusBar](dbpp.widgets.statusbar.md) -
+[TableView](dbpp.widgets.tableview.md) -
+[TextMixins](dbpp.widgets.textmixins.md) -
+[XTableView](dbpp.widgets.xtableview.md) -
+[XTreeView](dbpp.widgets.xtreeview.md) 
 
 [dbpp.kroki](dbpp.kroki.md) - 
-[dbpp.kroki.KrokiEncoder](dbpp.kroki.KrokiEncoder.md) -
+[dbpp.kroki.KrokiEncoder](dbpp.kroki.krokiencoder.md) -
 [dbpp.utils](dbpp.utils.md) - 
-[dbpp.utils.SqlUtils](dbpp.utils.SqlUtils.md)  -
+[dbpp.utils.SqlUtils](dbpp.utils.sqlutils.md)  -
 
-**apps:** [dbpp.peditor](dbpp.peditor.PumlEditor.md)
+**apps:** [dbpp.peditor](dbpp.peditor.pumleditor.md)
 
 
 </center>
 
 <!-- markdownlint-disable -->
 
-<a href="../dbpp/widgets/Ctext.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-# <kbd>module</kbd> `widgets.Ctext`
+# <kbd>module</kbd> `widgets.ctext`
 Python wrapper for the Tklib ctext widget. 
 
 This is a text widget derived from the tk.Text widget with support for syntax highlighting and line numbers. 
@@ -43,7 +43,7 @@ See the Tk documentation for complete details of the use of this widget [here](h
 
 ```
 import tkinter as tk
-import dbpp.widget.Ctext as Ctext
+import dbpp.widget.ctext as Ctext
 root= tk.Tk()   
 ctext = Ctext(root) 
 ctext.add_highlight_class('DML1', 'blue', ['select','SELECT','from','FROM'])
@@ -81,7 +81,7 @@ ctext.mainloop()
 
 ---
 
-<a href="../dbpp/widgets/Ctext.py#L52"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L52"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>class</kbd> `Ctext`
 Python wrapper for the Tklib ctext widget 
@@ -99,7 +99,7 @@ Python wrapper for the Tklib ctext widget
  - <b>`linemap_mark_command`</b> (string):  Calls a procedure or command with the pathName of the ctext window, the type which is either marked or unmarked, and finally the line number selected. The proc prototype is: `linemark_cmd (win, type, line) 
  - <b>`linemap_markable`</b> (bool):  Takes a boolean value which specifies whether or not lines in the linemap are markable with the mouse. The default is True. 
 
-<a href="../dbpp/widgets/Ctext.py#L65"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L65"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `__init__`
 
@@ -123,7 +123,7 @@ Initialize the ctext wrapper.
 
 ---
 
-<a href="../dbpp/widgets/Ctext.py#L136"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L136"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `add_highlight_chars`
 
@@ -143,7 +143,7 @@ Add a highlighting class that matches any of the characters contained in `chars`
 
 ---
 
-<a href="../dbpp/widgets/Ctext.py#L115"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L115"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `add_highlight_class`
 
@@ -163,7 +163,7 @@ Add a highlighting class `classname` to the widget using the given color contain
 
 ---
 
-<a href="../dbpp/widgets/Ctext.py#L126"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L126"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `add_highlight_prefix`
 
@@ -183,7 +183,7 @@ Add a highlighting class that matches any word that starts with the specified `c
 
 ---
 
-<a href="../dbpp/widgets/Ctext.py#L146"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L146"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `add_highlight_regexp`
 
@@ -201,7 +201,7 @@ Add a highlighting class that matches a regular expression to apply the chosen c
 
 ---
 
-<a href="../dbpp/widgets/Ctext.py#L111"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L111"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `append`
 
@@ -213,7 +213,7 @@ Append the selected text from this widget to the clipboard.
 
 ---
 
-<a href="../dbpp/widgets/Ctext.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L155"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `clear_highlight_classes`
 
@@ -225,7 +225,7 @@ Remove all highlight classes from this widget.
 
 ---
 
-<a href="../dbpp/widgets/Ctext.py#L99"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L99"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `copy`
 
@@ -237,7 +237,7 @@ Copy the selected text from this widget to the clipboard.
 
 ---
 
-<a href="../dbpp/widgets/Ctext.py#L103"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L103"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `cut`
 
@@ -249,7 +249,7 @@ Copy the selected text from this widget to the clipboard and then delete it from
 
 ---
 
-<a href="../dbpp/widgets/Ctext.py#L163"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L163"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `delete_highlight_class`
 
@@ -261,7 +261,7 @@ Delete the selected highlight class from the widget.
 
 ---
 
-<a href="../dbpp/widgets/Ctext.py#L167"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L167"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `enable_c_comments`
 
@@ -281,7 +281,7 @@ The class for c-style comments is `_cComment`. This highlighting is disabled by 
 
 ---
 
-<a href="../dbpp/widgets/Ctext.py#L89"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L89"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `fastdelete`
 
@@ -293,7 +293,7 @@ Delete the text range specified without updating the highlighting. Arguments are
 
 ---
 
-<a href="../dbpp/widgets/Ctext.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L94"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `fastinsert`
 
@@ -305,7 +305,7 @@ Insert text without updating the highlighting. Arguments are identical to the in
 
 ---
 
-<a href="../dbpp/widgets/Ctext.py#L159"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L159"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `get_highlight_classes`
 
@@ -317,7 +317,7 @@ Return a list of all the highlight class names defined for this widget.
 
 ---
 
-<a href="../dbpp/widgets/Ctext.py#L85"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L85"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `highlight`
 
@@ -329,7 +329,7 @@ Highlight the text between start_index and end_index.
 
 ---
 
-<a href="../dbpp/widgets/Ctext.py#L107"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/ctext.py#L107"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `paste`
 

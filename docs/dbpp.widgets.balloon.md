@@ -1,35 +1,35 @@
 <center>
 
 **[dbpp.widgets](dbpp.widgets.md) package:** 
-[GuiBaseClass](dbpp.widgets.GuiBaseClass.md) -
-[AutoScrollbar](dbpp.widgets.AutoScrollbar.md) -
-[Balloon](dbpp.widgets.Balloon.md) -
-[Ctext](dbpp.widgets.Ctext.md) -
-[LabEntry](dbpp.widgets.LabEntry.md) -
-[RoText](dbpp.widgets.RoText.md) -
-[Scrolled](dbpp.widgets.Scrolled.md) -
-[SqlText](dbpp.widgets.SqlText.md) -
-[StatusBar](dbpp.widgets.StatusBar.md) -
-[TableView](dbpp.widgets.TableView.md) -
-[TextMixins](dbpp.widgets.TextMixins.md) -
-[XTableView](dbpp.widgets.XTableView.md) -
-[XTreeView](dbpp.widgets.XTreeView.md) 
+[GuiBaseClass](dbpp.widgets.guibaseclass.md) -
+[AutoScrollbar](dbpp.widgets.autoscrollbar.md) -
+[Balloon](dbpp.widgets.balloon.md) -
+[Ctext](dbpp.widgets.ctext.md) -
+[LabEntry](dbpp.widgets.labentry.md) -
+[RoText](dbpp.widgets.rotext.md) -
+[Scrolled](dbpp.widgets.scrolled.md) -
+[SqlText](dbpp.widgets.sqltext.md) -
+[StatusBar](dbpp.widgets.statusbar.md) -
+[TableView](dbpp.widgets.tableview.md) -
+[TextMixins](dbpp.widgets.textmixins.md) -
+[XTableView](dbpp.widgets.xtableview.md) -
+[XTreeView](dbpp.widgets.xtreeview.md) 
 
 [dbpp.kroki](dbpp.kroki.md) - 
-[dbpp.kroki.KrokiEncoder](dbpp.kroki.KrokiEncoder.md) -
+[dbpp.kroki.KrokiEncoder](dbpp.kroki.krokiencoder.md) -
 [dbpp.utils](dbpp.utils.md) - 
-[dbpp.utils.SqlUtils](dbpp.utils.SqlUtils.md)  -
+[dbpp.utils.SqlUtils](dbpp.utils.sqlutils.md)  -
 
-**apps:** [dbpp.peditor](dbpp.peditor.PumlEditor.md)
+**apps:** [dbpp.peditor](dbpp.peditor.pumleditor.md)
 
 
 </center>
 
 <!-- markdownlint-disable -->
 
-<a href="../dbpp/widgets/Balloon.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/balloon.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-# <kbd>module</kbd> `widgets.Balloon`
+# <kbd>module</kbd> `widgets.balloon`
 Basic tooltip / balloon widget using ttk.Label(s) or popups. 
 
 This a simple tooltip implementation for displaying short help message if the mouse cursor hovers a certain widget. Such tooltips are as well called Balloon widgets. Usually tkinter comes with a tix.Ballon widget which works very similar.  However as it is often advisible to load a larger package just for using a  very small subset of its functionality here is an implementation of such a tooltip/balloon widget, which can be used instead of tix.Balloon. 
@@ -42,7 +42,7 @@ This a simple tooltip implementation for displaying short help message if the mo
 ```
 import tkinter as tk
 import tkinter.ttk as ttk
-from dbpp.widgets.Balloon import Balloon
+from dbpp.widgets.balloon import Balloon
 
 top=tk.Tk()
 lbl1=ttk.Label(top,text="Hove me 1",anchor="center")
@@ -62,7 +62,7 @@ top.mainloop()
 
 Copyright: @ Detlef Groth, University of Potsdam 
 
-See also: [GuiBaseClass](GuiBaseClass.html) 
+See also: [GuiBaseClass](guibaseclass.md) 
 
 License: MIT 
 
@@ -70,12 +70,12 @@ License: MIT
 
 ---
 
-<a href="../dbpp/widgets/Balloon.py#L43"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/balloon.py#L43"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>class</kbd> `Balloon`
 Tooltip/Balloon widget to display messages if widgets are hovered. 
 
-<a href="../dbpp/widgets/Balloon.py#L45"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/balloon.py#L45"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `__init__`
 

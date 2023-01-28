@@ -1,35 +1,35 @@
 <center>
 
 **[dbpp.widgets](dbpp.widgets.md) package:** 
-[GuiBaseClass](dbpp.widgets.GuiBaseClass.md) -
-[AutoScrollbar](dbpp.widgets.AutoScrollbar.md) -
-[Balloon](dbpp.widgets.Balloon.md) -
-[Ctext](dbpp.widgets.Ctext.md) -
-[LabEntry](dbpp.widgets.LabEntry.md) -
-[RoText](dbpp.widgets.RoText.md) -
-[Scrolled](dbpp.widgets.Scrolled.md) -
-[SqlText](dbpp.widgets.SqlText.md) -
-[StatusBar](dbpp.widgets.StatusBar.md) -
-[TableView](dbpp.widgets.TableView.md) -
-[TextMixins](dbpp.widgets.TextMixins.md) -
-[XTableView](dbpp.widgets.XTableView.md) -
-[XTreeView](dbpp.widgets.XTreeView.md) 
+[GuiBaseClass](dbpp.widgets.guibaseclass.md) -
+[AutoScrollbar](dbpp.widgets.autoscrollbar.md) -
+[Balloon](dbpp.widgets.balloon.md) -
+[Ctext](dbpp.widgets.ctext.md) -
+[LabEntry](dbpp.widgets.labentry.md) -
+[RoText](dbpp.widgets.rotext.md) -
+[Scrolled](dbpp.widgets.scrolled.md) -
+[SqlText](dbpp.widgets.sqltext.md) -
+[StatusBar](dbpp.widgets.statusbar.md) -
+[TableView](dbpp.widgets.tableview.md) -
+[TextMixins](dbpp.widgets.textmixins.md) -
+[XTableView](dbpp.widgets.xtableview.md) -
+[XTreeView](dbpp.widgets.xtreeview.md) 
 
 [dbpp.kroki](dbpp.kroki.md) - 
-[dbpp.kroki.KrokiEncoder](dbpp.kroki.KrokiEncoder.md) -
+[dbpp.kroki.KrokiEncoder](dbpp.kroki.krokiencoder.md) -
 [dbpp.utils](dbpp.utils.md) - 
-[dbpp.utils.SqlUtils](dbpp.utils.SqlUtils.md)  -
+[dbpp.utils.SqlUtils](dbpp.utils.sqlutils.md)  -
 
-**apps:** [dbpp.peditor](dbpp.peditor.PumlEditor.md)
+**apps:** [dbpp.peditor](dbpp.peditor.pumleditor.md)
 
 
 </center>
 
 <!-- markdownlint-disable -->
 
-<a href="../dbpp/peditor/PumlEditor.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-# <kbd>module</kbd> `peditor.PumlEditor`
+# <kbd>module</kbd> `peditor.pumleditor`
 Example GUI application to create diagram using the https://kroki.io webservice. 
 
 This is an example GUI class to demostrate the following principles of object oriented programming: 
@@ -52,7 +52,7 @@ Here an image of the application:
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L389"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L391"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>function</kbd> `main`
 
@@ -67,7 +67,7 @@ main(argv)
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L33"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L33"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>class</kbd> `text`
 
@@ -80,14 +80,14 @@ main(argv)
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L34"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L37"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>class</kbd> `PumlEditor`
 
 
 
 
-<a href="../dbpp/peditor/PumlEditor.py#L35"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L38"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `__init__`
 
@@ -104,12 +104,12 @@ __init__(root)
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L217"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L388"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `ImageUpdate`
+### <kbd>method</kbd> `about`
 
 ```python
-ImageUpdate()
+about()
 ```
 
 
@@ -118,12 +118,12 @@ ImageUpdate()
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L172"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L376"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `fileInsert`
+### <kbd>method</kbd> `exit`
 
 ```python
-fileInsert()
+exit()
 ```
 
 
@@ -132,12 +132,12 @@ fileInsert()
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L124"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L174"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `fileNew`
+### <kbd>method</kbd> `file_insert`
 
 ```python
-fileNew(evt=None)
+file_insert()
 ```
 
 
@@ -146,12 +146,12 @@ fileNew(evt=None)
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L136"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L126"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `fileOpen`
+### <kbd>method</kbd> `file_new`
 
 ```python
-fileOpen(filename='')
+file_new(evt=None)
 ```
 
 
@@ -160,12 +160,12 @@ fileOpen(filename='')
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L154"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L138"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `fileSave`
+### <kbd>method</kbd> `file_open`
 
 ```python
-fileSave(evt=None)
+file_open(filename='')
 ```
 
 
@@ -174,12 +174,12 @@ fileSave(evt=None)
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L164"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L156"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `fileSaveAs`
+### <kbd>method</kbd> `file_save`
 
 ```python
-fileSaveAs()
+file_save(evt=None)
 ```
 
 
@@ -188,12 +188,12 @@ fileSaveAs()
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L205"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L166"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `getDiaType`
+### <kbd>method</kbd> `file_save_as`
 
 ```python
-getDiaType()
+file_save_as()
 ```
 
 
@@ -202,12 +202,12 @@ getDiaType()
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L235"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L207"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `templateClass`
+### <kbd>method</kbd> `get_dia_type`
 
 ```python
-templateClass()
+get_dia_type()
 ```
 
 
@@ -216,12 +216,12 @@ templateClass()
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L337"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L219"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `templateDatabase`
+### <kbd>method</kbd> `image_update`
 
 ```python
-templateDatabase()
+image_update()
 ```
 
 
@@ -230,12 +230,12 @@ templateDatabase()
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L283"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L237"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `templateDitaa`
+### <kbd>method</kbd> `template_class`
 
 ```python
-templateDitaa()
+template_class()
 ```
 
 
@@ -244,12 +244,12 @@ templateDitaa()
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L303"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L339"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `templateLaTeX`
+### <kbd>method</kbd> `template_database`
 
 ```python
-templateLaTeX()
+template_database()
 ```
 
 
@@ -258,12 +258,12 @@ templateLaTeX()
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L274"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L285"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `templateLists`
+### <kbd>method</kbd> `template_ditaa`
 
 ```python
-templateLists(typecmd='listfonts', comment='https://plantuml.com/font')
+template_ditaa()
 ```
 
 
@@ -272,12 +272,12 @@ templateLists(typecmd='listfonts', comment='https://plantuml.com/font')
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L313"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L305"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `templateMindmap`
+### <kbd>method</kbd> `template_latex`
 
 ```python
-templateMindmap()
+template_latex()
 ```
 
 
@@ -286,7 +286,35 @@ templateMindmap()
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L187"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L276"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+
+### <kbd>method</kbd> `template_lists`
+
+```python
+template_lists(typecmd='listfonts', comment='https://plantuml.com/font')
+```
+
+
+
+
+
+---
+
+<a href="../dbpp/peditor/pumleditor.py#L315"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+
+### <kbd>method</kbd> `template_mindmap`
+
+```python
+template_mindmap()
+```
+
+
+
+
+
+---
+
+<a href="../dbpp/peditor/pumleditor.py#L189"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `text2url`
 
@@ -300,7 +328,7 @@ text2url()
 
 ---
 
-<a href="../dbpp/peditor/PumlEditor.py#L192"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/peditor/pumleditor.py#L194"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `url2text`
 

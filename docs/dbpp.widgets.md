@@ -1,26 +1,26 @@
 <center>
 
 **[dbpp.widgets](dbpp.widgets.md) package:** 
-[GuiBaseClass](dbpp.widgets.GuiBaseClass.md) -
-[AutoScrollbar](dbpp.widgets.AutoScrollbar.md) -
-[Balloon](dbpp.widgets.Balloon.md) -
-[Ctext](dbpp.widgets.Ctext.md) -
-[LabEntry](dbpp.widgets.LabEntry.md) -
-[RoText](dbpp.widgets.RoText.md) -
-[Scrolled](dbpp.widgets.Scrolled.md) -
-[SqlText](dbpp.widgets.SqlText.md) -
-[StatusBar](dbpp.widgets.StatusBar.md) -
-[TableView](dbpp.widgets.TableView.md) -
-[TextMixins](dbpp.widgets.TextMixins.md) -
-[XTableView](dbpp.widgets.XTableView.md) -
-[XTreeView](dbpp.widgets.XTreeView.md) 
+[GuiBaseClass](dbpp.widgets.guibaseclass.md) -
+[AutoScrollbar](dbpp.widgets.autoscrollbar.md) -
+[Balloon](dbpp.widgets.balloon.md) -
+[Ctext](dbpp.widgets.ctext.md) -
+[LabEntry](dbpp.widgets.labentry.md) -
+[RoText](dbpp.widgets.rotext.md) -
+[Scrolled](dbpp.widgets.scrolled.md) -
+[SqlText](dbpp.widgets.sqltext.md) -
+[StatusBar](dbpp.widgets.statusbar.md) -
+[TableView](dbpp.widgets.tableview.md) -
+[TextMixins](dbpp.widgets.textmixins.md) -
+[XTableView](dbpp.widgets.xtableview.md) -
+[XTreeView](dbpp.widgets.xtreeview.md) 
 
 [dbpp.kroki](dbpp.kroki.md) - 
-[dbpp.kroki.KrokiEncoder](dbpp.kroki.KrokiEncoder.md) -
+[dbpp.kroki.KrokiEncoder](dbpp.kroki.krokiencoder.md) -
 [dbpp.utils](dbpp.utils.md) - 
-[dbpp.utils.SqlUtils](dbpp.utils.SqlUtils.md)  -
+[dbpp.utils.SqlUtils](dbpp.utils.sqlutils.md)  -
 
-**apps:** [dbpp.peditor](dbpp.peditor.PumlEditor.md)
+**apps:** [dbpp.peditor](dbpp.peditor.pumleditor.md)
 
 
 </center>
@@ -37,19 +37,19 @@ Widget package developed at the course Databases and Practical Programming for t
 The following widgets are provided: 
 
 
-- [GuiBaseClass](dbpp.widgets.GuiBaseClass.md) - base class to build your own Tkinter applications 
-- [AutoScrollbar](dbpp.widgets.AutoScrollbar.md) - ttk.Scrollbar which autohides if not required, easier to use is the [Scrolled](Scrolled.md) method 
-- [Balloon](dbpp.widgets.Balloon.md) - tooltip widgets which can use balloon popups or existing label widgets 
-- [Ctext](dbpp.widgets.Ctext.md) - syntax highlighting widget based on Tcl tklib's ctext widget 
-- [LabEntry](dbpp.widgets.LabEntry.md) - composite widget out of ttk.Label and ttk.Entry  
-- [RoText](dbpp.widgets.RoText.md) - readonly tk.Text widget 
-- [Scrolled](dbpp.widgets.Scrolled.md) - helper functions to attach ttk.Scrollbar's to widgets 
-- [SqlText](dbpp.widgets.SqlText.md) - Text widget with support for SQL highlighting based on Ctext 
-- [StatusBar](dbpp.widgets.StatusBar.md) - statusbar having a label for messages and a progressbar 
-- [TableView](dbpp.widgets.TableView.md) - ttk.Treeview widget optimized for tabular output 
-- [TextMixins](dbpp.widgets.TextMixins.md) - small addons for the tk.Text widget such as font increasing shortcuts, right click popups and others 
-- [XTableView](dbpp.widgets.XTableView.md) - extended version of TableView which allows easily to read in list data 
-- [XTreeView](dbpp.widgets.XTreeView.md) - ttk.Treeview widget which provides icon facilities for tree display 
+- [GuiBaseClass](dbpp.widgets.guibaseclass.md) - base class to build your own Tkinter applications 
+- [AutoScrollbar](dbpp.widgets.autoscrollbar.md) - ttk.Scrollbar which autohides if not required, easier to use is the [Scrolled](scrolled.md) method 
+- [Balloon](dbpp.widgets.balloon.md) - tooltip widgets which can use balloon popups or existing label widgets 
+- [Ctext](dbpp.widgets.ctext.md) - syntax highlighting widget based on Tcl tklib's ctext widget 
+- [LabEntry](dbpp.widgets.labentry.md) - composite widget out of ttk.Label and ttk.Entry  
+- [RoText](dbpp.widgets.rotext.md) - readonly tk.Text widget 
+- [Scrolled](dbpp.widgets.scrolled.md) - helper functions to attach ttk.Scrollbar's to widgets 
+- [SqlText](dbpp.widgets.sqltext.md) - Text widget with support for SQL highlighting based on Ctext 
+- [StatusBar](dbpp.widgets.statusbar.md) - statusbar having a label for messages and a progressbar 
+- [TableView](dbpp.widgets.tableview.md) - ttk.Treeview widget optimized for tabular output 
+- [TextMixins](dbpp.widgets.textmixins.md) - small addons for the tk.Text widget such as font increasing shortcuts, right click popups and others 
+- [XTableView](dbpp.widgets.xtableview.md) - extended version of TableView which allows easily to read in list data 
+- [XTreeView](dbpp.widgets.xtreeview.md) - ttk.Treeview widget which provides icon facilities for tree display 
 
 
 

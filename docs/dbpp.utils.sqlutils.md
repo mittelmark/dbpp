@@ -1,35 +1,35 @@
 <center>
 
 **[dbpp.widgets](dbpp.widgets.md) package:** 
-[GuiBaseClass](dbpp.widgets.GuiBaseClass.md) -
-[AutoScrollbar](dbpp.widgets.AutoScrollbar.md) -
-[Balloon](dbpp.widgets.Balloon.md) -
-[Ctext](dbpp.widgets.Ctext.md) -
-[LabEntry](dbpp.widgets.LabEntry.md) -
-[RoText](dbpp.widgets.RoText.md) -
-[Scrolled](dbpp.widgets.Scrolled.md) -
-[SqlText](dbpp.widgets.SqlText.md) -
-[StatusBar](dbpp.widgets.StatusBar.md) -
-[TableView](dbpp.widgets.TableView.md) -
-[TextMixins](dbpp.widgets.TextMixins.md) -
-[XTableView](dbpp.widgets.XTableView.md) -
-[XTreeView](dbpp.widgets.XTreeView.md) 
+[GuiBaseClass](dbpp.widgets.guibaseclass.md) -
+[AutoScrollbar](dbpp.widgets.autoscrollbar.md) -
+[Balloon](dbpp.widgets.balloon.md) -
+[Ctext](dbpp.widgets.ctext.md) -
+[LabEntry](dbpp.widgets.labentry.md) -
+[RoText](dbpp.widgets.rotext.md) -
+[Scrolled](dbpp.widgets.scrolled.md) -
+[SqlText](dbpp.widgets.sqltext.md) -
+[StatusBar](dbpp.widgets.statusbar.md) -
+[TableView](dbpp.widgets.tableview.md) -
+[TextMixins](dbpp.widgets.textmixins.md) -
+[XTableView](dbpp.widgets.xtableview.md) -
+[XTreeView](dbpp.widgets.xtreeview.md) 
 
 [dbpp.kroki](dbpp.kroki.md) - 
-[dbpp.kroki.KrokiEncoder](dbpp.kroki.KrokiEncoder.md) -
+[dbpp.kroki.KrokiEncoder](dbpp.kroki.krokiencoder.md) -
 [dbpp.utils](dbpp.utils.md) - 
-[dbpp.utils.SqlUtils](dbpp.utils.SqlUtils.md)  -
+[dbpp.utils.SqlUtils](dbpp.utils.sqlutils.md)  -
 
-**apps:** [dbpp.peditor](dbpp.peditor.PumlEditor.md)
+**apps:** [dbpp.peditor](dbpp.peditor.pumleditor.md)
 
 
 </center>
 
 <!-- markdownlint-disable -->
 
-<a href="../dbpp/utils/SqlUtils.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/utils/sqlutils.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-# <kbd>module</kbd> `SqlUtils.py`
+# <kbd>module</kbd> `utils.sqlutils`
 dbpp.utils.SqlUtils - class to work with Sqlite3 and Csv files. 
 
 This class provides methods to convert CSV and TAB files into Sqlite3 databases and as well allows the extraction of data from databases into CSV and TAB files  using Python as programming language. 
@@ -57,16 +57,16 @@ class SqlUtils {
 ```
      >>> import sys, os
      >>> sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-     >>> import dbpp.utils.SqlUtils as sql
+     >>> import dbpp.utils.sqlutils as sql
      >>> sqlo = sql.SqlUtils(':memory:')
-     >>> sqlo.getTables() 
+     >>> sqlo.get_tables() 
      []
      >>> tabfile = os.path.join(os.path.dirname(__file__),"..","data","iris.tab")
      >>> tabfile
      '/home/groth/workspace/dbpp/dbpp/utils/../data/iris.tab'
      >>> sqlo.csv2sql(tabfile,"iris")
      150
-     >>> sqlo.getTables()
+     >>> sqlo.get_tables()
      ['iris']
      >>> sqlo.select("select RNames, Sepal_Length from iris limit 2")
      (['RNames', 'Sepal_Length'], [('R001', '5.1'), ('R002', '4.9')])
@@ -76,7 +76,7 @@ class SqlUtils {
 
 ---
 
-<a href="../dbpp/utils/SqlUtils.py#L149"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/utils/sqlutils.py#L172"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>function</kbd> `main`
 
@@ -95,6 +95,8 @@ Runs the terminal application usually with sys.argv.
 
 ---
 
+<a href="../dbpp/utils/sqlutils.py#L50"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+
 ## <kbd>class</kbd> `SqlUtils`
 Class to import and export data and to query information out of SQLite databases. 
 
@@ -107,9 +109,9 @@ Class to import and export data and to query information out of SQLite databases
 
 
 
-<a href="../dbpp/utils/SqlUtils.py#L58"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/utils/sqlutils.py#L58"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>function</kbd> `__init__`
+### <kbd>method</kbd> `__init__`
 
 ```python
 __init__(filename=':memory:')
@@ -130,9 +132,9 @@ Initialize the object with a database filename or in memory.
 
 ---
 
-<a href="../dbpp/utils/SqlUtils.py#L72"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/utils/sqlutils.py#L72"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>function</kbd> `csv2sql`
+### <kbd>method</kbd> `csv2sql`
 
 ```python
 csv2sql(csvfile, tablename, delimiter='\t', quotechar='"')
@@ -157,51 +159,76 @@ Import a CSV or TAB file as a new table into the data base.
 
 ---
 
-<a href="../dbpp/utils/SqlUtils.py#L135"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/utils/sqlutils.py#L158"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>function</kbd> `getColumns`
+### <kbd>method</kbd> `get_columns`
 
 ```python
-getColumns(tname)
+get_columns(tname)
 ```
 
 Return the column names for the given table or view name. 
 
 ---
 
-<a href="../dbpp/utils/SqlUtils.py#L119"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/utils/sqlutils.py#L142"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>function</kbd> `getTables`
+### <kbd>method</kbd> `get_tables`
 
 ```python
-getTables()
+get_tables()
 ```
 
 Return the names of the tables of the database. 
 
 ---
 
-<a href="../dbpp/utils/SqlUtils.py#L127"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/utils/sqlutils.py#L150"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>function</kbd> `getViews`
+### <kbd>method</kbd> `get_views`
 
 ```python
-getViews()
+get_views()
 ```
 
 Return the names of the views of the database. 
 
 ---
 
-<a href="../dbpp/utils/SqlUtils.py#L141"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/utils/sqlutils.py#L164"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>function</kbd> `select`
+### <kbd>method</kbd> `select`
 
 ```python
 select(statement)
 ```
 
 Return the result set for the given select statement. 
+
+---
+
+<a href="../dbpp/utils/sqlutils.py#L119"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+
+### <kbd>method</kbd> `sql2csv`
+
+```python
+sql2csv(tablename, csvfile)
+```
+
+Exporting a table from a SQLite3 database to a CSV file 
+
+
+
+**Args:**
+ 
+ - <b>`tablename`</b> (str):  name of the table to export 
+ - <b>`csvfile`</b> (str):  name of the csv file for output  
+
+
+
+**Returns:**
+ 
+ - <b>`int `</b>:  number of data rows exported 
 
 
 

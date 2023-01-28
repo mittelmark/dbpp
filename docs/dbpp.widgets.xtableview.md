@@ -1,38 +1,38 @@
 <center>
 
 **[dbpp.widgets](dbpp.widgets.md) package:** 
-[GuiBaseClass](dbpp.widgets.GuiBaseClass.md) -
-[AutoScrollbar](dbpp.widgets.AutoScrollbar.md) -
-[Balloon](dbpp.widgets.Balloon.md) -
-[Ctext](dbpp.widgets.Ctext.md) -
-[LabEntry](dbpp.widgets.LabEntry.md) -
-[RoText](dbpp.widgets.RoText.md) -
-[Scrolled](dbpp.widgets.Scrolled.md) -
-[SqlText](dbpp.widgets.SqlText.md) -
-[StatusBar](dbpp.widgets.StatusBar.md) -
-[TableView](dbpp.widgets.TableView.md) -
-[TextMixins](dbpp.widgets.TextMixins.md) -
-[XTableView](dbpp.widgets.XTableView.md) -
-[XTreeView](dbpp.widgets.XTreeView.md) 
+[GuiBaseClass](dbpp.widgets.guibaseclass.md) -
+[AutoScrollbar](dbpp.widgets.autoscrollbar.md) -
+[Balloon](dbpp.widgets.balloon.md) -
+[Ctext](dbpp.widgets.ctext.md) -
+[LabEntry](dbpp.widgets.labentry.md) -
+[RoText](dbpp.widgets.rotext.md) -
+[Scrolled](dbpp.widgets.scrolled.md) -
+[SqlText](dbpp.widgets.sqltext.md) -
+[StatusBar](dbpp.widgets.statusbar.md) -
+[TableView](dbpp.widgets.tableview.md) -
+[TextMixins](dbpp.widgets.textmixins.md) -
+[XTableView](dbpp.widgets.xtableview.md) -
+[XTreeView](dbpp.widgets.xtreeview.md) 
 
 [dbpp.kroki](dbpp.kroki.md) - 
-[dbpp.kroki.KrokiEncoder](dbpp.kroki.KrokiEncoder.md) -
+[dbpp.kroki.KrokiEncoder](dbpp.kroki.krokiencoder.md) -
 [dbpp.utils](dbpp.utils.md) - 
-[dbpp.utils.SqlUtils](dbpp.utils.SqlUtils.md)  -
+[dbpp.utils.SqlUtils](dbpp.utils.sqlutils.md)  -
 
-**apps:** [dbpp.peditor](dbpp.peditor.PumlEditor.md)
+**apps:** [dbpp.peditor](dbpp.peditor.pumleditor.md)
 
 
 </center>
 
 <!-- markdownlint-disable -->
 
-<a href="../dbpp/widgets/XTableView.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/xtableview.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-# <kbd>module</kbd> `widgets.XTableView`
+# <kbd>module</kbd> `widgets.xtableview`
 Extension of the TableView widget which can as well insert lists into the ttk.Treeview widget. 
 
-The widget TableView provides an extension for the [TableView](TableView.html)  table widget with a readData function, getting header and lists  inheriting all methods and options from `TableView`. 
+The widget TableView provides an extension for the [TableView](tableview.md)  table widget with a readData function, getting header and lists  inheriting all methods and options from `TableView`. 
 
 Hint: This functionality should be better implemented as a Mixin. 
 
@@ -51,7 +51,7 @@ class "dbpp.widgets.TableView" as TableView {
      pack_forget()
 }
 class "dbpp.widgets.XTableView" as XTableView {
-     insertData(colnames,data)
+     insert_data(colnames,data)
 }
 Treeview <- TableView
 TableView <- XTableView
@@ -71,7 +71,7 @@ root = tk.Tk()
 root.title('XTableView Demo')
 dgtab=XTableView(root)
 dgtab.getFrame().pack(side='top',fill='both',expand=True)
-dgtab.insertData(['Col1','Col2'],
+dgtab.insert_data(['Col1','Col2'],
      data=[['val1.1','val1.2'], ['val2.1','val2.2']])
 root.geometry("400x300")
 root.mainloop()
@@ -87,12 +87,12 @@ root.mainloop()
 
 ---
 
-<a href="../dbpp/widgets/XTableView.py#L63"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/xtableview.py#L62"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>class</kbd> `XTableView`
 Extended ttk.Treeview based on TableView. 
 
-<a href="../dbpp/widgets/XTableView.py#L66"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/xtableview.py#L65"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ### <kbd>method</kbd> `__init__`
 
@@ -120,12 +120,12 @@ The constructor to create a XTableView widget.
 
 ---
 
-<a href="../dbpp/widgets/XTableView.py#L80"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/xtableview.py#L79"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `insertData`
+### <kbd>method</kbd> `insert_data`
 
 ```python
-insertData(colnames='', data='')
+insert_data(colnames='', data='')
 ```
 
 Inserts data into a ttk.Treeview widget. 
