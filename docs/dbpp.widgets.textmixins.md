@@ -29,7 +29,7 @@
 
 <a href="../dbpp/widgets/textmixins.py#L0"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-# <kbd>module</kbd> `widgets.textmixins`
+# <kbd>module</kbd> `textmixins.py`
 The module *TextMixins* adds a few small Mixin classes for the *tk.Text* widget to extend its functionality on the fly. 
 
 The following Mixins are currently implemented: 
@@ -37,7 +37,42 @@ The following Mixins are currently implemented:
 
 - TextFontIncreaserMixin - adding bindings *Ctrl-plus* and *Ctrl-minus* to change the fontsize 
 - TextCuaBindingsMixin  - adds a few standard bindings like *Ctrl-a* to select the text and a status aware context menu for right mouse button clicks 
-- TextHighLightMixin - a simple syntax highlighter for single and multiline comments as well as for keywords 
+- TextHighLightMixin - simple syntax highlighter for single and multiline comments as well as for keywords 
+
+
+
+**Examples:**
+ 
+
+```
+
+     >>> import tkinter as tk
+     >>> import dbpp.widgets.textmixins as txm
+     >>> root = tk.Tk()
+     >>> class text(tk.Text,
+     ...    txm.TextFontIncreaserMixin,
+     ...    txm.TextCuaBindingsMixin,
+     ...    txm.TextHighLightMixin): pass
+     >>> txt  = text(root,undo=True) 
+     >>> txt.bind_text_resize()
+     >>> txt.bind_cua()
+     >>> txt.add_highlights(commentline="'",commentstart="/'",
+     ...    commentend="'/",keywords=[ ['@startuml','@enduml'], ['class', 'entity', 'table'] ])
+     >>> txt.insert("1.0","@startuml\n'This is a comment\nclass A\nclass B\nA --> B\n@enduml\n")
+     >>> txt.update_highlights()
+     >>> txt.pack(side='top',fill='both',expand=True)
+     >>> root.mainloop()        
+
+``` 
+
+
+
+---
+
+## <kbd>class</kbd> `TextCuaBindingsMixin`
+CUA bindings and right click popup menu for the tk.Text widget. 
+
+Mixin class for the tk.Text widget which allows to extend its functionality on the fly for adding standard bindings and a Right click popup menu  by creating an empty class like this: 
 
 
 
@@ -46,33 +81,31 @@ The following Mixins are currently implemented:
 
 ```
 import tkinter as tk
-from dbp.widgets.TextMixins import TextMixins
+class MText(tk.Text,dbpp.widgets.TextMixins.TextCuaBindingsMixin): pass
 root = tk.Tk()
-class text(tk.Text,TextFontIncreaserMixin,TextCuaBindingsMixin,
-     TextHighLightMixin): pass
-txt  = text(root,undo=True) 
-txt.bind_text_resize()
-txt.bind_cua()
-txt.add_highlights(commentline="'",commentstart="/'",
-     commentend="'/",keywords=[ ['@startuml','@enduml'], ['class', 'entity', 'table'] ])
-txt.insert("1.0","
-@startuml
-'This is a comment
-class A
-class B
-A --> B
-@enduml
-")
-txt.update_highlights()
-txt.pack(side='top',fill='both',expand=True)
-root.mainloop()        
+text = MText(root)
+text.bind_cua()
 ``` 
+
+Now you can presse *Ctrl-a* for instance to select the complete text, you get as well a widget status aware context menu if you press the right mouse button in the text widget. 
+
 
 
 
 ---
 
-<a href="../dbpp/widgets/textmixins.py#L45"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/textmixins.py#L120"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+
+### <kbd>function</kbd> `bind_cua`
+
+```python
+bind_cua()
+```
+
+Adds the actual bindings Ctrl-x, Ctrl-c, Ctrl-v, Control-z, Control-a known as well as CUA bindings and in addition a right click context mene 
+
+
+---
 
 ## <kbd>class</kbd> `TextFontIncreaserMixin`
 Adding fontsize adjustments using Ctrl-plus, Ctrl-minus to the tk.Text widget. 
@@ -81,7 +114,7 @@ Mixin class for the tk.Text widget which allows to extend its functionality on t
 
 ```
 import tkinter as tk
-class MText(tk.Text,dbp.widgets.TextMixins.TextFontIncreaserMixin): pass
+class MText(tk.Text,dbpp.widgets.TextMixins.TextFontIncreaserMixin): pass
 root = tk.Tk()
 text = MText(root)
 text.bindTextResize()
@@ -94,9 +127,9 @@ Now you can presse *Ctrl-Plus* to increase the font and *Ctrl-Minus* to decrease
 
 ---
 
-<a href="../dbpp/widgets/textmixins.py#L62"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/textmixins.py#L60"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `bind_text_resize`
+### <kbd>function</kbd> `bind_text_resize`
 
 ```python
 bind_text_resize(increase='Control-plus', decrease='Control-minus', font=None)
@@ -114,9 +147,9 @@ Add the actual bindings for increasing and decreasing the fontsize using the *Ct
 
 ---
 
-<a href="../dbpp/widgets/textmixins.py#L95"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/textmixins.py#L93"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `decrease_font`
+### <kbd>function</kbd> `decrease_font`
 
 ```python
 decrease_font(evt=None)
@@ -126,9 +159,9 @@ Decrease the font size of the widget.
 
 ---
 
-<a href="../dbpp/widgets/textmixins.py#L90"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/textmixins.py#L88"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `increase_font`
+### <kbd>function</kbd> `increase_font`
 
 ```python
 increase_font(evt=None)
@@ -138,48 +171,6 @@ Increase the font size of the widget.
 
 
 ---
-
-<a href="../dbpp/widgets/textmixins.py#L100"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
-
-## <kbd>class</kbd> `TextCuaBindingsMixin`
-CUA bindings and right click popup menu for the tk.Text widget. 
-
-Mixin class for the tk.Text widget which allows to extend its functionality on the fly for adding standard bindings and a Right click popup menu  by creating an empty class like this: 
-
-
-
-**Examples:**
- 
-
-```
-import tkinter as tk
-class MText(tk.Text,dbp.widgets.TextMixins.TextCuaBindingsMixin): pass
-root = tk.Tk()
-text = MText(root)
-text.bind_cua()
-``` 
-
-Now you can presse *Ctrl-a* for instance to select the complete text, you get as well a widget status aware context menu if you press the right mouse button in the text widget. 
-
-
-
-
----
-
-<a href="../dbpp/widgets/textmixins.py#L122"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
-
-### <kbd>method</kbd> `bind_cua`
-
-```python
-bind_cua()
-```
-
-Adds the actual bindings Ctrl-x, Ctrl-c, Ctrl-v, Control-z, Control-a known as well as CUA bindings and in addition a right click context mene 
-
-
----
-
-<a href="../dbpp/widgets/textmixins.py#L179"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
 ## <kbd>class</kbd> `TextHighLightMixin`
 Syntax highlighting for the tk.Text widget. 
@@ -206,9 +197,9 @@ text.add_highlights(linecomment="^\s*'",keywords=[
 
 ---
 
-<a href="../dbpp/widgets/textmixins.py#L200"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/textmixins.py#L198"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `add_highlights`
+### <kbd>function</kbd> `add_highlights`
 
 ```python
 add_highlights(
@@ -220,7 +211,7 @@ add_highlights(
 )
 ```
 
-Adds the actual syntax highlighting and the binding for updates of the high lighting after pressing Up, Down or Return. For updating after a new file is loaded see updateHighLights 
+Adds the actual syntax highlighting and the binding for updates of the high lighting after pressing Up, Down or Return. For updating after a new file is loaded see update_highlights 
 
 
 
@@ -236,9 +227,9 @@ Adds the actual syntax highlighting and the binding for updates of the high ligh
 
 ---
 
-<a href="../dbpp/widgets/textmixins.py#L236"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
+<a href="../dbpp/widgets/textmixins.py#L234"><img align="right" style="float:right;" src="https://img.shields.io/badge/-source-cccccc?style=flat-square" /></a>
 
-### <kbd>method</kbd> `update_highlights`
+### <kbd>function</kbd> `update_highlights`
 
 ```python
 update_highlights()

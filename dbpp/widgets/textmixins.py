@@ -7,33 +7,31 @@ The following Mixins are currently implemented:
 
 - TextFontIncreaserMixin - adding bindings *Ctrl-plus* and *Ctrl-minus* to change the fontsize
 - TextCuaBindingsMixin  - adds a few standard bindings like *Ctrl-a* to select the text and a status aware context menu for right mouse button clicks
-- TextHighLightMixin - a simple syntax highlighter for single and multiline comments as well as for keywords
+- TextHighLightMixin - simple syntax highlighter for single and multiline comments as well as for keywords
 
 Examples:
 
 ```
-import tkinter as tk
-from dbp.widgets.TextMixins import TextMixins
-root = tk.Tk()
-class text(tk.Text,TextFontIncreaserMixin,TextCuaBindingsMixin,
-    TextHighLightMixin): pass
-txt  = text(root,undo=True) 
-txt.bind_text_resize()
-txt.bind_cua()
-txt.add_highlights(commentline="'",commentstart="/'",
-    commentend="'/",keywords=[ ['@startuml','@enduml'], ['class', 'entity', 'table'] ])
-txt.insert("1.0","
-@startuml
-'This is a comment
-class A
-class B
-A --> B
-@enduml
-")
-txt.update_highlights()
-txt.pack(side='top',fill='both',expand=True)
-root.mainloop()        
+
+    >>> import tkinter as tk
+    >>> import dbpp.widgets.textmixins as txm
+    >>> root = tk.Tk()
+    >>> class text(tk.Text,
+    ...    txm.TextFontIncreaserMixin,
+    ...    txm.TextCuaBindingsMixin,
+    ...    txm.TextHighLightMixin): pass
+    >>> txt  = text(root,undo=True) 
+    >>> txt.bind_text_resize()
+    >>> txt.bind_cua()
+    >>> txt.add_highlights(commentline="'",commentstart="/'",
+    ...    commentend="'/",keywords=[ ['@startuml','@enduml'], ['class', 'entity', 'table'] ])
+    >>> txt.insert("1.0","@startuml\\n'This is a comment\\nclass A\\nclass B\\nA --> B\\n@enduml\\n")
+    >>> txt.update_highlights()
+    >>> txt.pack(side='top',fill='both',expand=True)
+    >>> root.mainloop()        
+
 ```
+
 """
 import re
 import tkinter as tk
@@ -51,7 +49,7 @@ class TextFontIncreaserMixin:
     
     ```
     import tkinter as tk
-    class MText(tk.Text,dbp.widgets.TextMixins.TextFontIncreaserMixin): pass
+    class MText(tk.Text,dbpp.widgets.TextMixins.TextFontIncreaserMixin): pass
     root = tk.Tk()
     text = MText(root)
     text.bindTextResize()
@@ -109,7 +107,7 @@ class TextCuaBindingsMixin:
     
     ```
     import tkinter as tk
-    class MText(tk.Text,dbp.widgets.TextMixins.TextCuaBindingsMixin): pass
+    class MText(tk.Text,dbpp.widgets.TextMixins.TextCuaBindingsMixin): pass
     root = tk.Tk()
     text = MText(root)
     text.bind_cua()
@@ -200,7 +198,7 @@ class TextHighLightMixin:
     def add_highlights(self,commentline="^\s*#",commentstart=None,commentend=None,keywords=list(),strings=True):
         """
         Adds the actual syntax highlighting and the binding for updates of the high lighting after pressing Up, Down or Return.
-        For updating after a new file is loaded see updateHighLights
+        For updating after a new file is loaded see update_highlights
         
         Args:
             commentline  (regex): the regular expression to start a single line comment, defaults to "^\s*#"
@@ -306,23 +304,23 @@ class TextHighLightMixin:
         return 1                    
     def _HighLightRedo (self,evt=None):
         self.edit_redo()
-        self.updateHighLights()
+        self.update_highlights()
         return("break")
     def _HighLightUndo (self,evt=None):
         self.edit_undo()
-        self.updateHighLights()
+        self.update_highlights()
         return("break")
     def _HighLightCopy (self,evt=None):
         self.tk.call('tk_textCopy', self)
-        self.updateHighLights()
+        self.update_highlights()
         return("break")
     def _HighLightCut (self,evt=None):
         self.tk.call('tk_textCut', self)
-        self.updateHighLights()
+        self.update_highlights()
         return("break")
     def _HighLightPaste (self,evt=None):
         self.tk.call('tk_textPaste', self)
-        self.updateHighLights()
+        self.update_highlights()
         return("break")
     def _KeyPressHighLights(self,evt):
         #if (evt.keysym == "space"):
