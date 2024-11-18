@@ -188,20 +188,20 @@ class TextHighLightMixin:
     class MText(tk.Text,dbpp.widgets.TextMixins.TextHighLightMixin): pass
     root = tk.Tk()
     text = MText(root)
-    text.add_highlights(linecomment="^\s*'",keywords=[ 
+    text.add_highlights(linecomment="^\\s*'",keywords=[ 
         ['@startuml','@enduml', '@startmindmap','@endmindmap'], 
         ['class', 'entity', 'table'] ])
     ```
     
     """
 
-    def add_highlights(self,commentline="^\s*#",commentstart=None,commentend=None,keywords=list(),strings=True):
+    def add_highlights(self,commentline="^\\s*#",commentstart=None,commentend=None,keywords=list(),strings=True):
         """
         Adds the actual syntax highlighting and the binding for updates of the high lighting after pressing Up, Down or Return.
         For updating after a new file is loaded see update_highlights
         
         Args:
-            commentline  (regex): the regular expression to start a single line comment, defaults to "^\s*#"
+            commentline  (regex): the regular expression to start a single line comment, defaults to "^\\s*#"
             commentstart (regex): the regular expression to start a multi line comment, defaults to None
             commentend   (regex): the regular expression to start a multie line comment, defaults to None            
             keywords (list): nested list of keywords, each sublist will be given a different color, defaults to list()
@@ -247,7 +247,7 @@ class TextHighLightMixin:
         self.tag_remove("red","1.0","end")        
         self.tag_remove("string","1.0","end")                
                         
-        for i in range(1,int(re.sub("^([0-9]+)\..+","\\1",self.index('end') ))):
+        for i in range(1,int(re.sub(r"^([0-9]+)\..+","\\1",self.index('end') ))):
             start=""+str(i)+".0"
             end=""+str(i)+".end"
             if (self.commentline != ""):
@@ -264,7 +264,7 @@ class TextHighLightMixin:
                     startindex = start
             if not(comment):
                 if (self.strings):
-                    for m in re.finditer("[\"'](.+?)[\"']", self.get(start,end)):
+                    for m in re.finditer(r"[\"'](.+?)[\"']", self.get(start,end)):
                         for [x,y] in [(m.start(0), m.end(0))]: 
                             self.tag_add("string",str(i)+"."+str(x),str(i)+"."+str(y))
                 

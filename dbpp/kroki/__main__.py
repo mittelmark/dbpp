@@ -4,7 +4,7 @@ The dbpp.kroki terminal application.
 
 
 import dbpp
-import dbpp.kroki.KrokiEncoder as KrokiEncoder
+import dbpp.kroki.krokiencoder as KrokiEncoder
 import sys, re, os
 def usage(argv):
     print("\nUsage: python3 -m dbpp.kroki URL|DIAGRAMFILE")
@@ -23,7 +23,7 @@ def main(argv):
     if (len(argv) >= 2):
         if re.search("^https://.+(svg|png|pdf)/",argv[1]):
             print(kroki.kroki2dia(argv[1]))
-        elif re.search(".+\.[a-z]{3,6}$",argv[1]):
+        elif re.search(r".+\.[a-z]{3,6}$",argv[1]):
             if os.path.exists(argv[1]):
                 dia = "ditaa"
                 if re.search("dot$",argv[1]):

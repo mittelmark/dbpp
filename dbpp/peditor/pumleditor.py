@@ -194,7 +194,7 @@ class PumlEditor(GuiBaseClass):
         self.text.insert('end',"\n"+url)
     def url2text (self):
         url=self.text.get('1.0','end')
-        url=re.sub("^\s+","",url)
+        url=re.sub(r"^\s+","",url)
         if not(bool(re.search("^https://kroki.io.+",url))):
             self.message("Error: Text in Editor seems not to be a kroki URL")
             bg=self.text.cget("background")
@@ -289,15 +289,15 @@ ChildClass --> BaseClass
 ' https://plantuml.com/ditaa
 ditaa
 
-+--------+   /-------\    +-------+
++--------+   /-------\\    +-------+
 | cPNK   +---+ ditaa +--> |       |
 |  Text  |   +-------+    |diagram|
 |Document|   |!magic!|    | cEFF  |
 |     {d}|   |       |    |       |
-+---+----+   \-------/    +-------+
++---+----+   \\-------/    +-------+
     :                         ^
     |       Lots of work      |
-    \-------------------------/
+    \\-------------------------/
 @enduml
 '''
 )
@@ -307,7 +307,7 @@ ditaa
         self.text.delete('1.0', 'end')
         self.text.insert("end",'''@startuml
 ' https://plantuml.com/ascii-math
-:<latex>\int_0^1f(x)dx</latex>;
+:<latex>\\int_0^1f(x)dx</latex>;
 @enduml
 '''
 )

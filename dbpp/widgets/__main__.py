@@ -138,7 +138,7 @@ if __name__ == '__main__':
     file = open(__file__,'r')
     for line in file:
         txt2.insert('end',line)
-    txt2.add_highlights(commentline='^\s*#',commentstart='"""',commentend='"""',keywords=[ 
+    txt2.add_highlights(commentline='^\\s*#',commentstart='"""',commentend='"""',keywords=[ 
         ['True','False','None'],
         ['import','from','def','for', 'class', 'in', 'is', 'as', 'while','if','elif','else'] ])  
     txt2.update_highlights()      
