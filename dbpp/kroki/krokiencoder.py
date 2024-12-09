@@ -12,7 +12,7 @@ them as web images using the [https://kroki.io](https://kroki.io) and ready to e
 Examples:
 
 ```python
-from dbpp.kroki.KrokiEncoder import KrokiEncoder
+from dbpp.kroki.krokiencoder import KrokiEncoder
 kroki = KrokiEncoder()
 kroki.text2kroki("A --> B")
 kroki.text2kroki("class A { }",dia='plantuml',ext='svg')  
