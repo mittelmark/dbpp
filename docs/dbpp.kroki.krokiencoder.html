@@ -96,7 +96,7 @@
 <p>dbpp.kroki.KrokiEncoder - class to encode diagram code as krokio.io URL’s and to decode them back to text.</p>
 <p>This class provides methods to convert diagram code for tools like <a href="https://plantuml.com">PlantUML</a>, <a href="https://www.graphviz.org">GraphViz</a> or <a href="https://ditaa.sourceforge.net/">Ditaa</a> to base64 encoded URL’s ready to display them as web images using the <a href="https://kroki.io">https://kroki.io</a> and ready to edit them online using the <a href="https://niolesk.top/">Niolesk web editor</a>.</p>
 <p><strong>Examples:</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="im">from</span> dbpp.kroki.KrokiEncoder <span class="im">import</span> KrokiEncoder</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="im">from</span> dbpp.kroki.krokiencoder <span class="im">import</span> KrokiEncoder</span>
 <span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a>kroki <span class="op">=</span> KrokiEncoder()</span>
 <span id="cb1-3"><a aria-hidden="true" href="#cb1-3" tabindex="-1"></a>kroki.text2kroki(<span class="st">"A --&gt; B"</span>)</span>
 <span id="cb1-4"><a aria-hidden="true" href="#cb1-4" tabindex="-1"></a>kroki.text2kroki(<span class="st">"class A { }"</span>,dia<span class="op">=</span><span class="st">'plantuml'</span>,ext<span class="op">=</span><span class="st">'svg'</span>)  </span>
@@ -106,7 +106,7 @@
 <pre><code>     &gt;&gt;&gt; x = 1
      &gt;&gt;&gt; x + 1
      2
-     &gt;&gt;&gt; from dbpp.kroki.KrokiEncoder import KrokiEncoder
+     &gt;&gt;&gt; from dbpp.kroki.krokiencoder import KrokiEncoder
      &gt;&gt;&gt; kroki = KrokiEncoder()
      &gt;&gt;&gt; kroki.text2kroki("class A { }",dia='plantuml',ext='svg')  
      'https://kroki.io/plantuml/svg/eNpLzkksLlZwVKhWqAUAF10DsA=='</code></pre>
@@ -127,8 +127,8 @@
 <ul>
 <li><b><code>args</code></b> (list): argument list in order: appname, filename, dia, ext</li>
 </ul>
-<pre><code>import KrokiEncoder
-KrokiEncoder.main([None,'diagram.pml','plantuml','png'])</code></pre>
+<pre><code>import krokiencoder
+krokiencoder.main([None,'diagram.pml','plantuml','png'])</code></pre>
 <p>Here an example for converting a PlantUML file into a PNG image using the command line application interface:</p>
 <pre><code>$ KrokiEncoder.py diagram.pml plantuml png</code></pre>
 <p>Thereafter the file <code>diagram.png</code> should be in parallel to the file <code>diagram.pml</code>.</p>
@@ -185,7 +185,7 @@ A -&gt; B
 <p><strong>Examples:</strong></p>
 <div class="sourceCode" data-echo="true" id="cb11"><pre class="sourceCode py"><code class="sourceCode python"><span id="cb11-1"><a aria-hidden="true" href="#cb11-1" tabindex="-1"></a><span class="im">import</span> sys, os</span>
 <span id="cb11-2"><a aria-hidden="true" href="#cb11-2" tabindex="-1"></a>sys.path.append(os.path.join(os.getcwd(),<span class="st">".."</span>))</span>
-<span id="cb11-3"><a aria-hidden="true" href="#cb11-3" tabindex="-1"></a><span class="im">from</span> KrokiEncoder <span class="im">import</span> KrokiEncoder</span>
+<span id="cb11-3"><a aria-hidden="true" href="#cb11-3" tabindex="-1"></a><span class="im">from</span> krokiencoder <span class="im">import</span> KrokiEncoder</span>
 <span id="cb11-4"><a aria-hidden="true" href="#cb11-4" tabindex="-1"></a>kroki<span class="op">=</span>KrokiEncoder()</span>
 <span id="cb11-5"><a aria-hidden="true" href="#cb11-5" tabindex="-1"></a>text<span class="op">=</span>kroki.kroki2dia(<span class="st">'https://kroki.io/plantuml/svg/eNpLzkksLlZwVKhWqOXiSgZznCAcRwVdLQUnAJ-uCKI='</span>)</span>
 <span id="cb11-6"><a aria-hidden="true" href="#cb11-6" tabindex="-1"></a><span class="bu">print</span>(text)</span></code></pre></div>
