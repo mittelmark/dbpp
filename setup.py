@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='dbpp',
-      version='0.2.0',
+      version='0.2.1',
       description='Python package with code from Course Databases and Practical Programming',
       url='https://github.com/mittelmark/dbpp',
       author='Detlef Groth',
