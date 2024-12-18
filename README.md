@@ -6,7 +6,7 @@ The following applications will be added:
 
 * mkdoc - create API documentation from Markdown
 * kroki - encode diagram code as kroki URL's (done)
-* sfa   - create single file applications from a few Python source code files
+* [sfa](dbpp/sfa/__main__.py)   - create single file applications from a few Python source code files
 * SQLViewer - an SQLViewer application forSQLite databases
 * [PumlEditor](docs/dbpp.peditor.PumlEditor.md) - an Diagram Editor with preview functionality started with `python -m dbpp.peditor (diagramfile)` (done)
 
@@ -28,7 +28,8 @@ $ # after successfull install try this
 $ python3 -m dbpp.kroki
 $ # which should give yo a message like 
 $ I am kroki __main__.py
-$ python3 -m dbpp.peditor # should start the PumlEditor
+$ python3 -m dbpp.peditor   # should start the PumlEditor
+$ python3 -m dbpp.sfa  -h   # should display help for the single file application packer
 ```
 
 ## dbpp.widgets
@@ -58,7 +59,23 @@ A Python package with the following Tkinter widgets
 
 ## Applications
 
-### kroki - the KrokiEncoder
+### sfa - Single File Application Packer
+
+Command  line tool to combine a few Python files into a single  Python file if
+these files follow the application  layout used in the course  "Introduction to
+Databases and Practical Programming" at the University of Potsdam, Germany.
+
+Here an example to combine  file1.py and file2.py into an  application  app.py
+and then install this as an application into the users bin folder:
+
+```bash
+python3 -m dbpp.sfa file1.py file2.py -o app.py
+chmod 755 app.py
+mv app.py ~/bin
+app.py -h
+``` 
+
+### kroki - Kroki Diagram Encoder
 
 This a command line tool to encode diagram code such as [GraphViz](https://www.graphviz.org) (.dot), [PlantUML](https://www.plantuml.com) (.pml) or [Ditaa](https://github.com/stathissideris/ditaa) (.dit) files as image url's using the [kroki](https://kroki.io) webservice or backtranslates image url's into diagram code.
 
