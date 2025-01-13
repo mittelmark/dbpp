@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Detlef Groth, University of Potsdam,2024" />
+  <title>pydoc2md module</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="mini.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<center>
+<a href="pydoc2md.html">pydoc2md</a> - 
+<a href="sqlutils.html">sqlutils</a>
+</center>
+<header id="title-block-header">
+<h1 class="title">pydoc2md module</h1>
+<p class="author">Detlef Groth, University of Potsdam,2024</p>
+</header>
+<h2 id="convert-python-google-docs-docstrings-into-markdown">Convert Python Google docs docstrings into Markdown</h2>
+<p>This is a command line application which allows you do convert Python docstrings documentation in Google docstrings format into Markdown documentation which can be then converted into HTML documentation using document converters such as pandoc.</p>
+<p>Author: Detlef Groth, University of Potsdam, 2024</p>
+<p>License: MIT</p>
+<p>Usage as command line application:</p>
+<pre><code>pydoc2md PYTHONFILE ?MDFILE?</code></pre>
+<p>Usage as module:</p>
+<pre><code>import pydoc2md
+pydoc2md.pydoc2md PYTHONFILE ?MDFILE?</code></pre>
+<h2 id="functions">Functions</h2>
+<h2 id="pydoc2mdinfileoutfile">pydoc2md(infile,outfile=““)</h2>
+<p>Convert docstrings of the given Python file to a Markdown document.</p>
+<p>This function converts embedded Google docstrings into Markdown which can be then converted to HTML for instance using the pandoc document converter.</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li>infile (str) : Python file with docstrings in Google format</li>
+<li>outfile (str): optional output file, if not given, Markdown code is printed to stdout</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li>None</li>
+</ul>
+<h2 id="testmsg">test(msg)</h2>
+<p>This is a test method - arguments: msg - message to print</p>
+</body>
+</html>
