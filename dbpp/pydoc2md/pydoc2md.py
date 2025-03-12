@@ -12,17 +12,26 @@ License: MIT
 
 Usage as command line application: 
 
-    pydoc2md PYTHONFILE ?MDFILE?
+    pydoc2md PYTHONFILE ?MDFILE|HTMLFILE?
 
 Usage as module:
 
     import pydoc2md
-    pydoc2md.pydoc2md PYTHONFILE ?MDFILE?
+    pydoc2md.pydoc2md PYTHONFILE ?MDFILE|HTMLFILE?
 
+Direct conversion to a HTMLFILE requires the modules mkdoc pymdown-extensions
+to be installed.
 """
 
 import sys, os, re, shutil
 import argparse
+import dbpp.mkdoc.mkdoc as mkdoc
+try:
+    import markdown
+    md = markdown.Markdown(extensions=['pymdownx.superfences'])
+    mkd=True
+except:
+    mkd = False
 
 def pydoc2md(infile,outfile=""):
     """Convert docstrings of the given Python file to a Markdown document.
@@ -152,8 +161,9 @@ def main(argv):
     """The main function of the module,  argv is usually sys.argv."""
     parser = argparse.ArgumentParser(
             description=__doc__,formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--pyfile","-f",type=str,help="a Python module file")
-    parser.add_argument("--outfile","-o",type=str,help="a Markdown output file")     
+    parser.add_argument("--pyfile","-f",type=str,help="Python module file")
+    parser.add_argument("--outfile","-o",type=str,help="Markdown or HTML output file")     
+    parser.add_argument("--cssfile","-c",type=str,help="CSS style file if converted to HTML")         
     args = parser.parse_args(argv[1:])
     if args.pyfile and not(os.path.exists(args.pyfile)):
         print(f"Error: file {args.pyfile} does not exists!")
@@ -164,10 +174,21 @@ def main(argv):
     if not(args.outfile):
         pydoc2md(args.pyfile,"")
     else:
-        pydoc2md(args.pyfile,args.outfile)
-    #   pandoc="pandoc"
-    #else:
-    #   print("Error: pandoc is not installed or not in your PATH!\Please install pandoc\n")
+        if args.outfile.endswith(".html"):
+            if not(mkd):
+                print("Markdown library missing!\nYou must install the Python3 libraries\n Markdown and the extensions like so:\n")
+                print("pip3 install pymdown-extensions --user\n")
+            else:
+                mdfile=re.sub(".py$",".md",args.pyfile)
+                pydoc2md(args.pyfile,mdfile)
+                if not(args.cssfile):
+                    nargs = [argv[0],mdfile,args.outfile]
+                else:
+                    nargs=[argv[0],mdfile,args.outfile,args.cssfile]
+                print(nargs)
+                mkdoc.main(nargs)
+        else:                
+            pydoc2md(args.pyfile,args.outfile)
     
 if __name__ == "__main__":
      main(sys.argv)

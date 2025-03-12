@@ -96,13 +96,13 @@ def md2gitlabmd (infile,outfile):
     for line in file:
        if re.search("^> - ",line):
           ilist=True
-       if ilist and re.search("^\s{1,3}-",line):
+       if ilist and re.search(r"^\s{1,3}-",line):
           line=">"+line[1:]
-       elif ilist and re.search("^\s*$",line):          
+       elif ilist and re.search(r"^\s*$",line):          
           ilist=False
-       if not(ifenc) and re.search("^>\s{1,2}```",line):
+       if not(ifenc) and re.search(r"^>\s{1,2}```",line):
           ifenc=True
-       elif ifenc and re.search("^>{0,1}\s{1,3}```",line):
+       elif ifenc and re.search(r"^>{0,1}\s{1,3}```",line):
           line="> ```\n"
           ifenc = False
        elif ifenc:          
@@ -112,6 +112,8 @@ def md2gitlabmd (infile,outfile):
     out.close()
 
 def main (argv):
+    global head
+    global VERSION
     cssfile=""
     if len(argv)== 4:
         if not(argv[3].endswith(".css")):
