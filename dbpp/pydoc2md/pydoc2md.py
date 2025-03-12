@@ -63,7 +63,7 @@ def pydoc2md(infile,outfile=""):
         if lnr == 2 and re.search('^"""', line):
             out.write("## "+re.sub('"""',"",line))
             ## not a single line docstring?
-            if not re.search('""".+"""\s*$',line):        
+            if not re.search('""".+"""\\s*$',line):        
                 mod = True
         elif lnr > 1 and mod and re.search('^"""',line):
             out.write("\n")
@@ -79,7 +79,7 @@ def pydoc2md(infile,outfile=""):
             meth = False
         elif dflnr < 3 and re.search('^ {4}"""',line):
             ## not a single line docstring?
-            if not re.search('""".+"""\s*$',line):        
+            if not re.search('""".+"""\\s*$',line):        
                 func  = True
             if not(funcheader):
                 out.write("## Functions\n\n")
@@ -94,7 +94,7 @@ def pydoc2md(infile,outfile=""):
             m = re.match(r"    (Args|Returns):",line)
             out.write(f'__{m.group(1)}:__\n\n')
             continue
-        elif func and re.search("^ {8}[^\s\n]",line):
+        elif func and re.search("^ {8}[^\\s\n]",line):
             out.write(re.sub("^ {8}","* ",line))
         elif func:
             out.write(re.sub("^ {4}","",line))
@@ -118,13 +118,13 @@ def pydoc2md(infile,outfile=""):
                 mtname = re.sub("def +(.+):.*","\\1",line)
             else:
                 mtname = re.sub("^ +def +(.+)","\\1",line)
-            mtname = re.sub("_","\_",mtname)            
+            mtname = re.sub("_","\\_",mtname)            
             mtlnr = 0
         elif mtlnr < 3 and re.search('^ {8}[a-zA-Z]',line):
             mt2 = re.sub("^ +","",line)
             mtname=mtname+mt2
             mtname=re.sub("\n","",mtname)
-            mtname=re.sub(":\s*$","",mtname)
+            mtname=re.sub(":\\s*$","",mtname)
         elif mtlnr < 3 and re.search('^ {8}"""',line):
             ## not a single line docstring?
             if not re.search('""".+"""',line):
@@ -136,7 +136,7 @@ def pydoc2md(infile,outfile=""):
         elif meth and re.search('^ {8}(Args|Returns):',line):
             m = re.match(r"^ {8}(Args|Returns):",line)
             out.write(f'__{m.group(1)}:__\n\n')
-        elif meth and re.search("^ {11,12}[^\s\n]",line):
+        elif meth and re.search("^ {11,12}[^\\s\\n]",line):
             out.write(re.sub("^ {11,12}","* ",line))
         elif meth:
             out.write(re.sub("^ {8}","",line))
@@ -149,22 +149,25 @@ def test(msg):
     print(msg)
     
 def main(argv):
-     """The main function of the module,  argv is usually sys.argv."""
-     parser = argparse.ArgumentParser(
+    """The main function of the module,  argv is usually sys.argv."""
+    parser = argparse.ArgumentParser(
             description=__doc__,formatter_class=argparse.RawDescriptionHelpFormatter)
-     parser.add_argument("--pyfile","-f",type=str,help="a Python module file")
-     parser.add_argument("--outfile","-o",type=str,help="a Markdown output file")     
-     args = parser.parse_args(argv[1:])
-     if args.pyfile and not(os.path.exists(args.pyfile)):
+    parser.add_argument("--pyfile","-f",type=str,help="a Python module file")
+    parser.add_argument("--outfile","-o",type=str,help="a Markdown output file")     
+    args = parser.parse_args(argv[1:])
+    if args.pyfile and not(os.path.exists(args.pyfile)):
         print(f"Error: file {args.pyfile} does not exists!")
         sys.exit(0)
-     if not(args.outfile):
+    if not(args.pyfile):
+        print(f"Error: Argument --pyfile FILENAME missing!")
+        sys.exit(0)
+    if not(args.outfile):
         pydoc2md(args.pyfile,"")
-     else:
+    else:
         pydoc2md(args.pyfile,args.outfile)
-     #   pandoc="pandoc"
-     #else:
-     #   print("Error: pandoc is not installed or not in your PATH!\Please install pandoc\n")
+    #   pandoc="pandoc"
+    #else:
+    #   print("Error: pandoc is not installed or not in your PATH!\Please install pandoc\n")
     
 if __name__ == "__main__":
      main(sys.argv)

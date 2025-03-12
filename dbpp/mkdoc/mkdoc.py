@@ -9,6 +9,8 @@ try:
 except:
     mkd = False
 
+VERSION="0.4.0"    # 2025
+
 head="""    
 <HTML>
     <HEAD>
@@ -69,19 +71,19 @@ def extract (infile,outfile):
     file = open(infile, 'r');
     out  = open(outfile, 'w');
     for line in file:
-       if re.search("^#'\s+title:",line):
-          line=re.sub("^#'\s+title:\s+(.+)","#### \\1",line)
+       if re.search(r"^#'\s+title:",line):
+          line=re.sub(r"^#'\s+title:\s+(.+)","#### \\1",line)
           out.write(line+"\n")          
-       elif re.search("^#'\s+author:",line):
-          line=re.sub("^#'\s+author:\s+(.+)","##### \\1",line)
+       elif re.search(r"^#'\s+author:",line):
+          line=re.sub(r"^#'\s+author:\s+(.+)","##### \\1",line)
           out.write(line+"\n")          
-       elif re.search("^#'\s+date:",line):
-          line=re.sub("^#'\s+date:\s+(.+)","##### \\1",line)
+       elif re.search(r"^#'\s+date:",line):
+          line=re.sub(r"^#'\s+date:\s+(.+)","##### \\1",line)
           out.write(line+"\n")
-       elif re.search("^\s*#' ",line):
-          line=re.sub("^\s*?#' (.*)\n","\\1",line)
+       elif re.search(r"^\s*#' ",line):
+          line=re.sub(r"^\s*?#' (.*)\n","\\1",line)
           out.write(line+"\n")
-       elif re.search("^\s*#'\s*\n",line):          
+       elif re.search(r"^\s*#'\s*\n",line):          
           out.write("\n")
     file.close()
     out.close()
@@ -108,47 +110,47 @@ def md2gitlabmd (infile,outfile):
        out.write(line)
     file.close()
     out.close()
-    
-if __name__ == '__main__':        
+
+def main (argv):
     cssfile=""
-    if len(sys.argv)== 4:
-        if not(sys.argv[3].endswith(".css")):
+    if len(argv)== 4:
+        if not(argv[3].endswith(".css")):
             print("Error: Last filename must be a CSS file and have extension .css")
             exit()
-        elif not(os.path.exists(sys.argv[3])):
-            print(f"Error: Last stylesheet file '{sys.argv[3]}' does not exists!")
+        elif not(os.path.exists(argv[3])):
+            print(f"Error: Last stylesheet file '{argv[3]}' does not exists!")
             exit()
             
         else:
-            cssfile=sys.argv[3]
-            sys.argv=sys.argv[0:-1]
-    if len(sys.argv)== 3:
-        if not(sys.argv[1].endswith(".md")) and sys.argv[2].endswith('.md'):
-            extract(sys.argv[1],sys.argv[2]) 
-        elif sys.argv[1].endswith(".md") and   sys.argv[2].endswith(".md"):
+            cssfile=argv[3]
+            argv=argv[0:-1]
+    if len(argv)== 3:
+        if not(argv[1].endswith(".md")) and argv[2].endswith('.md'):
+            extract(argv[1],argv[2]) 
+        elif argv[1].endswith(".md") and   argv[2].endswith(".md"):
             print("conversion of two markdown files")
-            md2gitlabmd(sys.argv[1], sys.argv[2]) 
-        elif sys.argv[2].endswith('.html'):
+            md2gitlabmd(argv[1], argv[2]) 
+        elif argv[2].endswith('.html'):
             if not(mkd):
                 print("Markdown library missing!\nYou must install the Python3 libraries\n Markdown and the extensions like so:\n")
                 print("pip3 install pymdown-extensions --user\n")
             else:
-                if not(sys.argv[1].endswith(".md")):
-                    extract(sys.argv[1],'temp.md')
+                if not(argv[1].endswith(".md")):
+                    extract(argv[1],'temp.md')
                     mdfile="temp.md"
                 else:
-                    mdfile=sys.argv[1]
+                    mdfile=argv[1]
                 with open(mdfile, "r", encoding="utf-8") as input_file:
                     text = input_file.read()
                 html = md.convert(text)
-                head=re.sub("__TITLE__",os.path.basename(sys.argv[1]),head)
+                head=re.sub("__TITLE__",os.path.basename(argv[1]),head)
                 if (cssfile != ""):
                     head=re.sub("__STYLE__",f"<link rel=\"stylesheet\" href=\"{cssfile}\">",head)
                 elif  (os.path.exists("style.css")):
                     head=re.sub("__STYLE__","<link rel=\"stylesheet\" href=\"style.css\">",head)
                 else:
                     head=re.sub("__STYLE__","",head)
-                with open(sys.argv[2], "w", encoding="utf-8", errors="xmlcharrefreplace") as output_file:
+                with open(argv[2], "w", encoding="utf-8", errors="xmlcharrefreplace") as output_file:
                     output_file.write(head+html+foot)
     else:
         print("mkdoc.py %s - Markdown documentation tool\n\nExtract or convert Markdown code after a `#'` character sequence.\n" % VERSION)
@@ -162,7 +164,9 @@ if __name__ == '__main__':
         print("\nTo enable direct HTML conversion you need to install the Python package\npymdown-extensions like so:")
         print("       pip3 install pymdown-extensions --user")
         print("\nTo change the look and feel of the output HTML file,\nyou can place a file style.css in the current directory!")
-        print("\nCopyright: @ Detlef Groth, University of Potsdam, 2019-2021")
+        print("\nCopyright: @ Detlef Groth, University of Potsdam, 2019-2025")
         print("License:   MIT\n")
-        
+    
+if __name__ == '__main__':        
+    main(sys.argv)        
 
