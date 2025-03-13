@@ -2,7 +2,7 @@
 <HTML>
     <HEAD>
         <TITLE>
-        Documentation pydoc2md.md
+        Documentation pydoc2md
         </TITLE>
 <style>
 /* minimal style for documentation */
@@ -11,7 +11,7 @@
 body {
   color: #333;
   margin: 0 auto;
-  max-width: 50em;
+  max-width: 70em;
   font-family:  "Alegreya", "Georgia", "Garamond", serif;
   line-height: 1.5;
   padding: 2em 1em;
@@ -48,7 +48,12 @@ ul {
 </HEAD>
 <BODY>
 
-<h1>Documentation pydoc2md.md</h1>
+<h1>Documentation pydoc2md</h1>
+<p><center>
+    <a href="../mkdoc/mkdoc.html">mkdoc</a> -
+    <a href="../pydoc2md/pydoc2md.html">pydoc2md</a> -
+    <a href="../kroki/krokiencoder.html">krokiencoder</a>
+</center></p>
 <h2>Convert Python Google docs docstrings into Markdown</h2>
 <p>This is a command line application which allows you do convert Python docstrings
 documentation in Google docstrings format into Markdown documentation which
@@ -57,16 +62,19 @@ pandoc.</p>
 <p>Author: Detlef Groth, University of Potsdam, 2024-2025</p>
 <p>License: MIT</p>
 <p>Usage as command line application: </p>
-<pre><code>pydoc2md PYTHONFILE ?MDFILE|HTMLFILE?
+<pre><code>python3 -m dbpp.pydoc2md --pyfile PYTHONFILE \
+    ?--outfile MDFILE|HTMLFILE? ?--cssfile CSSFILE?
 </code></pre>
 <p>Usage as module:</p>
-<pre><code>import pydoc2md
-pydoc2md.pydoc2md PYTHONFILE ?MDFILE|HTMLFILE?
+<pre><code>import dbpp.pydoc2md as pydoc2md
+import dbpp.mkdoc as mkdoc
+pydoc2md.pydoc2md(PYTHONFILE,MDFILE)
+mkdoc.mkdoc.main(MDFILE,HTMLFILE,CSSFILE)
 </code></pre>
 <p>Direct conversion to a HTMLFILE requires the modules mkdoc pymdown-extensions
 to be installed.</p>
 <h2>Functions</h2>
-<h2>pydoc2md(infile,outfile="")</h2>
+<h2>pydoc2md.pydoc2md(infile,outfile="")</h2>
 <p>Convert docstrings of the given Python file to a Markdown document.</p>
 <p>This function converts embedded Google docstrings into Markdown which
 can be then converted to HTML for instance using the pandoc document converter.</p>
@@ -80,9 +88,9 @@ can be then converted to HTML for instance using the pandoc document converter.<
 <ul>
 <li>None</li>
 </ul>
-<h2>test(msg)</h2>
+<h2>pydoc2md.test(msg)</h2>
 <p>This is a test method - arguments: msg - message to print</p>
-<h2>main(argv)</h2>
+<h2>pydoc2md.main(argv)</h2>
 <p>The main function of the module,  argv is usually sys.argv.</p>
 </BODY>
 </HTML>

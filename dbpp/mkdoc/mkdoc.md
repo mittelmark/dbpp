@@ -28,17 +28,17 @@ Conversion to a HTMLFILE requires the modules mkdoc pymdown-extensions
 to be installed, Links pointing to MD files are converted to links pointing 
 to HTML files..
 
-## Functions
+## Module Functions
 
 
-##mkdoc.extract(infile,outfile)
+## mkdoc.extract(infile,outfile)
 
 Extracts the embedded Markdown 
 
-##mkdoc.md2gitlabmd(infile,outfile)
+## mkdoc.md2gitlabmd(infile,outfile)
 
 Converts the given inoutfile in Markdown to Gitlab compatible Markdown
 
-##mkdoc.md2html(mdfile,outfile,cssfile)
+## mkdoc.md2html(mdfile,outfile,cssfile)
 
 Converts the given Markdown infile to the given HTML outfile

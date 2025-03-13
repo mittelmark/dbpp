@@ -145,7 +145,7 @@ __Returns:__
 ## Module Functions
 
 
-##krokiencoder.main(args)
+## krokiencoder.main(args)
 
 
 Starting the KrokiEncoder as standalone application using command line options. Can 

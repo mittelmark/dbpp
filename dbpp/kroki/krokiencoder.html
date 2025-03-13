@@ -1,0 +1,198 @@
+    
+<HTML>
+    <HEAD>
+        <TITLE>
+        Documentation krokiencoder
+        </TITLE>
+<style>
+/* minimal style for documentation */
+* {  box-sizing: border-box; }
+
+body {
+  color: #333;
+  margin: 0 auto;
+  max-width: 70em;
+  font-family:  "Alegreya", "Georgia", "Garamond", serif;
+  line-height: 1.5;
+  padding: 2em 1em;
+}
+
+h1 {   font-size: 2.5em ; text-align: center; }
+h2 {   font-size: 2.0em;  }
+h3 {   font-size: 1.5em }
+h4 {   font-size: 1.4em; }
+h5 {   font-size: 1.2em; }
+h2, h3 {  margin-top: 1.5em; }
+h4, h5  { text-align:center; margin: 0.3em 0em; }
+
+code {   
+    font-size: 90%; 
+    font-family:  "Lucida Console", "Courier", monospace;
+}
+pre {
+    font-family:  "Monaco", monospace;
+    border-top: 0.1em #9ac solid;
+    background: #e9f6ff;
+    padding: 10px;
+    border-bottom: 0.1em #9ac solid;
+}
+
+a:link {  color: #34c; text-decoration: none; }
+
+ul {
+  list-style-type: square;
+}
+</style>
+<!-- Custom Style -->
+
+</HEAD>
+<BODY>
+
+<h1>Documentation krokiencoder</h1>
+<p><center>
+    <a href="../mkdoc/mkdoc.html">mkdoc</a> -
+    <a href="../pydoc2md/pydoc2md.html">pydoc2md</a> -
+    <a href="../kroki/krokiencoder.html">krokiencoder</a>
+</center></p>
+<h2>dbpp.kroki.KrokiEncoder</h2>
+<p>Class to encode diagram code as https://krokio.io URL's and to decode 
+them back to text.</p>
+<p>This class provides methods to convert diagram code for tools like 
+<a href="https://plantuml.com">PlantUML</a>, <a href="https://www.graphviz.org">GraphViz</a> or
+<a href="https://ditaa.sourceforge.net/">Ditaa</a> to base64 encoded URL's ready to display 
+them as web images using the <a href="https://kroki.io">https://kroki.io</a> and ready to edit them online
+ using the <a href="https://niolesk.top/">Niolesk web editor</a>.</p>
+<p>Examples:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dbpp.kroki.krokiencoder</span> <span class="kn">import</span> <span class="n">KrokiEncoder</span>
+<span class="n">kroki</span> <span class="o">=</span> <span class="n">KrokiEncoder</span><span class="p">()</span>
+<span class="n">kroki</span><span class="o">.</span><span class="n">text2kroki</span><span class="p">(</span><span class="s2">&quot;A --&gt; B&quot;</span><span class="p">)</span>
+<span class="n">kroki</span><span class="o">.</span><span class="n">text2kroki</span><span class="p">(</span><span class="s2">&quot;class A { }&quot;</span><span class="p">,</span><span class="n">dia</span><span class="o">=</span><span class="s1">&#39;plantuml&#39;</span><span class="p">,</span><span class="n">ext</span><span class="o">=</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>  
+<span class="n">kroki</span><span class="o">.</span><span class="n">dia2kroki</span><span class="p">(</span><span class="s1">&#39;input.pml&#39;</span><span class="p">,</span><span class="n">dia</span><span class="o">=</span><span class="s1">&#39;plantuml&#39;</span><span class="p">,</span><span class="n">ext</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Classes:</p>
+<p><div class="highlight"><pre><span></span><code>@startuml
+class A
+class B
+
+A -&gt;  B
+@enduml
+</code></pre></div>
+<img alt="" src="https://kroki.io/plantuml/png/eNpzKC5JLCopzc3hSs5JLC5WcITSTlxcjgq6dgpAhkNqXgpIAQA1mgz7" /></p>
+<div class="highlight"><pre><span></span><code>    &gt;&gt;&gt; x = 1
+    &gt;&gt;&gt; x + 1
+    2
+    &gt;&gt;&gt; from dbpp.kroki.krokiencoder import KrokiEncoder
+    &gt;&gt;&gt; kroki = KrokiEncoder()
+    &gt;&gt;&gt; kroki.text2kroki(&quot;class A { }&quot;,dia=&#39;plantuml&#39;,ext=&#39;svg&#39;)  
+    &#39;https://kroki.io/plantuml/svg/eNpLzkksLlZwVKhWqAUAF10DsA==&#39;
+</code></pre></div>
+<h2>Class: krokiencoder.KrokiEncoder</h2>
+<p>Class to encode and decode diagram code using the 
+<a href="https://kroki.io">https://kroki.io</a> web service.</p>
+<p>Here the methods of the class:</p>
+<p><img alt="" src="https://kroki.io/plantuml/png/eNpTUFBQcCguSSwqKc3N4QJyFJJzEouLFbyL8rMzXfOS81NSixSqFcAyIKCtkJKZaJSWmZOqoYkmmA3SgiIKFjECyqGIlqRWlKAorgWTDql5KSA3AAAftSWH" /></p>
+<p>Returns: 
+   KrokiEncoder object</p>
+<h2>Methods</h2>
+<h3>krokiencoder.KrokiEncoder.dia2kroki (self,filename,dia="ditaa",ext="png")</h3>
+<p><strong>Args:</strong></p>
+<ul>
+<li>filename (string): a diagram file, for instance with the pml extension for 
+                       PlantUML code, defaults to None</li>
+<li>dia (string): diagram type, either 'ditaa', 'plantuml', 'erd' or 'graphviz', 
+                  defaults to 'ditaa'</li>
+<li>ext (string): file extension, either 'png', 'svg' or 'pdf', not all extensions are supported for all diagram types,
+                  defaults to 'png'</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li>Kroki-URL (string)</li>
+</ul>
+<h3>krokiencoder.KrokiEncoder.text2kroki (self,text,dia="ditaa",ext="png")</h3>
+<p><strong>Args:</strong></p>
+<ul>
+<li>text (string): diagram text as string, for instance PlantUML 
+                       code, defaults to None</li>
+<li>dia (string): diagram type, either 'ditaa', 'plantuml', 'erd' or 'graphviz', 
+                  defaults to 'ditaa'</li>
+<li>ext (string): file extension, either 'png', 'svg' or 'pdf', not all extensions are supported for all diagram types,
+                  defaults to 'png'</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li>Kroki-URL (string)</li>
+</ul>
+<h3>krokiencoder.KrokiEncoder.kroki2dia (self,url)</h3>
+<p><strong>Args:</strong></p>
+<ul>
+<li>url (string): a kroki URL like https://kroki.io/plantuml/svg/eNpLzkksLlZwVOBKBjOcoLQzl6OCrhaQ66Sga6fgDADcPwn7,
+                       defaults to None</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li>diagram code (string)</li>
+</ul>
+<p>Examples:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span><span class="s2">&quot;..&quot;</span><span class="p">))</span>
+<span class="kn">from</span> <span class="nn">KrokiEncoder</span> <span class="kn">import</span> <span class="n">KrokiEncoder</span>
+<span class="n">kroki</span><span class="o">=</span><span class="n">KrokiEncoder</span><span class="p">()</span>
+<span class="n">text</span><span class="o">=</span><span class="n">kroki</span><span class="o">.</span><span class="n">kroki2dia</span><span class="p">(</span><span class="s1">&#39;https://kroki.io/plantuml/svg/eNpLzkksLlZwVKhWqOXiSgZznCAcRwVdLQUnAJ-uCKI=&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+<h3>krokiencoder.KrokiEncoder.dia2file (self,diafile,dia="ditaa",ext="png",imagefile="")</h3>
+<p><strong>Args:</strong></p>
+<ul>
+<li>diafile (string): a diagram file, for instance with the pml extension for 
+                       PlantUML code, defaults to None</li>
+<li>dia (string): diagram type, either 'ditaa', 'plantuml', 'erd' or 'graphviz', 
+                  defaults to 'ditaa'</li>
+<li>ext (string): file extension, either 'png', 'svg' or 'pdf', not all extensions are supported for all diagram types,
+                  defaults to 'png'</li>
+<li>imagefile (string): a output filename for the image file, if not given the diagram
+              imagefile will have the basename of the diagram file nut with the image extension.</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li>None</li>
+</ul>
+<h2>Module Functions</h2>
+<h2>krokiencoder.main(args)</h2>
+<p>Starting the KrokiEncoder as standalone application using command line options. Can 
+be directly called programatically like this:</p>
+<p><strong>Args:</strong></p>
+<ul>
+<li>args (list): argument list in order: appname, filename, dia, ext</li>
+</ul>
+<div class="highlight"><pre><span></span><code>import KrokiEncoder
+KrokiEncoder.main([None,&#39;diagram.pml&#39;,&#39;plantuml&#39;,&#39;png&#39;])
+</code></pre></div>
+<p>Here an example for converting a PlantUML file into a PNG image using the command line 
+application interface:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>KrokiEncoder.py<span class="w"> </span>diagram.pml<span class="w"> </span>plantuml<span class="w"> </span>png
+</code></pre></div>
+<p>Thereafter the file <code>diagram.png</code> should be in parallel to the file <code>diagram.pml</code>.</p>
+<p>here a file <code>diagram.pml</code> with the following content and below the output:</p>
+<div class="highlight"><pre><span></span><code>@startuml
+class A {
+* var1
+* method1()
+}
+class B {
+* var2
+* method2()
+}
+A -&gt; B
+@enduml
+</code></pre></div>
+<h2><a name="example">Examples</a></h2>
+<div class="highlight"><pre><span></span><code>kroki = KrokiEncoder()
+url.ditaa = kroki$text2dia(&quot;A --&gt; B&quot;)
+url.puml  = kroki$text2dia(&quot;class Kroki { }&quot;,dia=&quot;plantml&quot;)
+</code></pre></div>
+<h2><a name="authors">AUTHOR(S)</a></h2>
+<p>Detlef Groth, University of Potsdam, 2022-2025</p>
+<h2>LICENSE</h2>
+<p>MIT - License</p>
+</BODY>
+</HTML>
