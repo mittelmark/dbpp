@@ -4,8 +4,9 @@ Repository for the course Databases and Practical Programming at the University 
 
 The following applications will be added:
 
-* mkdoc - create API documentation from Markdown
-* kroki - encode diagram code as kroki URL's (done)
+* [mkdoc](dbpp/mkdoc/mkdoc.md) - create API documentation from Markdown
+* [krokiencoder](dbpp/kroki/krokiencoder.md) - encode diagram code as kroki URL's (done)
+* [pydoc2md](dbpp/pydoc2md/pydoc2md.md) - encode diagram code as kroki URL's (done)
 * [sfa](dbpp/sfa/__main__.py)   - create single file applications from a few Python source code files
 * SQLViewer - an SQLViewer application forSQLite databases
 * [PumlEditor](docs/dbpp.peditor.PumlEditor.md) - an Diagram Editor with preview functionality started with `python -m dbpp.peditor (diagramfile)` (done)
