@@ -45,7 +45,6 @@ def Line_to_dict(line):
     line=re.sub("kroki","",line)
     line=re.sub("[^a-zA-Z0-9_,=]","",line)
     line=re.sub("^,+","",line)
-    print(line)
     d = dict()
     for item in line.split(","):
         l = item.split("=")
@@ -264,7 +263,6 @@ def main(argv):
                     nargs = [argv[0],mdfile,args.outfile]
                 else:
                     nargs=[argv[0],mdfile,args.outfile,args.cssfile]
-                print(nargs)
                 mkdoc.main(nargs)
         else:                
             pydoc2md(args.pyfile,args.outfile)

@@ -30,10 +30,10 @@ Usage as module:
 Direct conversion to a HTMLFILE requires the modules mkdoc pymdown-extensions
 to be installed.
 
-## Functions
+## Module Functions
 
 
-##pydoc2md.pydoc2md(infile,outfile="")
+## pydoc2md.pydoc2md(infile,outfile="")
 
 Convert docstrings of the given Python file to a Markdown document.
 
@@ -52,10 +52,10 @@ __Returns:__
 
 * None
 
-##pydoc2md.test(msg)
+## pydoc2md.test(msg)
 
 This is a test method - arguments: msg - message to print
 
-##pydoc2md.main(argv)
+## pydoc2md.main(argv)
 
 The main function of the module,  argv is usually sys.argv.
