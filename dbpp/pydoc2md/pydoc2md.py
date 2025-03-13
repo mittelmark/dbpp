@@ -167,7 +167,7 @@ def pydoc2md(infile,outfile=""):
             if not(funcheader):
                 out.write("## Module Functions\n\n")
                 funcheader=True
-            out.write(f"\n##{modname}.{dfname}\n")
+            out.write(f"\n## {modname}.{dfname}\n")
             out.write(re.sub('"""','',re.sub("^ +","",re.sub(' {4}""" *',"",line))))
             continue
         elif func and re.search('^    """',line):
