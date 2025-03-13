@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""
-dbpp.kroki.KrokiEncoder - class to encode diagram code as krokio.io URL's and to decode 
-  them back to text.
+"""dbpp.kroki.KrokiEncoder 
+
+Class to encode diagram code as https://krokio.io URL's and to decode 
+them back to text.
 
 This class provides methods to convert diagram code for tools like 
 [PlantUML](https://plantuml.com), [GraphViz](https://www.graphviz.org) or
@@ -21,7 +22,7 @@ kroki.dia2kroki('input.pml',dia='plantuml',ext='png')
 
 Classes:
 
-```{.kroki echo=false dia=plantuml}
+```{.kroki echo=true dia=plantuml}
 @startuml
 class A
 class B
@@ -39,44 +40,7 @@ A ->  B
     >>> kroki.text2kroki("class A { }",dia='plantuml',ext='svg')  
     'https://kroki.io/plantuml/svg/eNpLzkksLlZwVKhWqAUAF10DsA=='
 ```
-    
-## DOCUMENTATION
 """
-
-#' ## NAME
-#'  
-#' `KrokiEncoder` - class to encode diagram code as krokio.io URL's and to decode 
-#'  them back to text.
-#'
-#' This class provides methods to convert diagram code for tools like 
-#' [PlantUML](https://plantuml.com), [GraphViz](https://www.graphviz.org) or
-#' [Ditaa](https://ditaa.sourceforge.net/) to base64 encoded URL's ready to display 
-#' them as web images using the [https://kroki.io](https://kroki.io) and ready to edit them online
-#' using the [Niolesk web editor](https://niolesk.top/).
-#'  
-#' Here an example with the UML diagram for the KrokiEncoder class:
-#'  
-#' ![ [Edit Diagram](https://niolesk.top/#https://kroki.io/plantuml/svg/eNpzKC5JLCopzc3hcs5JLC5W8C7Kz850zUvOT0ktUqjmUgABbYWUzESjtMycVA1NZJFskFqEEJhrBJRACJWkVpTAldVyOaTmpQCtAgDzkiG9) ](https://kroki.io/plantuml/svg/eNpzKC5JLCopzc3hcs5JLC5W8C7Kz850zUvOT0ktUqjmUgABbYWUzESjtMycVA1NZJFskFqEEJhrBJRACJWkVpTAldVyOaTmpQCtAgDzkiG9)
-#'  
-#' ## SYNOPSIS
-#'
-#' ```
-#' from dbp.kroki.krokiencoder import KrokiEncoder
-#' kroki = KrokiEncoder()
-#' kroki.text2kroki("A --> B")
-#' kroki.text2kroki("class A { }",dia='plantuml',ext='svg')  
-#' kroki.dia2kroki(diafilename,dia='plantuml',ext='png')
-#' ```
-#'  
-#' ## <a name="command">COMMAND</a>
-#'
-#' **KrokiEncoder()**
-#'
-#' > *Arguments:* None
-#'
-#' > *Returns:* a KrokiEncoder object
-#' 
-
 import sys, os, re
 import base64 
 import zlib 
@@ -93,29 +57,17 @@ class KrokiEncoder:
     ```{.kroki echo=false dia=plantuml}
     @startuml
     class KrokiEncoder { 
-        dia2file()
-        dia2kroki()
-        kroki2dia()
-        text2kroki()
+        + dia2file()
+        + dia2kroki()
+        + kroki2dia()
+        + text2kroki()
     }
     @enduml
     ```
-        
-    """
     
-    # translate a diagram text file to an kroki URL
-    #' **cmdName.dia2kroki(filename,dia="ditaa",ext="png")**
-    #'
-    #' > Encodes the given diagram file as a Kroki URL.
-    #'
-    #' > *Arguments:* 
-    #'  
-    #' > - *filename* - a diagram file for instance with Ditaa or PlantUML code
-    #'   - *dia* -  the diagram type, one of the supported types for the kroki.io website such as "ditaa", "plantuml" or "graphviz", default: "ditaa"
-    #'   - *ext* - the file extension for the link such as "png", "svg" or "pdf", default:"png"
-    #'
-    #' > *Returns:* a base64 encoded kroki URL ready to be embedded into HTML or Markdown pages.
-    #'  
+    Returns: 
+       KrokiEncoder object
+    """
     
     def dia2kroki (self,filename,dia="ditaa",ext="png"):
         """
@@ -128,6 +80,7 @@ class KrokiEncoder:
                           defaults to 'ditaa'
             ext (string): file extension, either 'png', 'svg' or 'pdf', not all extensions are supported for all diagram types,
                           defaults to 'png'
+
         Returns:
             Kroki-URL (string)
         """
@@ -136,18 +89,6 @@ class KrokiEncoder:
             zlib.compress(fin.read().encode('utf-8'), 9)).decode('ascii')
         fin.close()
         return(f"https://kroki.io/{dia}/{ext}/{url}")
-    #' **cmdName.text2kroki(text,dia="ditaa",ext="png")**
-    #'
-    #' > Encodes the given diagram text as a Kroki URL.
-    #'
-    #' > *Arguments:* 
-    #'  
-    #' > - *text* - diagram text as string for instance with Ditaa or PlantUML code
-    #'   - *dia* -  the diagram type, one of the supported types for the kroki.io website such as "ditaa", "plantuml" or "graphviz", default: "ditaa"
-    #'   - *ext* - the file extension for the link such as "png", "svg" or "pdf", default:"png"
-    #'
-    #' > *Returns:* a base64 encoded kroki URL ready to be embedded into HTML or Markdown pages.
-    #'  
         
     def text2kroki (self,text,dia="ditaa",ext="png"):
         """
@@ -168,17 +109,6 @@ class KrokiEncoder:
             zlib.compress(text.encode('utf-8'), 9)).decode('ascii')
         return(f"https://kroki.io/{dia}/{ext}/{url}")
 
-    #' **cmdName.kroki2dia(url)**
-    #'
-    #' > Decodes the given kroki URL as diagram text.
-    #'
-    #' > *Arguments:* 
-    #'  
-    #' > - *url* - a kroki URL
-    #'
-    #' > *Returns:* the diagram text for the given base64 encoded kroki URL.
-    #'  
-    
     def kroki2dia (self,url):
         """
         Converts a Kroki URL back to diagram code.
@@ -203,21 +133,6 @@ class KrokiEncoder:
         b64 = re.sub(".+/","",url)
         return(zlib.decompress(base64.urlsafe_b64decode(b64)).decode("ascii"))
         
-    # download an image file
-    #' **cmdName.dia2file(diafile,dia="ditaa",ext="png",imgfile="")**
-    #'
-    #' > Encodes the given diagram file as a Kroki URL and downloads the image belonging to this file and save it into the given image filename.
-    #'
-    #' > *Arguments:* 
-    #'  
-    #' > - *diafile* - a diagram file for instance with Ditaa or PlantUML code
-    #'   - *dia* -  the diagram type, one of the supported types for the kroki.io website such as "ditaa", "plantuml" or "graphviz", default: "ditaa"
-    #'   - *ext* - the file extension for the link such as "png", "svg" or "pdf", default:"png"
-    #'   - *imagefile* - the image file in which to put the image data, if not given just the same basename as from the *diafile* is used
-    #'
-    #' > *Returns:* None
-    #'  
-    
     def dia2file (self,diafile,dia="ditaa",ext="png",imagefile=""):
         """
         Converts a diagram file to an image file.
@@ -277,7 +192,7 @@ def main(args):
     Here an example for converting a PlantUML file into a PNG image using the command line 
     application interface:
     
-    ```
+    ```bash
     $ KrokiEncoder.py diagram.pml plantuml png
     ```
     
@@ -285,7 +200,7 @@ def main(args):
     
     here a file ``diagram.pml`` with the following content and below the output:
     
-    ```{.kroki dia=plantuml}
+    ```{.kroki dia=plantuml,eval=false,echo=true}
     @startuml
     class A {
         var1
@@ -316,22 +231,20 @@ if __name__ == "__main__":
     else:
         main(sys.argv)
         
+"""
+## <a name="example">Examples</a>
 
-#'  
-#' ## <a name="example">Examples</a>
-#'
-#' ```
-#'  kroki = KrokiEncoder()
-#'  url.ditaa = kroki$text2dia("A --> B")
-#'  url.puml  = kroki$text2dia("class Kroki { }",dia="plantml")
-#' ```  
-#'  
-#' ## <a name="authors">AUTHOR(S)</a>
-#'
-#' Detlef Groth, University of Potsdam, 2022
-#'
-#' ## LICENSE
-#'
-#' MIT - License
-#'  
+```
+kroki = KrokiEncoder()
+url.ditaa = kroki$text2dia("A --> B")
+url.puml  = kroki$text2dia("class Kroki { }",dia="plantml")
+```  
+ 
+## <a name="authors">AUTHOR(S)</a>
 
+Detlef Groth, University of Potsdam, 2022-2025
+
+## LICENSE
+
+MIT - License
+"""

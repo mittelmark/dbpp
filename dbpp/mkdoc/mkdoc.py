@@ -1,4 +1,29 @@
 #!/usr/bin/python3
+"""Convert Markdown files into HTML
+
+This is a command line application which allows you do convert Markdown files or documentation
+for programming code embedded into the source code after a `#'` comment into HTML files.
+Further it is possible to convert Github compatible Markdown to Gitlab Markdown by providing an 
+output filename with a `.md` extension.
+
+Author: Detlef Groth, University of Potsdam, 2021-2025
+
+License: MIT
+
+Usage as command line application: 
+
+    python3 -m dbpp.mkdoc INFILE OUTFILE ?CSSFILE?
+
+Usage as module:
+
+    import dbpp.mkdoc as mkdoc
+    mkdoc.mkdoc.main(MDFILE,HTMLFILE,CSSFILE)
+    mkdoc.mkdoc.main(MDFILE,MDFILE)
+    
+Conversion to a HTMLFILE requires the modules mkdoc pymdown-extensions
+to be installed, Links pointing to MD files are converted to links pointing 
+to HTML files..
+"""
 import sys
 import re
 import os
@@ -24,7 +49,7 @@ head="""
 body {
   color: #333;
   margin: 0 auto;
-  max-width: 50em;
+  max-width: 70em;
   font-family:  "Alegreya", "Georgia", "Garamond", serif;
   line-height: 1.5;
   padding: 2em 1em;
@@ -67,7 +92,10 @@ foot="""
 </BODY>
 </HTML>
 """
-def extract (infile,outfile):
+
+
+def extract(infile,outfile):
+    """Extracts the embedded Markdown""" 
     file = open(infile, 'r');
     out  = open(outfile, 'w');
     for line in file:
@@ -87,7 +115,8 @@ def extract (infile,outfile):
           out.write("\n")
     file.close()
     out.close()
-def md2gitlabmd (infile,outfile):
+def md2gitlabmd(infile,outfile):
+    """Converts the given inoutfile in Markdown to Gitlab compatible Markdown"""
     # do a conversion to gitlab markdown
     file = open(infile, 'r');
     out  = open(outfile, 'w');
@@ -110,10 +139,26 @@ def md2gitlabmd (infile,outfile):
        out.write(line)
     file.close()
     out.close()
+def md2html(mdfile,outfile,cssfile):
+    """Converts the given Markdown infile to the given HTML outfile"""
+    global head
+    global foot
+    global VERSION
+    with open(mdfile, "r", encoding="utf-8") as input_file:
+        text = input_file.read()
+    html = md.convert(text)
+    head=re.sub("__TITLE__",os.path.splitext(os.path.basename(mdfile))[0],head)
+    if (cssfile != ""):
+        head=re.sub("__STYLE__",f"<link rel=\"stylesheet\" href=\"{cssfile}\">",head)
+    elif  (os.path.exists("style.css")):
+        head=re.sub("__STYLE__","<link rel=\"stylesheet\" href=\"style.css\">",head)
+    else:
+        head=re.sub("__STYLE__","",head)
+    with open(outfile, "w", encoding="utf-8", errors="xmlcharrefreplace") as output_file:
+        html=re.sub("href=\"(.+?).md\"","href=\"\\1.html\"",html)
+        output_file.write(head+html+foot)
 
 def main (argv):
-    global head
-    global VERSION
     cssfile=""
     if len(argv)== 4:
         if not(argv[3].endswith(".css")):
@@ -141,19 +186,7 @@ def main (argv):
                     extract(argv[1],'temp.md')
                     mdfile="temp.md"
                 else:
-                    mdfile=argv[1]
-                with open(mdfile, "r", encoding="utf-8") as input_file:
-                    text = input_file.read()
-                html = md.convert(text)
-                head=re.sub("__TITLE__",os.path.basename(argv[1]),head)
-                if (cssfile != ""):
-                    head=re.sub("__STYLE__",f"<link rel=\"stylesheet\" href=\"{cssfile}\">",head)
-                elif  (os.path.exists("style.css")):
-                    head=re.sub("__STYLE__","<link rel=\"stylesheet\" href=\"style.css\">",head)
-                else:
-                    head=re.sub("__STYLE__","",head)
-                with open(argv[2], "w", encoding="utf-8", errors="xmlcharrefreplace") as output_file:
-                    output_file.write(head+html+foot)
+                    md2html(argv[1],argv[2],cssfile)
     else:
         print("mkdoc.py %s - Markdown documentation tool\n\nExtract or convert Markdown code after a `#'` character sequence.\n" % VERSION)
         print("Usage: mkdoc.py infile outfile [cssfile]")

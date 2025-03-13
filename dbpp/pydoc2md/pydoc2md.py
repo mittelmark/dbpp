@@ -12,18 +12,24 @@ License: MIT
 
 Usage as command line application: 
 
-    pydoc2md PYTHONFILE ?MDFILE|HTMLFILE?
+    python3 -m dbpp.pydoc2md --pyfile PYTHONFILE \
+        ?--outfile MDFILE|HTMLFILE? ?--cssfile CSSFILE?
 
 Usage as module:
 
-    import pydoc2md
-    pydoc2md.pydoc2md PYTHONFILE ?MDFILE|HTMLFILE?
+    import dbpp.pydoc2md as pydoc2md
+    import dbpp.mkdoc as mkdoc
+    pydoc2md.pydoc2md(PYTHONFILE,MDFILE)
+    mkdoc.mkdoc.main(MDFILE,HTMLFILE,CSSFILE)
+    
 
 Direct conversion to a HTMLFILE requires the modules mkdoc pymdown-extensions
 to be installed.
 """
 
 import sys, os, re, shutil
+import base64
+import zlib
 import argparse
 import dbpp.mkdoc.mkdoc as mkdoc
 try:
@@ -32,6 +38,26 @@ try:
     mkd=True
 except:
     mkd = False
+
+def Line_to_dict(line):
+    # Remove the leading "```
+    line=re.sub(" +",",",line)
+    line=re.sub("kroki","",line)
+    line=re.sub("[^a-zA-Z0-9_,=]","",line)
+    line=re.sub("^,+","",line)
+    print(line)
+    d = dict()
+    for item in line.split(","):
+        l = item.split("=")
+        key=l[0]
+        val=l[1]
+        if val.lower() == "true":
+            d[key]=True
+        elif val.lower() == "false":
+            d[key]=False
+        else:
+            d[key]=val
+    return(d)
 
 def pydoc2md(infile,outfile=""):
     """Convert docstrings of the given Python file to a Markdown document.
@@ -47,6 +73,21 @@ def pydoc2md(infile,outfile=""):
     Returns:
         None
     """
+    headerfile=os.path.join(os.path.dirname(infile),"header.md")
+    footerfile=os.path.join(os.path.dirname(infile),"footer.md")    
+    modname=os.path.splitext(os.path.basename(infile))[0]
+    
+    header=""
+    footer=""
+    if os.path.isfile(headerfile):
+        file = open(headerfile,'r')
+        header=''.join(file.readlines())
+        file.close()
+            
+    if os.path.isfile(footerfile):
+        file = open(footerfile,'r')
+        footer=file.readLines()
+        file.close()
     file = open(infile,'r')
     if (outfile != ""):
         out  = open(outfile,'w')
@@ -55,21 +96,27 @@ def pydoc2md(infile,outfile=""):
         
     lnr   = 0    # global line number
     mod   = False
+    eof   = False
+    eofdoc = False
     dflnr = 0  # def line number
     func  = False
     funcheader = False
+    kroki = False
     mtlnr = 0  # method of class line number
     meth  = False
     cllnr = 0  # class line number
     clss  = False
+    kdict = {'eval': True,'echo':False,'dia': 'ditaa', 'ext': 'png'}
     for line in file:
         line = re.sub("\t","    ",line)
         lnr   = lnr + 1
         dflnr = dflnr + 1 
         cllnr = cllnr + 1
         mtlnr = mtlnr + 1        
-        ## handline module documentation
+        ## handle module documentation
         if lnr == 2 and re.search('^"""', line):
+            if header != "":
+                out.write(''.join(header))
             out.write("## "+re.sub('"""',"",line))
             ## not a single line docstring?
             if not re.search('""".+"""\\s*$',line):        
@@ -77,10 +124,37 @@ def pydoc2md(infile,outfile=""):
         elif lnr > 1 and mod and re.search('^"""',line):
             out.write("\n")
             mod = False
+        elif re.search("^ *```.?.kroki",line):
+            krokitext=""
+            ddef = kdict
+            d = Line_to_dict(line)
+            for k in d.keys():
+                ddef[k] = d[k]
+            if ddef["eval"]:
+                kroki = True
+        elif kroki and re.search("^ *```",line):
+            url = base64.urlsafe_b64encode(
+            zlib.compress(krokitext.encode('utf-8'), 9)).decode('ascii')
+            if ddef['echo']:
+                out.write(f"```\n{krokitext}\n```\n")
+            out.write(f"![](https://kroki.io/{ddef['dia']}/{ddef['ext']}/{url})\n")
+            krokitext=""
+            kroki=False
+            continue
+        elif kroki:
+            krokitext=krokitext+line
         elif mod:
             out.write(line)
             continue
         ## handling functions    
+        if re.search("^if __name__",line):
+            eof = True
+        elif eof and re.search("^\"{3}",line):
+            eofdoc = True
+        elif eofdoc and re.search("^\"{3}",line):
+            eofdoc = False
+        elif not kroki and eofdoc:
+            out.write(line)
         if re.search("^def",line):
             dfname = re.sub("def +([^ ]+):","\\1",line)
             dflnr = 0
@@ -91,9 +165,9 @@ def pydoc2md(infile,outfile=""):
             if not re.search('""".+"""\\s*$',line):        
                 func  = True
             if not(funcheader):
-                out.write("## Functions\n\n")
+                out.write("## Module Functions\n\n")
                 funcheader=True
-            out.write("\n## "+dfname+"\n")
+            out.write(f"\n##{modname}.{dfname}\n")
             out.write(re.sub('"""','',re.sub("^ +","",re.sub(' {4}""" *',"",line))))
             continue
         elif func and re.search('^    """',line):
@@ -101,30 +175,32 @@ def pydoc2md(infile,outfile=""):
             continue
         elif func and re.search('^    (Args|Returns):',line):
             m = re.match(r"    (Args|Returns):",line)
-            out.write(f'__{m.group(1)}:__\n\n')
+            out.write(f'\n__{m.group(1)}:__\n\n')
             continue
         elif func and re.search("^ {8}[^\\s\n]",line):
             out.write(re.sub("^ {8}","* ",line))
-        elif func:
+        elif not kroki and func:
             out.write(re.sub("^ {4}","",line))
         ## handling class doc string
         if re.search("^class",line):
             clname = re.sub("class +(.+):","\\1",line)
             cllnr = 0
         elif cllnr == 1 and re.search('^ {4}"""',line):
-            out.write("\n## Class: "+clname+"\n")
+            out.write(f"\n## Class: {modname}.{clname}")
+            clname=clname.strip()
             out.write(re.sub('"""',"",re.sub("^ +","",re.sub('   """ *',"",line))))
             ## not a single line docstring?
             if not re.search('""".+"""',line):
                   clss  = True
         elif clss and re.search('^    """',line):
             clss = False
-        elif clss:
+            out.write("\n\n## Methods\n\n")
+        elif not kroki and clss:
             out.write(re.sub("^ {4}","",line))
         ## handling class methods
         if re.search("^    def .+self",line):
             if re.search(".+:",line):
-                mtname = re.sub("def +(.+):.*","\\1",line)
+                mtname = re.sub(".+def +(.+):.*","\\1",line)
             else:
                 mtname = re.sub("^ +def +(.+)","\\1",line)
             mtname = re.sub("_","\\_",mtname)            
@@ -138,17 +214,20 @@ def pydoc2md(infile,outfile=""):
             ## not a single line docstring?
             if not re.search('""".+"""',line):
                 meth  = True
-            out.write("\n### "+mtname)
+            out.write(f"\n### {modname}.{clname}.{mtname}")
             out.write(re.sub('"""','',re.sub("^ +","",re.sub('   +""" *',"",line))))
         elif meth and re.search('^ {8}"""',line):
             meth = False
         elif meth and re.search('^ {8}(Args|Returns):',line):
             m = re.match(r"^ {8}(Args|Returns):",line)
-            out.write(f'__{m.group(1)}:__\n\n')
+            out.write(f'\n__{m.group(1)}:__\n\n')
         elif meth and re.search("^ {11,12}[^\\s\\n]",line):
             out.write(re.sub("^ {11,12}","* ",line))
-        elif meth:
+        elif not kroki and meth:
             out.write(re.sub("^ {8}","",line))
+            
+    if footer != "":
+        out.write(footer)
     if (outfile != ""):
         out.close()
     file.close()
