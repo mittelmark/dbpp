@@ -45,3 +45,9 @@ single: docs/header.html header.md
 		
 docs/header.html:
 	pandoc header.md -o docs/header.html --lua-filter=lua-filters/links-to-html.lua
+
+pydoc2md:
+	PYTHONPATH=~/workspace/dbpp python3 -m dbpp.pydoc2md --pyfile dbpp/pydoc2md/pydoc2md.py --outfile dbpp/pydoc2md/pydoc2md.html
+	PYTHONPATH=~/workspace/dbpp python3 -m dbpp.pydoc2md --pyfile dbpp/mkdoc/mkdoc.py --outfile dbpp/mkdoc/mkdoc.html
+	PYTHONPATH=~/workspace/dbpp python3 -m dbpp.pydoc2md --pyfile dbpp/kroki/krokiencoder.py --outfile dbpp/kroki/krokiencoder.html
+	PYTHONPATH=~/workspace/dbpp python3 -m dbpp.pydoc2md --pyfile dbpp/sfa/sfa.py --outfile dbpp/sfa/sfa.html

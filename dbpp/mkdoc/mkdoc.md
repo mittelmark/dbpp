@@ -1,7 +1,9 @@
 <center>
+    __Applications:__ 
     [mkdoc](../mkdoc/mkdoc.md) -
-    [pydoc2md](../pydoc2md/pydoc2md.md) -
-    [krokiencoder](../kroki/krokiencoder.md)
+    [krokiencoder](../kroki/krokiencoder.md) -
+    [sfa](../sfa/sfa.md) -
+    [pydoc2md](../pydoc2md/pydoc2md.md)
 </center>
 ## Convert Markdown files into HTML
 

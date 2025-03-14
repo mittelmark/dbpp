@@ -143,7 +143,10 @@ def pydoc2md(infile,outfile=""):
         elif kroki:
             krokitext=krokitext+line
         elif mod:
-            out.write(line)
+            if re.search("^(NAME|SYNOPSIS|DESCRIPTION|EXAMPLE).*",line):
+                out.write(f"## {line}")
+            else:
+                out.write(line)
             continue
         ## handling functions    
         if re.search("^if __name__",line):
@@ -172,8 +175,8 @@ def pydoc2md(infile,outfile=""):
         elif func and re.search('^    """',line):
             func = False
             continue
-        elif func and re.search('^    (Args|Returns):',line):
-            m = re.match(r"    (Args|Returns):",line)
+        elif func and re.search('^    (Args|Returns|Example):',line):
+            m = re.match(r"    (Args|Returns|Example):",line)
             out.write(f'\n__{m.group(1)}:__\n\n')
             continue
         elif func and re.search("^ {8}[^\\s\n]",line):
